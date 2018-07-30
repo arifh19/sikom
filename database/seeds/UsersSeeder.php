@@ -22,14 +22,15 @@ class UsersSeeder extends Seeder
         // Create Member role
         $memberRole = new Role();
         $memberRole->name = "member";
-        $memberRole->display_name = "Member";
+        $memberRole->display_name = "Mahasiswa";
         $memberRole->save();
-        
-        // Create Member role
-        // $dosenRole = new Role();
-        // $dosenRole->name = "dosen";
-        // $dosenRole->display_name = "Dosen";
-        // $dosenRole->save();
+
+        // Create Dosen role
+        $dosenRole = new Role();
+        $dosenRole->name = "dosen";
+        $dosenRole->display_name = "Dosen";
+        $dosenRole->save();
+    
 
         // Create Admin sample
         $admin = new User();
@@ -43,13 +44,23 @@ class UsersSeeder extends Seeder
 
         // Create Sample member
         $member = new User();
-        $member->name = 'Sample Member';
+        $member->name = 'Mahasiswa Member';
         $member->email = 'member@gmail.com';
         $member->password = bcrypt('rahasia');
         $member->avatar = "member_avatar.png";
         $member->is_verified = 1;
         $member->save();
         $member->attachRole($memberRole);
+
+        // Create Sample Dosen
+        $member = new User();
+        $member->name = 'Dosen';
+        $member->email = 'dosen@gmail.com';
+        $member->password = bcrypt('rahasia');
+        $member->avatar = "member_avatar.png";
+        $member->is_verified = 1;
+        $member->save();
+        $member->attachRole($dosenRole);
 
 
     }

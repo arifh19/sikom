@@ -1,12 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Author;
-use App\Book;
-use App\BorrowLog;
-use App\User;
+use App\Kategori;
 
-class BooksSeeder extends Seeder
+class KategorisSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,12 +12,17 @@ class BooksSeeder extends Seeder
      */
     public function run()
     {
-        // Author sample
-        $author1 = Kategori::create(['nama_kategori' => 'M. Rudyanto Arief']);
-        $author2 = Kategori::create(['nama_kategori' => 'Yudhi Purwanto']);
-        $author3 = Kategori::create(['nama_kategori' => 'Andy Harris']);
-        $author4 = Kategori::create(['nama_kategori' => 'Achmad Solichin']);
-        $author5 = Kategori::create(['nama_kategori' => 'A.M. HIRIN & VIRGI']);
+        // Kategori sample
+        $kategori1 = Kategori::create(['nama_kategori' => 'Animasi']);
+        $kategori2 = Kategori::create(['nama_kategori' => 'Desain Pengalaman Pengguna(UX)']);
+        $kategori3 = Kategori::create(['nama_kategori' => 'Keamanan Jaringan dan Sistem Informasi']);
+        $kategori4 = Kategori::create(['nama_kategori' => 'Pemrograman']);
+        $kategori5 = Kategori::create(['nama_kategori' => 'Penambangan Data(Data Mining)']);
+        $kategori6 = Kategori::create(['nama_kategori' => 'Pengembangan Aplikasi Permainan']);
+        $kategori7 = Kategori::create(['nama_kategori' => 'Pengembangan Perangkat Lunak']);
+        $kategori8 = Kategori::create(['nama_kategori' => 'Pengembangan Bisnis TIK']);
+        $kategori9 = Kategori::create(['nama_kategori' => 'Piranti Cerdas, Sistem Benam dan IoT']);
+        $kategori10 = Kategori::create(['nama_kategori' => 'Kota Cerdas (Smart City)']);
 
     }
 }
