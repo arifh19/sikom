@@ -42,7 +42,7 @@ class KomentarsController extends Controller
             'konten' => 'required:komentars',
             'proposal_id' => 'required:komentars',
         ], [
-            'name.required' => 'Nama penulis masih kosong',
+            'konten.required' => 'Komentar masih kosong',
         ]);
 
         $komentar = Komentar::create($request->except('user_id'));
