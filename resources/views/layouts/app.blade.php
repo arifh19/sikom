@@ -207,33 +207,33 @@
                                 </a>
                             </li>
 
-                            <li class="treeview {!! Request::is('admin/*books*') ? 'active' : '' !!}">
+                            {{-- <li class="treeview {!! Request::is('admin/*books*') ? 'active' : '' !!}">
                                 <a href="{{ route('books.index') }}">
                                     <i class="fa fa-book"></i>
                                     <span>Dosen</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
-                            <li class="treeview {!! Request::is('admin/*proposals*') ? 'active' : '' !!}">
+                            {{-- <li class="treeview {!! Request::is('admin/*proposals*') ? 'active' : '' !!}">
                                 <a href="{{ route('proposals.index') }}">
                                     <i class="fa fa-book"></i>
                                     <span>Proposal</span>
                                 </a>
-                            </li>
-
+                            </li> --}}
+{{-- 
                             <li class="treeview {!! Request::is('admin/members*') ? 'active' : '' !!}">
                                 <a href="{{ route('members.index') }}">
                                     <i class="fa fa-user"></i>
                                     <span>Member</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
-                            <li class="treeview {!! Request::is('admin/statistics') ? 'active' : '' !!}">
+                            {{-- <li class="treeview {!! Request::is('admin/statistics') ? 'active' : '' !!}">
                                 <a href="{{ route('statistics.index') }}">
                                     <i class="fa fa-bars"></i>
                                     <span>Proposal</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             @endrole
 
                             @role('member')
