@@ -56,13 +56,16 @@ class HomeController extends Controller
 
         if (Laratrust::hasRole('admin')) {
 
-            $author = Author::all();
-
-            $book = Book::all();
-
-            $member = Role::where('name', 'member')->first()->users;
-
-            $borrow = BorrowLog::all();
+            $animasi = Proposal::where('kategori_id',Kategori::where('nama_kategori','Animasi')->first()->id);
+            $ux = Proposal::where('kategori_id',Kategori::where('nama_kategori','Desain Pengalaman Pengguna(UX)')->first()->id);
+            $kjsi = Proposal::where('kategori_id',Kategori::where('nama_kategori','Keamanan Jaringan dan Sistem Informasi')->first()->id);
+            $cp = Proposal::where('kategori_id',Kategori::where('nama_kategori','Pemrograman')->first()->id);
+            $datmin = Proposal::where('kategori_id',Kategori::where('nama_kategori','Penambangan Data(Data Mining)')->first()->id);
+            $gamedev = Proposal::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Aplikasi Permainan')->first()->id);
+            $bistik = Proposal::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Perangkat Lunak')->first()->id);
+            $ppl = Proposal::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Bisnis TIK')->first()->id);
+            $piranti = Proposal::where('kategori_id',Kategori::where('nama_kategori','Piranti Cerdas, Sistem Benam dan IoT')->first()->id);
+            $smartcity = Proposal::where('kategori_id',Kategori::where('nama_kategori','Kota Cerdas (Smart City)')->first()->id);
 
             return view('dashboard.admin', compact('author', 'book', 'member', 'borrow'));
         }
