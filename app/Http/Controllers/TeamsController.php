@@ -26,8 +26,11 @@ class TeamsController extends Controller
      */
     public function index()
     {   $team = Team::where('user_id', Auth::user()->id)->first();
+        $hitung = Team::where('user_id', Auth::user()->id)->count();
+        if($hitung==1)
         return view('teams.team')->with(compact('team'));
-       // return view('teams.create');
+        else
+        return view('teams.create');
     }
 
     /**
