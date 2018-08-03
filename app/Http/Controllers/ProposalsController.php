@@ -182,7 +182,7 @@ class ProposalsController extends Controller
         if($cariproposal->id==$id)
             return view('proposals.edit')->with(compact('proposal'));
         else
-            return redirect()->route('teams.index');
+            return redirect()->route('proposals.index');
     }
 
     /**
