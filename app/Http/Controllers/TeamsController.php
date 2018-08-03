@@ -112,7 +112,7 @@ class TeamsController extends Controller
     {
         $user = Auth::user()->id;
         $team = Team::find($id);
-        if($team->user_id===$user)
+        if($team->first()->user_id===$user)
         return view('teams.edit')->with(compact('team'));
         else
         return redirect()->route('teams.index');
