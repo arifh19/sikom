@@ -1,9 +1,5 @@
 /node_modules 
 /public/storage 
-/public/img
-/public/proposal
-/public/teams
-/public/hot 
 /storage/ 
 /vendor 
 /.idea 
