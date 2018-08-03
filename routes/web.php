@@ -34,6 +34,8 @@ Route::group(['midlleware' => 'web'], function() {
     Route::group(['prefix' => 'mahasiswa', 'middleware' => ['auth', 'role:member']], function() {
         Route::resource('proposals', 'ProposalsController', [
         ]);
+        Route::resource('teams', 'TeamsController', [
+        ]);
     });
 
     // Daftar Buku untuk dipinjam
@@ -42,11 +44,6 @@ Route::group(['midlleware' => 'web'], function() {
         'as' => 'member.books.borrow',
         'uses' => 'BooksController@borrow'
     ]);
-
-    Route::get('teams', function(){
-        return view('maintenance');
-    },[
-        'middleware' => ['auth', 'role:member']]);
 
     // Pengembalian buku
     Route::put('books/{book}/return', [
