@@ -177,9 +177,12 @@ class ProposalsController extends Controller
      */
     public function edit($id)
     {
+        $cariproposal = Proposal::where('user_id', Auth::user()->id)->first();
         $proposal = Proposal::find($id);
-
-        return view('proposals.edit')->with(compact('proposal'));
+        if($cariproposal->id==$id)
+            return view('proposals.edit')->with(compact('proposal'));
+        else
+            return redirect()->route('teams.index');
     }
 
     /**
