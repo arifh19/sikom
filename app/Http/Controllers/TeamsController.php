@@ -110,12 +110,13 @@ class TeamsController extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user()->id;
+        $user = Auth::user();
+        $cariteam = Team::where('user_id', Auth::user()->id)->first();
         $team = Team::find($id);
-        if($team->first()->user_id===$user)
-        return view('teams.edit')->with(compact('team'));
+        if($cariteam->id==$id)
+            return view('teams.edit')->with(compact('team'));
         else
-        return redirect()->route('teams.index');
+            return redirect()->route('teams.index');
 
     }
 
