@@ -193,8 +193,8 @@
                             @endrole
 
                             @role('member')
-                            <li class="treeview {!! Request::is('teams') ? 'active' : '' !!}">
-                                <a href="{{ url('teams') }}">
+                            <li class="treeview {!! Request::is('mahasiswa/teams') ? 'active' : '' !!}">
+                                <a href="{{ url('mahasiswa/teams') }}">
                                     <i class="fa fa-users"></i>
                                     <span>Team</span>
                                 </a>

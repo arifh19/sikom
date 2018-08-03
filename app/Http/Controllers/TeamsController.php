@@ -1,7 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Team;
+use Yajra\Datatables\Html\Builder;
+use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\StoreTeamRequest;
+use App\Http\Requests\UpdateProposalRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
+use App\Exceptions\BookException;
+use Laratrust\LaratrustFacade as Laratrust;
+use Session;
+use Excel;
+use PDF;
+use Validator;
 use Illuminate\Http\Request;
 
 class TeamsController extends Controller
@@ -12,8 +25,9 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   $team = Team::where('user_id', Auth::user()->id)->first();
+        return view('teams.team')->with(compact('team'));
+       // return view('teams.create');
     }
 
     /**
@@ -32,23 +46,38 @@ class TeamsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTeamRequest $request)
     {
-        $this->validate($request, [
-            'nama_ketua' => 'required:teams',
-            'nim_ketua' => 'required:teams',
-            'fkja_ketua' => 'required:teams',
-            'no_hp_ketua' => 'required:teams',
-            'foto_ktm_ketua' => 'required:teams',
-        ], [
-            'nama_ketua.required' => 'Nama penulis masih kosong',
-            'nim_ketua.required' => 'Penulis sudah ada',
-            'fkja_ketua.required' => 'Nama penulis masih kosong',
-            'no_hp_ketua.required' => 'Penulis sudah ada',
-            'foto_ktm_ketua.required' => 'Nama penulis masih kosong',
-        ]);
-
-        $team = Team::create($request->except('user_id'));
+        $team = Team::create($request->except('foto_ktm_ketua','foto_ktm_anggota1','foto_ktm_anggota2','user_id'));
+        $user = Auth::user()->id;
+        $team->user_id = $user;
+        $team->save();
+        // Isi field upload jika ada proposal yang diupload
+        if ($request->hasFile('foto_ktm_ketua')) {
+            $uploaded_foto_ktm_ketua = $request->file('foto_ktm_ketua');
+            $extension = $uploaded_foto_ktm_ketua->getClientOriginalExtension();
+            $filename = md5(time()) . "." . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'teams';
+            $uploaded_foto_ktm_ketua->move($destinationPath, $filename);
+            $team->foto_ktm_ketua = $filename;
+        }
+        if ($request->hasFile('foto_ktm_anggota1')) {
+            $uploaded_foto_ktm_anggota1 = $request->file('foto_ktm_anggota1');
+            $extension = $uploaded_foto_ktm_anggota1->getClientOriginalExtension();
+            $filename = md5(time()+1) . "." . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'teams';
+            $uploaded_foto_ktm_anggota1->move($destinationPath, $filename);
+            $team->foto_ktm_anggota1 = $filename;
+        }
+        if ($request->hasFile('foto_ktm_anggota2')) {
+            $uploaded_foto_ktm_anggota2 = $request->file('foto_ktm_anggota2');
+            $extension = $uploaded_foto_ktm_anggota2->getClientOriginalExtension();
+            $filename = md5(time()+2) . "." . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'teams';
+            $uploaded_foto_ktm_anggota2->move($destinationPath, $filename);
+            $team->foto_ktm_anggota2 = $filename;
+        }
+        $team->save();
 
         Session::flash("flash_notification", [
             "level" => "success",
@@ -56,7 +85,7 @@ class TeamsController extends Controller
             "message" => "Berhasil menyimpan $team->nama_ketua"
         ]);
 
-        return redirect()->route('teams.index');
+        return redirect()->route('teams.create');
     }
 
     /**
@@ -78,7 +107,9 @@ class TeamsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $team = Team::find($id);
+
+        return view('teams.edit')->with(compact('team'));
     }
 
     /**
