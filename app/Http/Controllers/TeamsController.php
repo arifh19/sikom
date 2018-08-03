@@ -88,7 +88,7 @@ class TeamsController extends Controller
             "message" => "Berhasil menyimpan $team->nama_ketua"
         ]);
 
-        return redirect()->route('teams.create');
+        return redirect()->route('teams.index');
     }
 
     /**
@@ -110,9 +110,13 @@ class TeamsController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user()->id;
         $team = Team::find($id);
-
+        if($team->user_id==$user)
         return view('teams.edit')->with(compact('team'));
+        else
+        return redirect()->route('teams.index');
+
     }
 
     /**
