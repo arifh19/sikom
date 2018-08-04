@@ -53,11 +53,11 @@
                     <table class="table table-bordered">
         
                         <tr>
-                            <td class="text-muted">Nama Ketua</td>
+                            <td class="text-muted">Nama Anggota 1</td>
                             <td>{{ $team->nama_anggota1 }}</td>
                         </tr>
                         <tr>
-                            <td class="text-muted">NIM Ketua</td>
+                            <td class="text-muted">NIM Anggota 1</td>
                             <td>{{ $team->nim_anggota1 }}</td>
                         </tr>
                         <tr>
@@ -65,11 +65,11 @@
                                 <td>{{ $team->fkja_anggota1 }}</td>
                         </tr>
                         <tr>
-                                <td class="text-muted">No HP Ketua</td>
+                                <td class="text-muted">No HP Anggota 1</td>
                                 <td>{{ $team->no_hp_anggota1 }}</td>
                         </tr>
                         <tr>
-                            <td class="text-muted">KTM Ketua</td>
+                            <td class="text-muted">KTM Anggota 1</td>
                             <td><img src="{{ asset('/teams/'. $team->foto_ktm_anggota1) }}" class="img-rounded img-responsive" alt="User Image"></td>
                         </tr>
                     </table>
@@ -87,11 +87,11 @@
                     <div class="box-body">
                         <table class="table table-bordered">
                             <tr>
-                                <td class="text-muted">Nama Ketua</td>
+                                <td class="text-muted">Nama Anggota 2</td>
                                 <td>{{ $team->nama_anggota2 }}</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">NIM Ketua</td>
+                                <td class="text-muted">NIM Anggota 2</td>
                                 <td>{{ $team->nim_anggota2 }}</td>
                             </tr>
                             <tr>
@@ -99,11 +99,11 @@
                                     <td>{{ $team->fkja_anggota2 }}</td>
                             </tr>
                             <tr>
-                                    <td class="text-muted">No HP Ketua</td>
+                                    <td class="text-muted">No HP Anggota 2</td>
                                     <td>{{ $team->no_hp_anggota2 }}</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">KTM Ketua</td>
+                                <td class="text-muted">KTM Anggota 2</td>
                                 <td><img src="{{ asset('/teams/'. $team->foto_ktm_anggota2) }}" class="img-rounded img-responsive" alt="User Image"></td>
                             </tr>
                         </table>

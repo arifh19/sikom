@@ -13,7 +13,7 @@ Proposal
 
 @section('content')
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Isi Form</h3>
@@ -28,18 +28,14 @@ Proposal
         </div>
         <!-- /.col (left) -->
 
-        {{-- <div class="col-md-6">
+        <div class="col-md-7">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Upload</h3>
+                    <h3 class="box-title">Buku Panduan V.1</h3>
                 </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                {!! Form::open(['url' => route('import.books'), 'method' => 'post', 'files' => 'true', 'class' => 'form-horizontal']) !!}
-                    @include('books._import')
-                {!! Form::close() !!}
+                <center><iframe src ="{{ asset('/info/Buku_Panduan_GEMASTIK-11_Versi_1-0.pdf') }}" width="600px" height="400px"></iframe></center>
             </div>
-        </div> --}}
+        </div> 
         <!-- /.col (right)-->
     </div>
     <!-- /.row -->
