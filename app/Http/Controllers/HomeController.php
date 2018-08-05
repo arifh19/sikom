@@ -127,6 +127,10 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'Dampak_implementasi', 'name' => 'Dampak_implementasi', 'title' => 'Dampak implementasi'])
                     ->addColumn(['data' => 'Inovasi_pengembangan', 'name' => 'Inovasi_pengembangan', 'title' => 'Inovasi Pengembangan']);
                 }
+                else{
+                    $html = $htmlBuilder
+                    ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa']);
+                }
             }
             else{
                 $html = $htmlBuilder
