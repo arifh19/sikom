@@ -26,10 +26,6 @@ Route::group(['midlleware' => 'web'], function() {
     //
     // Member
     //
-
-    // Daftar Peminjaman
-    Route::get('member/books', 'BooksController@memberBook');
-
     
     Route::group(['prefix' => 'mahasiswa', 'middleware' => ['auth', 'role:member']], function() {
         Route::resource('proposals', 'ProposalsController', [
@@ -37,20 +33,6 @@ Route::group(['midlleware' => 'web'], function() {
         Route::resource('teams', 'TeamsController', [
         ]);
     });
-
-    // Daftar Buku untuk dipinjam
-    Route::get('books/{books}/borrow', [
-        'middleware' => ['auth', 'role:member'],
-        'as' => 'member.books.borrow',
-        'uses' => 'BooksController@borrow'
-    ]);
-
-    // Pengembalian buku
-    Route::put('books/{book}/return', [
-        'middleware' => ['auth', 'role:member'],
-        'as' => 'member.books.return',
-        'uses' => 'BooksController@returnBack'
-    ]);
 
     //review proposal dosen index
     Route::get('dosen/proposals', [
@@ -99,41 +81,20 @@ Route::group(['midlleware' => 'web'], function() {
 
     // Admin
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function() {
-        Route::resource('authors', 'AuthorsController');
+       // Route::resource('authors', 'AuthorsController');
         Route::resource('kategoris', 'KategorisController');
         //Route::resource('proposals', 'ProposalsController');
-        Route::resource('books', 'BooksController');
-        Route::resource('members', 'MembersController', [
-            'only' => ['index', 'show', 'destroy']
-        ]);
+      //  Route::resource('books', 'BooksController');
+      //  Route::resource('members', 'MembersController', [
+      //      'only' => ['index', 'show', 'destroy']
+      //  ]);
 
         // Daftar peminjaman
-        Route::get('statistics', [
-            'as' => 'statistics.index',
-            'uses' => 'StatisticsController@index'
-        ]);
+        // Route::get('statistics', [
+        //     'as' => 'statistics.index',
+        //     'uses' => 'StatisticsController@index'
+        // ]);
 
-        // Export buku
-        Route::get('export/books', [
-            'as' => 'export.books',
-            'uses' => 'BooksController@export'
-        ]);
-
-        Route::post('export/books', [
-            'as' => 'export.books.post',
-            'uses' => 'BooksController@exportPost'
-        ]);
-
-        // Download template buku
-        Route::get('template/books', [
-            'as' => 'template.books',
-            'uses' => 'BooksController@generateExcelTemplate'
-        ]);
-
-        // Import dari excel
-        Route::post('import/books', [
-            'as' => 'import.books',
-            'uses' => 'BooksController@importExcel'
-        ]);
+        
     });
 });
