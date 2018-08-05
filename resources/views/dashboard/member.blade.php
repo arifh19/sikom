@@ -29,7 +29,6 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    Selamat datang di SIKOMATIK
                 <!-- /.box-header -->
                 <div class="box-body">
                     {{-- <p> --}}

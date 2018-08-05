@@ -21,20 +21,32 @@ class CreateKomentarsTable extends Migration
             $table->string('Konsistensi_tema')->nullable();
             $table->string('Kreativitas_dalam_implementasi')->nullable();
             $table->string('Teknik_modelling_lighting_motion')->nullable();
-            $table->string('Kekuatan pesan, artistik')->nullable();
+            $table->string('Kekuatan_pesan_artistik')->nullable();
             //desain ux
-            $table->string('Interaktivitas_dan_Potensi')->nullable();
-            $table->string('Orisinalitas_dan_Keunikan')->nullable();
+            $table->string('Identifikasi_permasalahan')->nullable();
+            $table->string('Inovasi_desain')->nullable();
             $table->string('Metode_Desain')->nullable();
-            $table->string('Komunikasi_dengan_Media_Poster')->nullable();
+            $table->string('Prototype')->nullable();
+            $table->string('Komunikasi')->nullable();
             //data mining
-            $table->string('Solusi_permasalahan_dan_manfaat')->nullable();
-            $table->string('Kritik_Saran')->nullable();
+            $table->string('originalitas')->nullable();
+            $table->string('kebaruan')->nullable();
+            $table->string('manfaat')->nullable();
+            $table->string('clarity')->nullable();
+            $table->string('kelengkapan_laporan')->nullable();
             //game dev
             $table->string('Story')->nullable();
             $table->string('Mechanics')->nullable();
             $table->string('Aesthetics')->nullable();
             $table->string('Gameplay')->nullable();
+            $table->string('kesesuaian_proposal')->nullable();
+            //PPL
+            $table->string('Aspek_Inovasi')->nullable();
+            $table->string('Dampak_pengguna_masyarakat')->nullable();
+            $table->string('Desain_dan_usability')->nullable();
+            $table->string('metodologi_pengembangan')->nullable();
+            $table->string('Kesesuaian_ide')->nullable();
+            $table->string('Urgensi_permasalahan')->nullable();
             //Bisnis TIK
             $table->string('Penjelasan_Problem_Bisnis')->nullable();
             $table->string('Produk_Layanan')->nullable();
@@ -43,13 +55,6 @@ class CreateKomentarsTable extends Migration
             $table->string('Anggota_Perusahaan')->nullable();
             $table->string('Daya_Tarik_Traction')->nullable();
             $table->string('Elevator_Pitch')->nullable();
-            //PPL
-            $table->string('Aspek_Inovasi')->nullable();
-            $table->string('Dampak_pengguna_masyarakat')->nullable();
-            $table->string('Desain_dan_usability')->nullable();
-            $table->string('metodologi_pengembangan')->nullable();
-            $table->string('Kesesuaian_ide')->nullable();
-            $table->string('Urgensi_permasalahan')->nullable();
             //Piranti Cerdas
             $table->string('Aspek_kreativitas')->nullable();
             $table->string('Penulisan_proposal')->nullable();

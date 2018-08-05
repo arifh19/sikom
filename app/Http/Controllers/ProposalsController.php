@@ -36,7 +36,7 @@ class ProposalsController extends Controller
                 ->addColumn('action', function($proposal) {
                     return view('datatable._action', [
                         'model'             => $proposal,
-                        'form_url'          => route('proposals.destroy', $proposal->id),
+                        //'form_url'          => route('proposals.destroy', $proposal->id),
                         'edit_url'          => route('proposals.edit', $proposal->id),
                         // 'view_url'          => route('proposals.show', $proposal->id),
                         'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
@@ -158,10 +158,10 @@ class ProposalsController extends Controller
             $proposal = Proposal::find($id);
             $kategori = Kategori::find($proposal->kategori_id);
             if (Laratrust::hasRole('admin')) {
-                return view('proposals.view')->with(compact('proposal', 'kategori'));
+                return view('komentars.view')->with(compact('proposal', 'kategori'));
             }
             elseif (Laratrust::hasRole('dosen')) {
-                return view('proposals.view')->with(compact('proposal', 'kategori'));
+                return view('komentars.view')->with(compact('proposal', 'kategori'));
             }
             else{
                 return redirect()->route('proposals.index');

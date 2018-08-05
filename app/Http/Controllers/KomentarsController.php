@@ -39,10 +39,9 @@ class KomentarsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'konten' => 'required:komentars',
             'proposal_id' => 'required:komentars',
         ], [
-            'konten.required' => 'Komentar masih kosong',
+            'proposal_id.required' => 'Komentar masih kosong',
         ]);
 
         $komentar = Komentar::create($request->except('user_id'));
