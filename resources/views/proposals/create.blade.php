@@ -33,7 +33,7 @@ Proposal
                 <div class="box-header with-border">
                     <h3 class="box-title">Buku Panduan V.1</h3>
                 </div>
-                <center><iframe src ="{{ asset('/info/Buku_Panduan_GEMASTIK-11_Versi_1-0.pdf') }}" width="600px" height="400px"></iframe></center>
+                <center><iframe src ="{{ asset('/info/Buku_Panduan_GEMASTIK-11_Versi_2-0.pdf') }}" width="600px" height="400px"></iframe></center>
             </div>
         </div> 
         <!-- /.col (right)-->
