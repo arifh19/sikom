@@ -7,7 +7,6 @@
 /storage/ 
 /vendor 
 /.idea 
-/app/Providers/AppServiceProvider.php
 Homestead.json 
 Homestead.yaml 
 .env
