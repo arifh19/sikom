@@ -40,7 +40,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/') }}"><b>SI</b>KOMATIK Alfa Version</a>
+            <a href="{{ url('/') }}"><b>SI</b>KOMATIK</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -108,5 +108,6 @@
         });
       });
     </script>
+  <center><strong>SIKOMATIK Alfa Version<br>Copyright &copy; {!! date("Y") !!} <a href="http://komatik.wg.ugm.ac.id">SIKOMATIK</a>.</strong> All rights reserved.</center>
 </body>
 </html>
