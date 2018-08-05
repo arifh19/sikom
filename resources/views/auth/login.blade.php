@@ -40,7 +40,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/') }}"><b>SI</b>KOMATIK</a>
+            <a href="{{ url('/') }}"><b>SI</b>KOMATIK Alfa Version</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
