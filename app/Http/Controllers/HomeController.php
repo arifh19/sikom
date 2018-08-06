@@ -127,6 +127,19 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'Dampak_implementasi', 'name' => 'Dampak_implementasi', 'title' => 'Dampak implementasi'])
                     ->addColumn(['data' => 'Inovasi_pengembangan', 'name' => 'Inovasi_pengembangan', 'title' => 'Inovasi Pengembangan']);
                 }
+                elseif($cekkategori->kategori_id==11){
+                    $html = $htmlBuilder
+                    ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
+                    ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
+                    ->addColumn(['data' => 'abstrak', 'name' => 'abstrak', 'title' => 'Abstrak'])
+                    ->addColumn(['data' => 'pendahuluan', 'name' => 'pendahuluan', 'title' => 'Pendahuluan'])
+                    ->addColumn(['data' => 'tujuan', 'name' => 'tujuan', 'title' => 'Tujuan'])
+                    ->addColumn(['data' => 'metode', 'name' => 'metode', 'title' => 'Metode'])
+                    ->addColumn(['data' => 'hasil_pembahasan', 'name' => 'hasil_pembahasan', 'title' => 'Hasil dan Pembahasan'])
+                    ->addColumn(['data' => 'kesimpulan', 'name' => 'kesimpulan', 'title' => 'Kesimpulan'])
+                    ->addColumn(['data' => 'daftar_pustaka', 'name' => 'daftar_pustaka', 'title' => 'Daftar Pustaka']);
+                }
                 else{
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa']);

@@ -1,31 +1,59 @@
 <div class="box-body">
-    <div class="form-group has-feedback{{ $errors->has('Permasalahan_yang_diangkat') ? ' has-error' : '' }}">
-     {!! Form::label('Permasalahan_yang_diangkat', 'Permasalahan yang diangkat',['class' => 'col-sm-10 control-label']) !!}
+    <div class="form-group has-feedback{{ $errors->has('judul') ? ' has-error' : '' }}">
+     {!! Form::label('judul', 'Kesesuaian isi dan judul artikel',['class' => 'col-sm-10 control-label']) !!}
      <div class="col-sm-12">
-        {!! Form::text('Permasalahan_yang_diangkat', null, ['class' => 'form-control', 'placeholder' => 'Permasalahan yang diangkat']) !!}
+        {!! Form::text('judul', null, ['class' => 'form-control', 'placeholder' => 'Kesesuaian isi dan judul artikel']) !!}
       </div>
-    {!! $errors->first('Permasalahan_yang_diangkat', '<p class="help-block">:message</p>') !!}
+    {!! $errors->first('judul', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group has-feedback{{ $errors->has('Pemaparan_permasalahan') ? ' has-error' : '' }}">
-     {!! Form::label('Pemaparan_permasalahan', 'Pemaparan permasalahan',['class' => 'col-sm-10 control-label']) !!}
+    <div class="form-group has-feedback{{ $errors->has('abstrak') ? ' has-error' : '' }}">
+     {!! Form::label('abstrak', 'Abstrak',['class' => 'col-sm-10 control-label']) !!}
      <div class="col-sm-12">
-        {!! Form::text('Pemaparan_permasalahan', null, ['class' => 'form-control', 'placeholder' => 'Pemaparan permasalahan']) !!}
+        {!! Form::text('abstrak', null, ['class' => 'form-control', 'placeholder' => 'Abstrak']) !!}
       </div>
-    {!! $errors->first('Pemaparan_permasalahan', '<p class="help-block">:message</p>') !!}
+    {!! $errors->first('abstrak', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group has-feedback{{ $errors->has('Dampak_implementasi') ? ' has-error' : '' }}">
-     {!! Form::label('Dampak_implementasi', 'Dampak implementasi',['class' => 'col-sm-10 control-label']) !!}
+    <div class="form-group has-feedback{{ $errors->has('pendahuluan') ? ' has-error' : '' }}">
+     {!! Form::label('pendahuluan', 'Pendahuluan',['class' => 'col-sm-10 control-label']) !!}
      <div class="col-sm-12">
-        {!! Form::text('Dampak_implementasi', null, ['class' => 'form-control', 'placeholder' => 'Dampak Implementasi']) !!}
+        {!! Form::text('pendahuluan', null, ['class' => 'form-control', 'placeholder' => 'Pendahuluan']) !!}
       </div>
-    {!! $errors->first('Dampak_implementasi', '<p class="help-block">:message</p>') !!}
+    {!! $errors->first('pendahuluan', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group has-feedback{{ $errors->has('Inovasi_pengembangan') ? ' has-error' : '' }}">
-     {!! Form::label('Inovasi_pengembangan', 'Inovasi Pengembangan',['class' => 'col-sm-10 control-label']) !!}
+    <div class="form-group has-feedback{{ $errors->has('tujuan') ? ' has-error' : '' }}">
+     {!! Form::label('tujuan', 'Tujuan',['class' => 'col-sm-10 control-label']) !!}
      <div class="col-sm-12">
-        {!! Form::text('Inovasi_pengembangan', null, ['class' => 'form-control', 'placeholder' => 'Inovasi Pengembangan']) !!}
+        {!! Form::text('tujuan', null, ['class' => 'form-control', 'placeholder' => 'Tujuan']) !!}
       </div>
-    {!! $errors->first('Inovasi_pengembangan', '<p class="help-block">:message</p>') !!}
+    {!! $errors->first('tujuan', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group has-feedback{{ $errors->has('metode') ? ' has-error' : '' }}">
+     {!! Form::label('metode', 'Metode',['class' => 'col-sm-10 control-label']) !!}
+     <div class="col-sm-12">
+        {!! Form::text('metode', null, ['class' => 'form-control', 'placeholder' => 'Metode']) !!}
+      </div>
+    {!! $errors->first('metode', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group has-feedback{{ $errors->has('hasil_pembahasan') ? ' has-error' : '' }}">
+     {!! Form::label('hasil_pembahasan', 'Hasil dan Pembahasan',['class' => 'col-sm-10 control-label']) !!}
+     <div class="col-sm-12">
+        {!! Form::text('hasil_pembahasan', null, ['class' => 'form-control', 'placeholder' => 'Hasil dan Pembahasan']) !!}
+      </div>
+    {!! $errors->first('hasil_pembahasan', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group has-feedback{{ $errors->has('kesimpulan') ? ' has-error' : '' }}">
+     {!! Form::label('kesimpulan', 'Kesimpulan',['class' => 'col-sm-10 control-label']) !!}
+     <div class="col-sm-12">
+        {!! Form::text('kesimpulan', null, ['class' => 'form-control', 'placeholder' => 'Kesimpulan']) !!}
+      </div>
+    {!! $errors->first('kesimpulan', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group has-feedback{{ $errors->has('daftar_pustaka') ? ' has-error' : '' }}">
+     {!! Form::label('daftar_pustaka', 'Daftar Pustaka',['class' => 'col-sm-10 control-label']) !!}
+     <div class="col-sm-12">
+        {!! Form::text('daftar_pustaka', null, ['class' => 'form-control', 'placeholder' => 'Daftar Pustaka']) !!}
+      </div>
+    {!! $errors->first('daftar_pustaka', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 <!-- /.box-body -->

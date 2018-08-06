@@ -50,6 +50,8 @@
                             <td><img src="{{ asset('/info/piranti.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
                         @elseif($proposal->kategori_id==10)
                             <td><img src="{{ asset('/info/smart.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
+                        @elseif($proposal->kategori_id==11)
+                            <td><img src="{{ asset('/info/kti.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
                         @else
                             {{route('proposals.index')}}
                         @endif

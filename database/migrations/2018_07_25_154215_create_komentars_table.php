@@ -65,6 +65,15 @@ class CreateKomentarsTable extends Migration
             $table->string('Pemaparan_permasalahan')->nullable();
             $table->string('Dampak_implementasi')->nullable();
             $table->string('Inovasi_pengembangan')->nullable();
+            //Karya Tulis Ilmiah
+            $table->string('judul')->nullable();
+            $table->string('abstrak')->nullable();
+            $table->string('pendahuluan')->nullable();
+            $table->string('tujuan')->nullable();
+            $table->string('metode')->nullable();
+            $table->string('hasil_pembahasan')->nullable();
+            $table->string('kesimpulan')->nullable();
+            $table->string('daftar_pustaka')->nullable();
             
             $table->unsignedInteger('proposal_id');
             $table->unsignedInteger('user_id')->nullable();

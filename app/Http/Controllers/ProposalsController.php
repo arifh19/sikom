@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Proposal;
 use App\Kategori;
+use App\User;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\File;
@@ -157,11 +158,12 @@ class ProposalsController extends Controller
         else{
             $proposal = Proposal::find($id);
             $kategori = Kategori::find($proposal->kategori_id);
+            $team = User::where('id',$proposal->user_id)->first();
             if (Laratrust::hasRole('admin')) {
-                return view('komentars.view')->with(compact('proposal', 'kategori'));
+                return view('komentars.view')->with(compact('proposal', 'kategori','team'));
             }
             elseif (Laratrust::hasRole('dosen')) {
-                return view('komentars.view')->with(compact('proposal', 'kategori'));
+                return view('komentars.view')->with(compact('proposal', 'kategori','team'));
             }
             else{
                 return redirect()->route('proposals.index');

@@ -28,7 +28,6 @@
     {!! $errors->first('Komunikasi', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-
 <!-- /.box-body -->
 
 <div class="box-footer">
