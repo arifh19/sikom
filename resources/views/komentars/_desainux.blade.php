@@ -20,13 +20,6 @@
     </div>
     {!! $errors->first('Metode_Desain', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group has-feedback{{ $errors->has('Prototype') ? ' has-error' : '' }}">
-     {!! Form::label('Prototype', 'Low Fidelity Prototype',['class' => 'col-sm-10 control-label']) !!}
-    <div class="col-sm-12">
-        {!! Form::text('Prototype', null, ['class' => 'form-control', 'placeholder' => 'Low Fidelity Prototype']) !!}
-    </div>
-    {!! $errors->first('Prototype', '<p class="help-block">:message</p>') !!}
-    </div>
     <div class="form-group has-feedback{{ $errors->has('Komunikasi') ? ' has-error' : '' }}">
      {!! Form::label('Komunikasi', 'Komunikasi (Proposal, Poster, Video)',['class' => 'col-sm-10 control-label']) !!}
     <div class="col-sm-12">
@@ -35,6 +28,7 @@
     {!! $errors->first('Komunikasi', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
+
 <!-- /.box-body -->
 
 <div class="box-footer">
