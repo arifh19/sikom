@@ -166,6 +166,19 @@
             </div>
             <!-- /.info-box -->
         </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-blue"><i class="fas fa-edit"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Karya Tulis</span>
+                    <span class="info-box-text">Ilmiah TIK</span>
+                    <span class="info-box-number">{{ $kti->count() }}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
         <!-- /.col -->
     </div>
     <!-- /.row -->

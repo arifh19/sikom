@@ -23,6 +23,7 @@ class KategorisSeeder extends Seeder
         $kategori8 = Kategori::create(['nama_kategori' => 'Pengembangan Bisnis TIK']);
         $kategori9 = Kategori::create(['nama_kategori' => 'Piranti Cerdas, Sistem Benam dan IoT']);
         $kategori10 = Kategori::create(['nama_kategori' => 'Kota Cerdas (Smart City)']);
+        $kategori10 = Kategori::create(['nama_kategori' => 'Karya Tulis Ilmiah TIK']);
 
     }
 }
