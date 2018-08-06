@@ -165,8 +165,9 @@ class HomeController extends Controller
             $ppl = Proposal::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Bisnis TIK')->first()->id);
             $piranti = Proposal::where('kategori_id',Kategori::where('nama_kategori','Piranti Cerdas, Sistem Benam dan IoT')->first()->id);
             $smartcity = Proposal::where('kategori_id',Kategori::where('nama_kategori','Kota Cerdas (Smart City)')->first()->id);
+            $kti = Proposal::where('kategori_id',Kategori::where('nama_kategori','Karya Tulis Ilmiah TIK')->first()->id);
 
-            return view('dashboard.admin', compact('animasi', 'ux', 'kjsi', 'cp','datmin','gamedev','bistik','ppl','piranti','smartcity'));
+            return view('dashboard.admin', compact('animasi', 'ux', 'kjsi', 'cp','datmin','gamedev','bistik','ppl','piranti','smartcity','kti'));
         }
 
         if (Laratrust::hasRole('dosen')) {
