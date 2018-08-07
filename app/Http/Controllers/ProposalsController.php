@@ -174,7 +174,7 @@ class ProposalsController extends Controller
                 return view('komentars.view')->with(compact('proposal', 'kategori','team'));
             }
             else{
-                return redirect()->route('proposals.index');
+                //return redirect()->route('proposals.index');
             }
         } 
     }
