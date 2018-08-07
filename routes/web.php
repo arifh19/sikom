@@ -15,6 +15,7 @@ Route::group(['midlleware' => 'web'], function() {
 
     // Auth
     Auth::routes();
+    Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
     // Index
     Route::get('/', 'HomeController@index');
