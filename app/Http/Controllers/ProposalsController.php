@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Proposal;
 use App\Kategori;
+use App\Review;
 use App\User;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
@@ -70,7 +71,13 @@ class ProposalsController extends Controller
                         // 'view_url'          => route('proposals.show', $proposal->id),
                         'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
                     ]);
-            })->make(true);
+            })
+            ->addColumn('status', function($proposal) {
+                return view('datatable._actionReview',[
+                    'model'             => $proposal,
+                    'proposal_id'          => $proposal->id,
+                ]);
+        })->make(true);
         }
 
         $html = $htmlBuilder
@@ -78,7 +85,8 @@ class ProposalsController extends Controller
             ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
             ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
             ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
-            ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input']);
+            ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input'])
+            ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false, 'searchable' => false])  ;
             
 
         return view('proposals.index')->with(compact('html'));
@@ -232,12 +240,18 @@ class ProposalsController extends Controller
             $proposal->save();
         }
 
+        $revisi = Review::where('proposal_id',$proposal->id)->get();
+        foreach ($revisi as $key) {
+            $key->is_review=0;
+            $key->save();
+        }
+
         Session::flash("flash_notification", [
             "level" => "success",
             "icon" => "fa fa-check",
             "message" => "Berhasil menyimpan $proposal->judul"
         ]);
-
+        
         return redirect()->route('proposals.index');
     }
 

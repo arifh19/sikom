@@ -48,10 +48,12 @@ class KomentarsController extends Controller
         $komentar->user_id = Auth::user()->id;
         $komentar->save();
 
+        Auth::user()->review($komentar);
+
         Session::flash("flash_notification", [
             "level" => "success",
             "icon" => "fa fa-check",
-            "message" => "Berhasil menyimpan $komentar->konten"
+            "message" => "Berhasil menyimpan $komentar->id"
         ]);
 
         return redirect()->route('dosen.proposals.index');

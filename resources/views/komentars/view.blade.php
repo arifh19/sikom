@@ -80,6 +80,10 @@
                     {{route('proposals.index')}}
                 @endif
             {!! Form::close() !!}
+            {!! Form::open(['url' => route('komentars.index'), 'method' => 'get']) !!}
+            <div class="box-footer">
+                    {!! Form::submit('Liat Review Sebelumnya', ['class' => 'btn btn-primary']) !!}
+            </div>
         </div>
     </div>
             

@@ -27,4 +27,8 @@ class Proposal extends Model
     {
         return $this->hasMany('App\komentar');
     }
+    public function Reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
 }

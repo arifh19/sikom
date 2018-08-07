@@ -54,9 +54,22 @@ class User extends Authenticatable
         return $borrowLog;
     }
 
-    public function borrowLogs()
+    public function review(Komentar $komentar)
     {
-        return $this->hasMany('App\BorrowLog');
+        // Cek apakah dosen sudah pernah mereview proposal tersebut
+        if ($this->Reviews()->where('proposal_id', $komentar->proposal_id)->where('user_id',$this->id)->count() > 0) {
+            $review = $this->Reviews()->where('proposal_id', $komentar->proposal_id)->where('user_id',$this->id)->first();
+            $review->is_review = 1;
+            $review->save();
+        }
+        else{
+            $review = Review::create(['user_id' => $this->id, 'proposal_id' => $komentar->proposal_id, 'is_review' => 1]);
+        }
+    }
+
+    public function Reviews()
+    {
+        return $this->hasMany('App\Review');
     }
 
     public function verify()
