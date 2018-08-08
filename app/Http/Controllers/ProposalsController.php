@@ -20,6 +20,7 @@ use Session;
 use Excel;
 use PDF;
 use Validator;
+use Alert;
 
 class ProposalsController extends Controller
 {
@@ -53,7 +54,6 @@ class ProposalsController extends Controller
             ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
             ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input']);
             
-
         return view('proposals.index')->with(compact('html'));
     }
 
@@ -170,8 +170,9 @@ class ProposalsController extends Controller
             if (Laratrust::hasRole('admin')) {
                 return view('komentars.view')->with(compact('proposal', 'kategori','team'));
             }
-            elseif (Laratrust::hasRole('dosen')) {
-                return view('komentars.view')->with(compact('proposal', 'kategori','team'));
+            elseif (Laratrust::hasRole('dosen')) {       
+                return view('komentars.view')->with(compact('proposal', 'kategori','team'))->with('success', 'Profile updated!');
+                 
             }
             else{
                 return redirect()->route('proposals.index');
@@ -186,7 +187,7 @@ class ProposalsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {  
         $cariproposal = Proposal::where('user_id', Auth::user()->id)->first();
         $proposal = Proposal::find($id);
         if($cariproposal->id==$id)
@@ -205,7 +206,9 @@ class ProposalsController extends Controller
     public function update(UpdateProposalRequest $request, $id)
     {
         $proposal = Proposal::find($id);
-
+        //$extension = $request->file('upload')->getClientOriginalExtension()!='pdf';
+       
+        
         if(!$proposal->update($request->all())) return redirect()->back();
 
         // Isi field upload jika ada proposal yang diupload

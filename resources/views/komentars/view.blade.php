@@ -12,7 +12,10 @@
 @endsection
 
 @section('content')
-
+    <div class="alert alert-info fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Warning!</strong> There was a problem with your network connection.
+    </div>
 <div class="row">
     <div class="col-md-6">
             <div class="box box-primary">
@@ -43,6 +46,7 @@
                     @else
                         {{route('proposals.index')}}
                     @endif
+        
                     {!! Form::close() !!}
                     
             </div>
@@ -87,12 +91,9 @@
             </div>
         </div>
     </div>
-    
                 <!-- /.box-header -->
                 <!-- form start -->
                 <center><iframe src ="{{ asset('/proposal/'.$proposal->upload) }}" width="1000px" height="400px"></iframe></center>
-        
-        
 
     <!-- /.row -->
 @endsection

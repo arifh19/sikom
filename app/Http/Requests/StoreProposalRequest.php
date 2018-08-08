@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Alert;
 
 class StoreProposalRequest extends FormRequest
 {
@@ -46,5 +47,7 @@ class StoreProposalRequest extends FormRequest
             'upload.mimes' => 'proposal harus format pdf',
             'upload.max' => 'Size proposal terlalu besar'
         ];
+        
+
     }
 }

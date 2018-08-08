@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <!-- Alert -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -51,14 +52,14 @@
             {!! Form::open(['url' => '/login']) !!}
 
                 <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
+                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email','required']) !!}
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                 </div>
 
                 <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
+                    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password','required']) !!}
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                     {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
@@ -79,7 +80,6 @@
                     </div>
                     <!-- /.col -->
                 </div>
-                <center><b>{{$post['failed']}}</b></center>
             {!! Form::close() !!}
                
             <a href="{{ route('password.request') }}">Lupa password</a><br>
@@ -108,6 +108,9 @@
         });
       });
     </script>
+    <!-- Alert JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    @include('sweet::alert')
   <center><strong>SIKOMATIK Alfa Version<br>Copyright &copy; {!! date("Y") !!} <a href="http://komatik.wg.ugm.ac.id">SIKOMATIK</a>.</strong> All rights reserved.</center>
 </body>
 </html>

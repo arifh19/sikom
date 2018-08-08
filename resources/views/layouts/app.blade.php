@@ -8,6 +8,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Alert -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="{{ asset('/admin-lte/bootstrap/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
@@ -374,6 +376,9 @@
 <script src="{{ asset('/admin-lte/plugins/select2/select2.full.min.js') }}"></script>
 <!-- Custom JS -->
 <script src="{{ asset('/js/custom.js') }}"></script>
+<!-- Alert JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+@include('sweet::alert')
 
 @yield('scripts')
 

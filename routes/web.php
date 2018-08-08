@@ -41,7 +41,6 @@ Route::group(['midlleware' => 'web'], function() {
         'as' => 'dosen.proposals.index',
         'uses' => 'ProposalsController@indexDosen'
     ]);
-
     Route::get('dosen/proposals/{proposal}', [
         'middleware' => ['auth', 'role:dosen'],
         'as' => 'dosen.proposals.show',

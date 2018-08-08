@@ -4,6 +4,7 @@ namespace Illuminate\Foundation\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Alert;
 
 trait AuthenticatesUsers
 {
@@ -16,8 +17,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
-        $post = ['failed'=>''];
-        return view('auth.login',compact('post'));
+        return view('auth.login');
     }
 
     /**
@@ -40,6 +40,7 @@ trait AuthenticatesUsers
         }
 
         if ($this->attemptLogin($request)) {
+            Alert::success('Email atau password salah', 'Warning!');
             return $this->sendLoginResponse($request);
         }
 
@@ -47,8 +48,8 @@ trait AuthenticatesUsers
         // to login and redirect the user back to the login form. Of course, when this
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
-        $post = ['failed'=>'Login Gagal atau belum terverifikasi'];
-        return view('auth.login',compact('post'));
+        Alert::warning('Email atau password salah', 'Warning!');
+        return view('auth.login');
     }
 
     /**

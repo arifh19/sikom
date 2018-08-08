@@ -27,7 +27,6 @@ class UpdateProposalRequest extends StoreProposalRequest
         $rules = parent::rules();
         
         $rules['judul'] = 'required:proposals,judul,' . $this->route('proposal');
-
         return $rules;
     }
 }

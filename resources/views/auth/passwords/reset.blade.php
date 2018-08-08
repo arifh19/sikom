@@ -55,21 +55,21 @@
                 <input type="hidden" name="token" value="{{ $token }}">
           
                 <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
+                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email','required']) !!}
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                 </div>
 
                 <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
+                    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password','required']) !!}
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                     {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
                 </div>
 
                 <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Password Confirmation']) !!}
+                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Password Confirmation','required']) !!}
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
 
                     {!! $errors->first('password_confirmation', '<p class="help-block">:message</p>') !!}

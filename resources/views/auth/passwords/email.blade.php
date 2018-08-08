@@ -53,7 +53,7 @@
             {!! Form::open(['url' => route('password.email')]) !!}
           
                 <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
+                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email','required']) !!}
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}

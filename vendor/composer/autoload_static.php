@@ -20,6 +20,7 @@ class ComposerStaticInit783f43f65fa89a66a1c06462d6bb2028
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'a806c12c6e24e7e4e900847766218dba' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -38,6 +39,10 @@ class ComposerStaticInit783f43f65fa89a66a1c06462d6bb2028
         'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
+        ),
+        'U' => 
+        array (
+            'UxWeb\\SweetAlert\\' => 17,
         ),
         'T' => 
         array (
@@ -144,6 +149,10 @@ class ComposerStaticInit783f43f65fa89a66a1c06462d6bb2028
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'UxWeb\\SweetAlert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert',
         ),
         'Traitor\\' => 
         array (
@@ -419,6 +428,7 @@ class ComposerStaticInit783f43f65fa89a66a1c06462d6bb2028
         'App\\Http\\Requests\\StoreBookRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreBookRequest.php',
         'App\\Http\\Requests\\StoreMemberRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreMemberRequest.php',
         'App\\Http\\Requests\\StoreProposalRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreProposalRequest.php',
+        'App\\Http\\Requests\\StoreTeamRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreTeamRequest.php',
         'App\\Http\\Requests\\UpdateBookRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateBookRequest.php',
         'App\\Http\\Requests\\UpdateMemberRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateMemberRequest.php',
         'App\\Http\\Requests\\UpdateProposalRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateProposalRequest.php',
@@ -3891,6 +3901,12 @@ class ComposerStaticInit783f43f65fa89a66a1c06462d6bb2028
         'Traitor\\TraitUseAdder' => __DIR__ . '/..' . '/kkszymanowski/traitor/src/TraitUseAdder.php',
         'Traitor\\Traitor' => __DIR__ . '/..' . '/kkszymanowski/traitor/src/Traitor.php',
         'UsersSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersSeeder.php',
+        'UxWeb\\SweetAlert\\ConvertMessagesIntoSweetAlert' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/ConvertMessagesIntoSweetAlert.php',
+        'UxWeb\\SweetAlert\\LaravelSessionStore' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/LaravelSessionStore.php',
+        'UxWeb\\SweetAlert\\SessionStore' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SessionStore.php',
+        'UxWeb\\SweetAlert\\SweetAlert' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SweetAlert.php',
+        'UxWeb\\SweetAlert\\SweetAlertNotifier' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SweetAlertNotifier.php',
+        'UxWeb\\SweetAlert\\SweetAlertServiceProvider' => __DIR__ . '/..' . '/uxweb/sweet-alert/src/SweetAlert/SweetAlertServiceProvider.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'Yajra\\Datatables\\ButtonsServiceProvider' => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src/ButtonsServiceProvider.php',

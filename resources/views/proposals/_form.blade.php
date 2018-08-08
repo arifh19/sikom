@@ -2,21 +2,21 @@
     <div class="form-group has-feedback{{ $errors->has('judul') ? ' has-error' : '' }}">
         {!! Form::label('judul', 'Judul') !!}
 
-        {!! Form::text('judul', null, ['class' => 'form-control', 'placeholder' => 'Judul Proposal']) !!}
+        {!! Form::text('judul', null, ['class' => 'form-control', 'placeholder' => 'Judul Proposal','required']) !!}
         {!! $errors->first('judul', '<p class="help-block">:message</p>') !!}
     </div>
 
     <div class="form-group has-feedback{{ $errors->has('kategori_id') ? ' has-error' : '' }}">
         {!! Form::label('kategori_id', 'Kategori') !!}
 
-        {!! Form::select('kategori_id', App\Kategori::pluck('nama_kategori','id')->all(), null, ['class' => 'form-control js-select2','placeholder'=>'']) !!}
+        {!! Form::select('kategori_id', App\Kategori::pluck('nama_kategori','id')->all(), null, ['class' => 'form-control js-select2','placeholder'=>'','required']) !!}
         {!! $errors->first('kategori_id', '<p class="help-block">:message</p>') !!}
     </div>
 
     <div class="form-group has-feedback{{ $errors->has('upload') ? ' has-error' : '' }}">
         {!! Form::label('upload', 'Proposal') !!}
 
-        {!! Form::file('upload') !!}
+        {!! Form::file('upload',['class' => 'form-control','required']) !!}
         @if (isset($proposal) && $proposal->upload)
             {{-- <p> {!! Html::image(asset('proposal/'.$proposal->upload), null, ['class' => 'img-rounded img-responsive']) !!} </p> --}}
         @endif

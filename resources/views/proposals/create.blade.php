@@ -12,6 +12,7 @@ Proposal
 @endsection
 
 @section('content')
+
     <div class="row">
         <div class="col-md-5">
             <div class="box box-primary">
@@ -39,4 +40,5 @@ Proposal
         <!-- /.col (right)-->
     </div>
     <!-- /.row -->
+
 @endsection

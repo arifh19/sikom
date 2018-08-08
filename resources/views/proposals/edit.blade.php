@@ -12,7 +12,12 @@
 @endsection
 
 @section('content')
-
+    @if(session()->has('status'))
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Warning!</strong> {{ session('status') }}.
+        </div>
+    @endif 
     <div class="row">
         <div class="col-md-6">
             <div class="box box-primary">
@@ -21,7 +26,8 @@
                 </div>
                 <!-- /.box-header -->
                 {!! Form::model($proposal, ['url' => route('proposals.update', $proposal->id), 'method' => 'put', 'files' => 'true']) !!}
-                    @include('proposals._form')
+                   
+                @include('proposals._form')
                 {!! Form::close() !!}
             </div>
             <!-- /.box -->

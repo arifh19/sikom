@@ -11,6 +11,12 @@
 @endsection
 
 @section('content')
+    @if(session()->has('status'))
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Informasi </strong> {{ session('status') }}.
+        </div>
+    @endif 
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">
