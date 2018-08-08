@@ -72,12 +72,12 @@ class ProposalsController extends Controller
                         'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
                     ]);
             })
-            ->addColumn('status', function($proposal) {
-                return view('datatable._actionReview',[
-                    'model'             => $proposal,
-                    'proposal_id'          => $proposal->id,
-                ]);
-        })->make(true);
+                ->addColumn('status', function($proposal) {
+                    return view('datatable._actionReview',[
+                        'model'             => $proposal,
+                        'proposal_id'          => $proposal->id,
+                    ]);
+            })->make(true);
         }
 
         $html = $htmlBuilder
@@ -161,7 +161,7 @@ class ProposalsController extends Controller
         $count = Proposal::all()->count();
         
         if($count==0){
-            //return redirect()->route('proposals.index');
+            return redirect()->route('proposals.index');
         }
         else{
             $proposal = Proposal::find($id);

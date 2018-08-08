@@ -80,13 +80,14 @@
                     {{route('proposals.index')}}
                 @endif
             {!! Form::close() !!}
-            {!! Form::open(['url' => route('komentars.index'), 'method' => 'get']) !!}
             <div class="box-footer">
-                    {!! Form::submit('Liat Review Sebelumnya', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::open(['url' => route('komentars.show',$proposal->id), 'method' => 'get']) !!}
+                    {!! Form::submit('Lihat Review Sebelumnya', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::close() !!}
             </div>
         </div>
     </div>
-            
+    
                 <!-- /.box-header -->
                 <!-- form start -->
                 <center><iframe src ="{{ asset('/proposal/'.$proposal->upload) }}" width="1000px" height="400px"></iframe></center>
