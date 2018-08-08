@@ -33,6 +33,14 @@ Route::group(['midlleware' => 'web'], function() {
         ]);
         Route::resource('teams', 'TeamsController', [
         ]);
+        Route::get('proposals/{proposal}/edit/success', [
+            'as' => 'mahasiswa.proposals.edit',
+            'uses' => 'ProposalsController@editproposal'
+        ]);
+        Route::get('proposals/{proposal}/edit/failed', [
+            'as' => 'mahasiswa.proposals.edits',
+            'uses' => 'ProposalsController@editgagal'
+        ]);
     });
 
     //review proposal dosen index

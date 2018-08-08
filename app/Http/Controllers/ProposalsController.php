@@ -196,6 +196,28 @@ class ProposalsController extends Controller
             return redirect()->route('proposals.index');
     }
 
+    public function editproposal($id)
+    {  
+        session()->flash('status', 'Data proposal berhasil disimpan');
+        $cariproposal = Proposal::where('user_id', Auth::user()->id)->first();
+        $proposal = Proposal::find($id);
+        if($cariproposal->id==$id)
+            return view('proposals.edit')->with(compact('proposal'));
+        else
+            return redirect()->route('proposals.index');
+    }
+    public function editgagal($id)
+    {  
+        session()->flash('warning', 'Upload file proposal dalam bentuk PDF dan maksimal 10 MB');
+        $cariproposal = Proposal::where('user_id', Auth::user()->id)->first();
+        $proposal = Proposal::find($id);
+        if($cariproposal->id==$id){
+            return view('proposals.edit')->with(compact('proposal'));
+        }  
+        else
+            return redirect()->route('proposals.index');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -205,9 +227,23 @@ class ProposalsController extends Controller
      */
     public function update(UpdateProposalRequest $request, $id)
     {
+        
+        if($request->file('upload')->getClientOriginalExtension()!='pdf')
+        return redirect()->route('mahasiswa.proposals.edits',$id);
+
+        $this->validate($request, [
+            'judul' => 'required:proposals,judul',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'upload' => 'required|mimes:pdf|max:10240'
+        ], [
+            'judul.required' => 'Judul proposal masih kosong',
+            'kategori_id.required' => 'Kategori Lomba masih kosong',
+            'kategori_id.exists' => 'Kategori Lomba tidak ada',
+            'upload.mimes' => 'proposal harus format pdf',
+            'upload.max' => 'Size proposal terlalu besar'
+        ]);
+
         $proposal = Proposal::find($id);
-        //$extension = $request->file('upload')->getClientOriginalExtension()!='pdf';
-       
         
         if(!$proposal->update($request->all())) return redirect()->back();
 
@@ -254,8 +290,8 @@ class ProposalsController extends Controller
             "icon" => "fa fa-check",
             "message" => "Berhasil menyimpan $proposal->judul"
         ]);
-        
-        return redirect()->route('proposals.index');
+        //return redirect()->back()->with(session()->flash('status', 'Data proposal berhasil disimpan'));
+        return redirect()->route('mahasiswa.proposals.edit',$id);
     }
 
     /**

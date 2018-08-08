@@ -26,10 +26,7 @@ class StoreProposalRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul' => 'required:proposals,judul',
-            'kategori_id' => 'required|exists:kategoris,id',
-            //'upload' => 'image|max:1024'
-            'upload' => 'required|mimes:pdf|max:10240'
+          
         ];
     }
 
@@ -41,11 +38,7 @@ class StoreProposalRequest extends FormRequest
     public function messages()
     {
         return [
-            'judul.required' => 'Judul proposal masih kosong',
-            'kategori_id.required' => 'Kategori Lomba masih kosong',
-            'kategori_id.exists' => 'Kategori Lomba tidak ada',
-            'upload.mimes' => 'proposal harus format pdf',
-            'upload.max' => 'Size proposal terlalu besar'
+            
         ];
         
 

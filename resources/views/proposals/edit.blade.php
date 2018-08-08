@@ -13,9 +13,15 @@
 
 @section('content')
     @if(session()->has('status'))
+        <div class="alert alert-info fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Sukses </strong> {{ session('status') }}.
+        </div>
+    @endif 
+    @if(session()->has('warning'))
         <div class="alert alert-danger fade in">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Warning!</strong> {{ session('status') }}.
+            <strong>Gagal </strong> {{ session('warning') }}.
         </div>
     @endif 
     <div class="row">
