@@ -400,7 +400,7 @@ class ComposerStaticInit783f43f65fa89a66a1c06462d6bb2028
         'App\\Book' => __DIR__ . '/../..' . '/app/Book.php',
         'App\\BorrowLog' => __DIR__ . '/../..' . '/app/BorrowLog.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
-        'App\\Exceptions\\BookException' => __DIR__ . '/../..' . '/app/Exceptions/BookException.php',
+        'App\\Exceptions\\BookException' => __DIR__ . '/../..' . '/app/Exceptions/ProposalException.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
