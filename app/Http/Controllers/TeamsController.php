@@ -6,10 +6,9 @@ use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\StoreTeamRequest;
-use App\Http\Requests\UpdateProposalRequest;
+use App\Http\Requests\UpdateTeamRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
-use App\Exceptions\BookException;
 use Laratrust\LaratrustFacade as Laratrust;
 use Session;
 use Excel;
@@ -90,7 +89,85 @@ class TeamsController extends Controller
 
         return redirect()->route('teams.index');
     }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateTeamRequest $request, $id)
+    {
+        $team = Team::find($id);
+        
+        if(!$team->update($request->all())) return redirect()->back();
 
+        // Isi field upload jika ada proposal yang diupload
+        if ($request->hasFile('foto_ktm_ketua')) {
+            $filename = null;
+            $uploaded_foto_ktm_ketua = $request->file('foto_ktm_ketua');
+            $extension = $uploaded_foto_ktm_ketua->getClientOriginalExtension();
+            $filename = md5(time()) . '.' . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'teams';
+            $uploaded_foto_ktm_ketua->move($destinationPath, $filename);
+            if ($team->foto_ktm_ketua) {
+                $old_upload = $team->foto_ktm_ketua;
+                $filepath = public_path() . DIRECTORY_SEPARATOR . 'teams' . DIRECTORY_SEPARATOR . $team->foto_ktm_ketua;
+                try {
+                    File::delete($filepath);
+                } catch (FileNotFoundException $e) {
+                    // File sudah dihapus/tidak ada
+                }
+            }
+            $team->foto_ktm_ketua = $filename;
+            $team->save();
+        }
+        if ($request->hasFile('foto_ktm_anggota1')) {
+            $filename = null;
+            $uploaded_foto_ktm_anggota1 = $request->file('foto_ktm_anggota1');
+            $extension = $uploaded_foto_ktm_anggota1->getClientOriginalExtension();
+            $filename = md5(time()) . '.' . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'teams';
+            $uploaded_foto_ktm_anggota1->move($destinationPath, $filename);
+            if ($team->foto_ktm_anggota1) {
+                $old_upload = $team->foto_ktm_anggota1;
+                $filepath = public_path() . DIRECTORY_SEPARATOR . 'teams' . DIRECTORY_SEPARATOR . $team->foto_ktm_anggota1;
+                try {
+                    File::delete($filepath);
+                } catch (FileNotFoundException $e) {
+                    // File sudah dihapus/tidak ada
+                }
+            }
+            $team->foto_ktm_anggota1 = $filename;
+            $team->save();
+        }
+        if ($request->hasFile('foto_ktm_anggota2')) {
+            $filename = null;
+            $uploaded_foto_ktm_anggota2 = $request->file('foto_ktm_anggota2');
+            $extension = $uploaded_foto_ktm_anggota2->getClientOriginalExtension();
+            $filename = md5(time()) . '.' . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'teams';
+            $uploaded_foto_ktm_anggota2->move($destinationPath, $filename);
+            if ($team->foto_ktm_anggota2) {
+                $old_upload = $team->foto_ktm_anggota2;
+                $filepath = public_path() . DIRECTORY_SEPARATOR . 'teams' . DIRECTORY_SEPARATOR . $team->foto_ktm_anggota2;
+                try {
+                    File::delete($filepath);
+                } catch (FileNotFoundException $e) {
+                    // File sudah dihapus/tidak ada
+                }
+            }
+            $team->foto_ktm_anggota2 = $filename;
+            $team->save();
+        }
+
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "icon" => "fa fa-check",
+            "message" => "Berhasil menyimpan $team->id"
+        ]);
+        return redirect()->route('teams.index');
+    }
     /**
      * Display the specified resource.
      *
@@ -99,7 +176,8 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        //
+        $team = Team::where('user_id', Auth::user()->id)->first();
+        return view('teams.team')->with(compact('team'));
     }
 
     /**
@@ -116,18 +194,6 @@ class TeamsController extends Controller
             return view('teams.edit')->with(compact('team'));
         else
             return redirect()->route('teams.index');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

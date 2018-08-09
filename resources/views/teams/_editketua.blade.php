@@ -22,7 +22,7 @@
     <div class="form-group has-feedback{{ $errors->has('foto_ktm_ketua') ? ' has-error' : '' }}">
         {!! Form::label('foto_ktm_ketua', 'Foto KTM Ketua Tim') !!}
 
-        {!! Form::file('foto_ktm_ketua',['class' => 'form-control','required']) !!}
+        {!! Form::file('foto_ktm_ketua',['class' => 'form-control']) !!}
         @if (isset($team) && $team->foto_ktm_ketua)
             {{-- <p> {!! Html::image(asset('proposal/'.$proposal->upload), null, ['class' => 'img-rounded img-responsive']) !!} </p> --}}
         @endif

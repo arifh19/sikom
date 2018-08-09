@@ -13,13 +13,13 @@
 
 @section('content')
     <div class="row">
-    {!! Form::model($team, ['url' => route('teams.update', $team->id), 'method' => 'post', 'files' => 'true']) !!}
+    {!! Form::model($team, ['url' => route('teams.update', $team->id), 'method' => 'put', 'files' => 'true']) !!}
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Ketua Tim</h3>
                 </div>
-                @include('teams._ketua')
+                @include('teams._editketua')
             </div>
             <div class="box box-primary">
                     <div class="box-header with-border">

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateProposalRequest extends StoreProposalRequest
+class UpdateTeamRequest extends StoreProposalRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class UpdateProposalRequest extends StoreProposalRequest
     {
         $rules = parent::rules();
         
-        $rules['judul'] = 'required:proposals,judul,' . $this->route('proposal.index');
+        $rules['nama_ketua'] = 'required:teams,nama_ketua,' . $this->route('teams.index');
         return $rules;
     }
 }
