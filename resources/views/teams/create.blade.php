@@ -13,7 +13,12 @@
 
 @section('content')
     <div class="row">
+        @role('admin')
         {!! Form::open(['url' => route('teams.store'), 'method' => 'post', 'files' => 'true']) !!}
+        @endrole
+        @role('member')
+        {!! Form::open(['url' => route('team.store'), 'method' => 'post', 'files' => 'true']) !!}
+        @endrole
         <div class="col-md-6">
                 <div class="box box-primary">
                     <div class="box-header with-border">

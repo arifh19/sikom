@@ -195,8 +195,8 @@
                             @endrole
 
                             @role('member')
-                            <li class="treeview {!! Request::is('mahasiswa/teams') ? 'active' : '' !!}">
-                                <a href="{{ url('mahasiswa/teams') }}">
+                            <li class="treeview {!! Request::is('mahasiswa/team') ? 'active' : '' !!}">
+                                <a href="{{ url('mahasiswa/team') }}">
                                     <i class="fa fa-users"></i>
                                     <span>Team</span>
                                 </a>
@@ -206,10 +206,28 @@
                             @role('admin')
                             <li class="treeview {!! Request::is('admin/kategoris*') ? 'active' : '' !!}">
                                 <a href="{{ route('kategoris.index') }}">
-                                    <i class="fa fa-user-circle"></i>
+                                    <i class="fas fa-clipboard-list"></i>
                                     <span>Kategori</span>
                                 </a>
                             </li>
+     
+                            @role('admin')
+                            <li class="treeview {!! Request::is('admin/proposal*') ? 'active' : '' !!}">
+                                <a href="{{ route('proposals.index') }}">
+                                    <i class="fa fa-book"></i>
+                                    <span>Proposal Gemastik</span>
+                                </a>
+                            </li>
+                            @endrole
+
+                            @role('admin')
+                            <li class="treeview {!! Request::is('admin/teams*') ? 'active' : '' !!}">
+                                <a href="{{ route('teams.index') }}">
+                                    <i class="fa fa-users"></i>
+                                    <span>Pendataan Tim</span>
+                                </a>
+                            </li>
+                            @endrole
 
                             {{-- <li class="treeview {!! Request::is('admin/*books*') ? 'active' : '' !!}">
                                 <a href="{{ route('books.index') }}">
@@ -241,21 +259,21 @@
                             @endrole
 
                             @role('member')
-                            <li class="treeview {!! Request::is('mahasiswa/proposals/*') ? 'active' : '' !!}">
+                            <li class="treeview {!! Request::is('mahasiswa/proposal/*') ? 'active' : '' !!}">
                                 <a href="#">
-                                    <i class="fa fa-book"></i> <span>Proposal</span>
+                                    <i class="fa fa-book"></i> <span>Proposal Gemastik</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="{!! Request::is('mahasiswa/proposals/create*') ? 'active' : '' !!}">
-                                        <a href="{{ url('/mahasiswa/proposals/create/') }}">
+                                    <li class="{!! Request::is('mahasiswa/proposal/create*') ? 'active' : '' !!}">
+                                        <a href="{{ url('/mahasiswa/proposal/create/') }}">
                                             <i class="fa fa-user-o"></i> Input Proposal
                                         </a>
                                     </li>
-                                    <li class="{!! Request::is('mahasiswa/proposals') ? 'active' : '' !!}">
-                                        <a href="{{ url('/mahasiswa/proposals') }}">
+                                    <li class="{!! Request::is('mahasiswa/proposal') ? 'active' : '' !!}">
+                                        <a href="{{ url('/mahasiswa/proposal') }}">
                                             <i class="fa fa-tasks"></i> Manage Proposal
                                         </a>
                                     </li>

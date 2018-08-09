@@ -21,7 +21,12 @@ Proposal
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
+                @role('admin')
                 {!! Form::open(['url' => route('proposals.store'), 'method' => 'post', 'files' => 'true']) !!}
+                @endrole
+                @role('member')
+                {!! Form::open(['url' => route('proposal.store'), 'method' => 'post', 'files' => 'true']) !!}
+                @endrole
                     @include('proposals._form')
                 {!! Form::close() !!}
             </div>

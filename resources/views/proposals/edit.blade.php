@@ -31,8 +31,12 @@
                     <h3 class="box-title">Ubah Proposal</h3>
                 </div>
                 <!-- /.box-header -->
+                @role('admin')
                 {!! Form::model($proposal, ['url' => route('proposals.update', $proposal->id), 'method' => 'put', 'files' => 'true']) !!}
-                   
+                @endrole
+                @role('member')
+                {!! Form::model($proposal, ['url' => route('proposal.update', $proposal->id), 'method' => 'put', 'files' => 'true']) !!}
+                @endrole
                 @include('proposals._form')
                 {!! Form::close() !!}
             </div>

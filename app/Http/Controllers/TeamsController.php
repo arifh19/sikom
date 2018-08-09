@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Team;
+use App\Kategori;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\File;
@@ -23,13 +24,42 @@ class TeamsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   $team = Team::where('user_id', Auth::user()->id)->first();
-        $hitung = Team::where('user_id', Auth::user()->id)->count();
-        if($hitung==1)
-        return view('teams.team')->with(compact('team'));
-        else
-        return view('teams.create');
+    public function index(Request $request, Builder $htmlBuilder)
+    {   
+        if (Laratrust::hasRole('admin')) {
+            if ($request->ajax()) {
+
+            $teams = Team::with('user')->with('kategori');
+
+            return Datatables::of($teams)
+                ->addColumn('action', function($team) {
+                    return view('datatable._actionAdmin', [
+                        'model'             => $team,
+                        'form_url'          => route('teams.destroy', $team->id),
+                        'edit_url'          => route('teams.edit', $team->id),
+                         'view_url'          => route('teams.show', $team->id),
+                        'confirm_message'    => 'Yakin mau menghapus ' . $team->user->name . '?'
+                    ]);
+            })->make(true);
+        }
+
+        $html = $htmlBuilder
+            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
+            ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+            ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Nama Kategori'])
+            ->addColumn(['data' => 'nama_dosbing', 'name' => 'nama_dosbing', 'title' => 'Nama Dosen Pembimbing']);
+            
+        return view('teams.index')->with(compact('html'));
+        }
+        if (Laratrust::hasRole('member')) {
+            $team = Team::where('user_id', Auth::user()->id)->first();
+            $hitung = Team::where('user_id', Auth::user()->id)->count();
+            if($hitung==1)
+            return view('teams.team')->with(compact('team'));
+            else
+            return view('teams.create');
+        }   
+        return redirect()->route('logout');
     }
 
     /**
@@ -87,7 +117,7 @@ class TeamsController extends Controller
             "message" => "Berhasil menyimpan $team->nama_ketua"
         ]);
 
-        return redirect()->route('teams.index');
+        return redirect()->route('team.index');
     }
     /**
      * Update the specified resource in storage.
@@ -166,7 +196,7 @@ class TeamsController extends Controller
             "icon" => "fa fa-check",
             "message" => "Berhasil menyimpan $team->id"
         ]);
-        return redirect()->route('teams.index');
+        return redirect()->route('team.index');
     }
     /**
      * Display the specified resource.
@@ -176,8 +206,15 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        $team = Team::where('user_id', Auth::user()->id)->first();
-        return view('teams.team')->with(compact('team'));
+        if (Laratrust::hasRole('admin')) {
+            $team = Team::find($id);
+            return view('teams.team')->with(compact('team'));
+        }
+        if (Laratrust::hasRole('member')) {
+            $team = Team::where('user_id', Auth::user()->id)->first();
+            return view('teams.team')->with(compact('team'));
+        }
+        
     }
 
     /**
@@ -188,12 +225,18 @@ class TeamsController extends Controller
      */
     public function edit($id)
     {
-        $cariteam = Team::where('user_id', Auth::user()->id)->first();
-        $team = Team::find($id);
-        if($cariteam->id==$id)
+        if (Laratrust::hasRole('admin')) {
+            $team = Team::find($id);
             return view('teams.edit')->with(compact('team'));
-        else
-            return redirect()->route('teams.index');
+        }
+        if (Laratrust::hasRole('member')) {
+            $cariteam = Team::where('user_id', Auth::user()->id)->first();
+            $team = Team::find($id);
+            if($cariteam->id==$id)
+                return view('teams.edit')->with(compact('team'));
+            else
+                return redirect()->route('team.index');
+        }  
     }
 
     /**
@@ -202,8 +245,61 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $team = Team::find($id);
+
+        $foto_ktm_ketua = $team->foto_ktm_ketua;
+        $foto_ktm_anggota1 = $team->foto_ktm_anggota1;
+        $foto_ktm_anggota2 = $team->foto_ktm_anggota2;
+        //$upload = $proposal->foto_ktm_ketua;
+
+        if (!$team->delete()) return redirect()->back();
+
+        // Handle hapus Proposal via ajax
+        if ($request->ajax()) return response()->json(['id' => $id]);
+
+        // Hapus Proposal lama, jika ada
+        if ($foto_ktm_ketua) {
+
+            $old_upload = $team->foto_ktm_ketua;
+            $filepath = public_path() . DIRECTORY_SEPARATOR . 'teams' . DIRECTORY_SEPARATOR . $team->foto_ktm_ketua;
+
+            try {
+                File::delete($filepath);
+            } catch (FileNotFoundException $e) {
+                // File sudah dihapus/tidak ada
+            }
+        }
+        if ($foto_ktm_anggota1) {
+
+            $old_upload = $team->foto_ktm_anggota1;
+            $filepath = public_path() . DIRECTORY_SEPARATOR . 'teams' . DIRECTORY_SEPARATOR . $team->foto_ktm_anggota1;
+
+            try {
+                File::delete($filepath);
+            } catch (FileNotFoundException $e) {
+                // File sudah dihapus/tidak ada
+            }
+        }
+        if ($foto_ktm_anggota2) {
+
+            $old_upload = $team->foto_ktm_anggota2;
+            $filepath = public_path() . DIRECTORY_SEPARATOR . 'teams' . DIRECTORY_SEPARATOR . $team->foto_ktm_anggota2;
+
+            try {
+                File::delete($filepath);
+            } catch (FileNotFoundException $e) {
+                // File sudah dihapus/tidak ada
+            }
+        }
+
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "icon" => "fa fa-check",
+            "message" => "Team berhasil dihapus"
+        ]);
+
+        return redirect()->route('teams.index');
     }
 }

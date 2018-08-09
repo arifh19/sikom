@@ -12,7 +12,13 @@
 
 @section('content')
     <div class="box-footer clearfix">
+        @role('admin')
         <a href="{{ route('teams.edit', $team->id) }}" class="btn btn-info">Ubah</a>
+        @endrole
+        @role('member')
+        <a href="{{ route('team.edit', $team->id) }}" class="btn btn-info">Ubah</a>
+        @endrole
+        
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -23,6 +29,10 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered">
+                        <tr>
+                            <td class="text-muted">Kategori</td>
+                            <td><strong></strong>{{ $team->kategori->nama_kategori }}</td>
+                        </tr>
                         <tr>
                             <td class="text-muted">Nama Ketua</td>
                             <td>{{ $team->nama_ketua }}</td>

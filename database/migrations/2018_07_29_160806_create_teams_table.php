@@ -16,6 +16,7 @@ class CreateTeamsTable extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('kategori_id');
             $table->string('nama_ketua');
             $table->string('nim_ketua');
             $table->string('fkja_ketua');
@@ -34,6 +35,7 @@ class CreateTeamsTable extends Migration
             $table->string('nama_dosbing')->nullable();
             $table->string('nidn')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('kategori_id')->references('id')->on('kategoris')->onUpdate('cascade');
 
             $table->timestamps();
         });

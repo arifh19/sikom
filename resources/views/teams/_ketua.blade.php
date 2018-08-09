@@ -1,4 +1,10 @@
 <div class="box-body">
+    <div class="form-group has-feedback{{ $errors->has('kategori_id') ? ' has-error' : '' }}">
+        {!! Form::label('kategori_id', 'Kategori') !!}
+
+        {!! Form::select('kategori_id', App\Kategori::pluck('nama_kategori','id')->all(), null, ['class' => 'form-control js-select2','placeholder'=>'','required']) !!}
+        {!! $errors->first('kategori_id', '<p class="help-block">:message</p>') !!}
+    </div>
     <div class="form-group has-feedback{{ $errors->has('nama_ketua') ? ' has-error' : '' }}">
         {!! Form::label('nama_ketua', 'Nama Ketua') !!}
         {!! Form::text('nama_ketua', null, ['class' => 'form-control', 'placeholder' => 'Nama Ketua Tim','required']) !!}

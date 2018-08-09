@@ -33,15 +33,14 @@ Route::group(['midlleware' => 'web'], function() {
     //
     
     Route::group(['prefix' => 'mahasiswa', 'middleware' => ['auth', 'role:member']], function() {
-        Route::resource('proposals', 'ProposalsController', [
+        Route::resource('proposal', 'ProposalsController');
+        Route::resource('team', 'TeamsController', [
         ]);
-        Route::resource('teams', 'TeamsController', [
-        ]);
-        Route::get('proposals/{proposal}/edit/success', [
+        Route::get('proposal/{proposal}/edit/success', [
             'as' => 'mahasiswa.proposals.edit',
             'uses' => 'ProposalsController@editproposal'
         ]);
-        Route::get('proposals/{proposal}/edit/failed', [
+        Route::get('proposal/{proposal}/edit/failed', [
             'as' => 'mahasiswa.proposals.edits',
             'uses' => 'ProposalsController@editgagal'
         ]);
@@ -95,6 +94,8 @@ Route::group(['midlleware' => 'web'], function() {
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function() {
        // Route::resource('authors', 'AuthorsController');
         Route::resource('kategoris', 'KategorisController');
+        Route::resource('teams', 'TeamsController');
+        Route::resource('proposals', 'ProposalsController');
         //Route::resource('proposals', 'ProposalsController');
       //  Route::resource('books', 'BooksController');
       //  Route::resource('members', 'MembersController', [

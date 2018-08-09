@@ -23,7 +23,7 @@
         {!! Form::label('foto_ktm_anggota1', 'Foto KTM Anggota 1') !!}
         {!! Form::file('foto_ktm_anggota1') !!}
         @if (isset($team) && $team->foto_ktm_anggota1)
-            {{-- <p> {!! Html::image(asset('proposal/'.$proposal->upload), null, ['class' => 'img-rounded img-responsive']) !!} </p> --}}
+            <p> {!! Html::image(asset('teams/'.$team->foto_ktm_anggota1), null, ['class' => 'img-rounded img-responsive']) !!} </p>
         @endif
         <p class="help-block">Size file (JPG/PNG/JPEG) maks 2MB</p>
         {!! $errors->first('foto_ktm_anggota1', '<p class="help-block">:message</p>') !!}

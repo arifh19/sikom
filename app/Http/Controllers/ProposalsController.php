@@ -31,30 +31,57 @@ class ProposalsController extends Controller
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
-        if ($request->ajax()) {
+        if (Laratrust::hasRole('member')) {
+            if ($request->ajax()) {
+                $proposals = Proposal::where('user_id', Auth::user()->id)->with('kategori')->with('user');
 
-            $proposals = Proposal::where('user_id', Auth::user()->id)->with('kategori')->with('user');
-
-            return Datatables::of($proposals)
-                ->addColumn('action', function($proposal) {
+                return Datatables::of($proposals)
+                ->addColumn('action', function ($proposal) {
                     return view('datatable._action', [
                         'model'             => $proposal,
                         //'form_url'          => route('proposals.destroy', $proposal->id),
-                        'edit_url'          => route('proposals.edit', $proposal->id),
+                        'edit_url'          => route('proposal.edit', $proposal->id),
                         // 'view_url'          => route('proposals.show', $proposal->id),
                         'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
                     ]);
-            })->make(true);
-        }
+                })->make(true);
+            }
 
-        $html = $htmlBuilder
-            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
+            $html = $htmlBuilder
+            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])
             ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
             ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
             ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
             ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input']);
             
-        return view('proposals.index')->with(compact('html'));
+            return view('proposals.index')->with(compact('html'));
+        }
+        if (Laratrust::hasRole('admin')) {
+            if ($request->ajax()) {
+
+                $proposals = Proposal::with('kategori')->with('user');
+    
+                return Datatables::of($proposals)
+                    ->addColumn('action', function($proposal) {
+                        return view('datatable._actionAdminProposal', [
+                            'model'             => $proposal,
+                            'form_url'          => route('proposals.destroy', $proposal->id),
+                            'edit_url'          => route('proposals.show', $proposal->id),
+                            'view_url'          => route('proposals.show', $proposal->id),
+                            'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
+                        ]);
+                })->make(true);
+            }
+    
+            $html = $htmlBuilder
+                ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
+                ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
+                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
+                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+                ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input']);
+                
+            return view('proposals.index')->with(compact('html'));
+        }
     }
 
     public function indexDosen(Request $request, Builder $htmlBuilder)
@@ -111,7 +138,7 @@ class ProposalsController extends Controller
             return view('proposals.create');
         }
         else{
-            return redirect()->route('proposals.index');
+            return redirect()->route('proposal.index');
         }
     }
 
@@ -154,7 +181,7 @@ class ProposalsController extends Controller
             "message" => "Berhasil menyimpan $proposal->judul"
         ]);
 
-        return redirect()->route('proposals.index');
+        return redirect()->route('proposal.index');
     }
 
     /**
@@ -165,10 +192,10 @@ class ProposalsController extends Controller
      */
     public function show($id)
     {
-        $count = Proposal::all()->count();
+        $count = Proposal::where('id',$id)->get()->count();
         
         if($count==0){
-            return redirect()->route('proposals.index');
+            return redirect()->route('dosen.proposals.index');
         }
         else{
             $proposal = Proposal::find($id);
@@ -178,11 +205,11 @@ class ProposalsController extends Controller
                 return view('komentars.view')->with(compact('proposal', 'kategori','team'));
             }
             elseif (Laratrust::hasRole('dosen')) {       
-                return view('komentars.view')->with(compact('proposal', 'kategori','team'))->with('success', 'Profile updated!');
+                return view('komentars.view')->with(compact('proposal', 'kategori','team'));
                  
             }
             else{
-                return redirect()->route('proposals.index');
+                return redirect()->route('proposal.index');
             }
         } 
     }
@@ -200,7 +227,7 @@ class ProposalsController extends Controller
         if($cariproposal->id==$id)
             return view('proposals.edit')->with(compact('proposal'));
         else
-            return redirect()->route('proposals.index');
+            return redirect()->route('proposal.index');
     }
 
     public function editproposal($id)
