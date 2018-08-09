@@ -12,10 +12,6 @@
 @endsection
 
 @section('content')
-    <div class="alert alert-info fade in">
-        <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <strong>Warning!</strong> There was a problem with your network connection.
-    </div>
 <div class="row">
     <div class="col-md-6">
             <div class="box box-primary">

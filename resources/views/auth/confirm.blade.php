@@ -44,60 +44,13 @@
             <a href="{{ url('/') }}"><b>SI</b>KOMATIK</a>
         </div>
         <!-- /.login-logo -->
-        <div class="login-box-body">
             @include('layouts._flash')
 
-            <p class="login-box-msg">Masuk untuk memulai sesi Anda</p>
             @if(session()->has('status'))
             <div class="alert alert-info fade in">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
                 <strong>Sukses </strong> {{ session('status') }}.
             </div>
-        @endif 
-        @if(session()->has('warning'))
-            <div class="alert alert-danger fade in">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <strong>Gagal </strong> {{ session('warning') }}.
-            </div>
-        @endif 
-            {!! Form::open(['url' => '/login']) !!}
-
-                <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email','required']) !!}
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-
-                    {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
-                </div>
-
-                <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password','required']) !!}
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-
-                    {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
-                </div>
-                
-                <div class="row">
-                    <div class="col-xs-8">
-                        <div class="checkbox icheck">
-                            <label>
-                                {!! Form::checkbox('remember') !!} Ingat saya
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- /.col -->
-                    <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            {!! Form::close() !!}
-               
-            <a href="{{ route('password.request') }}">Lupa password</a><br>
-            <a href="{{ route('register') }}" class="text-center">Daftar baru</a>
-           
-
-        </div>
+            @endif 
         <!-- /.login-box-body -->
     </div>
     <!-- /.login-box -->

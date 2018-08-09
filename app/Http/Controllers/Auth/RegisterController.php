@@ -150,4 +150,9 @@ class RegisterController extends Controller
         return view('auth.emails.verification');
         //return redirect('/login');
     }
+
+    public function konfirmasi(){
+        session()->flash('status', 'Silahkan periksa email Anda untuk verifikasi akun');
+        return view('auth.confirm');
+    }
 }

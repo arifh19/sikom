@@ -74,14 +74,12 @@ class KomentarsController extends Controller
         if ($request->ajax()) {
             $komentar = Komentar::where('user_id', Auth::user()->id)->where('proposal_id',$id)->get();
             $komentars = Komentar::where('user_id', Auth::user()->id)->where('proposal_id',$id)->with('user');
-
             return Datatables::of($komentars)->make(true);
         }
         if ($available->count()>0) {
             if ($cekkategori->kategori_id==1) {
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
                 ->addColumn(['data' => 'Ide_konsep_keaslian', 'name' => 'Ide_konsep_keaslian', 'title' => 'Ide Konsep Keaslian'])
                 ->addColumn(['data' => 'Konsistensi_tema', 'name' => 'Konsistensi_tema', 'title' => 'Konsistensi Tema'])
                 ->addColumn(['data' => 'Kreativitas_dalam_implementasi', 'name' => 'Kreativitas_dalam_implementasi', 'title' => 'Kreativitas dalam implementasi'])
@@ -90,7 +88,6 @@ class KomentarsController extends Controller
             } elseif ($cekkategori->kategori_id==2) {
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
                 ->addColumn(['data' => 'Identifikasi_permasalahan', 'name' => 'Identifikasi_permasalahan', 'title' => 'Identifikasi Permasalahan'])
                 ->addColumn(['data' => 'Inovasi_desain', 'name' => 'Inovasi_desain', 'title' => 'Inovasi Desain'])
                 ->addColumn(['data' => 'Metode_Desain', 'name' => 'Metode_Desain', 'title' => 'Metode Desain'])
@@ -99,7 +96,6 @@ class KomentarsController extends Controller
             } elseif ($cekkategori->kategori_id==5) {
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
                 ->addColumn(['data' => 'originalitas', 'name' => 'originalitas', 'title' => 'Originalitas'])
                 ->addColumn(['data' => 'kebaruan', 'name' => 'kebaruan', 'title' => 'Kebaruan'])
                 ->addColumn(['data' => 'manfaat', 'name' => 'manfaat', 'title' => 'Manfaat'])
@@ -108,7 +104,6 @@ class KomentarsController extends Controller
             } elseif ($cekkategori->kategori_id==6) {
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
                 ->addColumn(['data' => 'Story', 'name' => 'Story', 'title' => 'Unsur pendidikan dan keterampilan'])
                 ->addColumn(['data' => 'Mechanics', 'name' => 'Mechanics', 'title' => 'Kreativitas dalam pengembangan permainan'])
                 ->addColumn(['data' => 'Aesthetics', 'name' => 'Aesthetics', 'title' => 'Unsur Aesthetics'])
@@ -117,7 +112,6 @@ class KomentarsController extends Controller
             } elseif ($cekkategori->kategori_id==7) {
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
                 ->addColumn(['data' => 'Aspek_Inovasi', 'name' => 'Aspek_Inovasi', 'title' => 'Aspek Inovasi'])
                 ->addColumn(['data' => 'Dampak_pengguna_masyarakat', 'name' => 'Dampak_pengguna_masyarakat', 'title' => 'Dampak penggunaan ke masyarakat'])
                 ->addColumn(['data' => 'Desain_dan_usability', 'name' => 'Desain_dan_usability', 'title' => 'Desain antarmuka dan usability'])
@@ -127,7 +121,6 @@ class KomentarsController extends Controller
             } elseif ($cekkategori->kategori_id==8) {
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
                 ->addColumn(['data' => 'Penjelasan_Problem_Bisnis', 'name' => 'Penjelasan_Problem_Bisnis', 'title' => 'Penjelasan Problem Bisnis'])
                 ->addColumn(['data' => 'Produk_Layanan', 'name' => 'Produk_Layanan', 'title' => 'Produk atau Layanan'])
                 ->addColumn(['data' => 'Pasar_Market', 'name' => 'Pasar_Market', 'title' => 'Pasar/Market'])
@@ -138,7 +131,6 @@ class KomentarsController extends Controller
             } elseif ($cekkategori->kategori_id==9) {
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
                 ->addColumn(['data' => 'Aspek_kreativitas', 'name' => 'Aspek_kreativitas', 'title' => 'Aspek kreativitas'])
                 ->addColumn(['data' => 'Penulisan_proposal', 'name' => 'Penulisan_proposal', 'title' => 'Penulisan proposal'])
                 ->addColumn(['data' => 'Potensi_Kegunaan_Hasil_Bagi_Masyarakat', 'name' => 'Potensi_Kegunaan_Hasil_Bagi_Masyarakat', 'title' => 'Potensi Kegunaan Hasil Bagi Masyarakat'])
@@ -146,7 +138,6 @@ class KomentarsController extends Controller
             } elseif ($cekkategori->kategori_id==10) {
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
                 ->addColumn(['data' => 'Permasalahan_yang_diangkat', 'name' => 'Permasalahan_yang_diangkat', 'title' => 'Permasalahan yang diangkat'])
                 ->addColumn(['data' => 'Pemaparan_permasalahan', 'name' => 'Pemaparan_permasalahan', 'title' => 'Pemaparan permasalahan'])
                 ->addColumn(['data' => 'Dampak_implementasi', 'name' => 'Dampak_implementasi', 'title' => 'Dampak implementasi'])
@@ -154,7 +145,6 @@ class KomentarsController extends Controller
             } elseif ($cekkategori->kategori_id==11) {
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa'])
                 ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
                 ->addColumn(['data' => 'abstrak', 'name' => 'abstrak', 'title' => 'Abstrak'])
                 ->addColumn(['data' => 'pendahuluan', 'name' => 'pendahuluan', 'title' => 'Pendahuluan'])
@@ -172,7 +162,7 @@ class KomentarsController extends Controller
             return redirect()->route('dosen.proposals.index');
         }
     
-        return view('komentars.index', compact('komentar','html'));
+        return view('komentars.index', compact('komentar','html','cekkategori'));
     }
 
     /**

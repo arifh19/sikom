@@ -77,6 +77,12 @@ class ProposalsController extends Controller
                         'model'             => $proposal,
                         'proposal_id'          => $proposal->id,
                     ]);
+            })
+                ->addColumn('frekuensi', function($proposal) {
+                    return view('datatable._actionFrekuensi',[
+                        'model'             => $proposal,
+                        'proposal_id'          => $proposal->id,
+                    ]);
             })->make(true);
         }
 
@@ -86,7 +92,8 @@ class ProposalsController extends Controller
             ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
             ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
             ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input'])
-            ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false, 'searchable' => false])  ;
+            ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false, 'searchable' => false])
+            ->addColumn(['data' => 'frekuensi', 'name' => 'frekuensi', 'title' => 'Reviewed by me', 'orderable' => false, 'searchable' => false]);
             
 
         return view('proposals.index')->with(compact('html'));

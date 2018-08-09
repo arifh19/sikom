@@ -30,8 +30,8 @@ class UserShouldVerified
                 "icon" => "fa fa-warning",
                 "message" => "Silahkan klik pada link aktivasi yang telah kami kirim. <a class='alert-link' href='$link'>Kirim lagi</a>."
             ]);
-
-            return redirect('/login');
+            return redirect()->route('register.confirm');
+            //return redirect('/login');
         }
 
         return $response;

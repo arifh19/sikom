@@ -16,13 +16,14 @@
         <div class="col-md-12">
             <div class="callout callout-success">
               <h4>Selamat Datang di SIKOMATIK</h4>
-
               <p>Sistem Informasi Manajemen Proposal Komunitas Mahasiswa TIK</p>
-            
             </div>
+                <center><h4>STATISTIK PENDAFTAR GEMASTIK 11 KONTINGEN UGM</h4></center><br>    
         </div>
+        
     </div>
     
+
     <!-- Info boxes -->
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">

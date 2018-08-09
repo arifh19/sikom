@@ -19,6 +19,10 @@ Route::group(['midlleware' => 'web'], function() {
 
     // Index
     Route::get('/', 'HomeController@index');
+    Route::get('/register/confirm', [
+        'as' => 'register.confirm',
+        'uses' => 'Auth\RegisterController@konfirmasi'
+    ]);
 
     Route::get('/home', 'HomeController@index');
     Route::get('/register/dosen', 'Auth\RegisterDosenController@showRegistrationFormDosen');
