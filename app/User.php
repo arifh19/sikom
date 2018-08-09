@@ -37,23 +37,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function borrow(Book $book)
-    {
-        // Cek apakah masih ada stock buku
-        if ($book->stock < 1) {
-            throw new BookException("Buku $book->title sedang tidak tersedia.");
-        }
-
-        // Cek apakah buku ini sedang dipinjam oleh user
-        if ($this->borrowLogs()->where('book_id', $book->id)->where('is_returned', 0)->count() > 0) {
-            throw new BookException("Buku $book->title sedang Anda pinjam.");
-        }
-
-        $borrowLog = BorrowLog::create(['user_id' => $this->id, 'book_id' => $book->id]);
-
-        return $borrowLog;
-    }
-
     public function review(Komentar $komentar)
     {
         // Cek apakah dosen sudah pernah mereview proposal tersebut
