@@ -14,5 +14,8 @@
     "lodash": "^4.16.2",
     "sweetalert": "^2.1.0",
     "vue": "^2.0.1"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0"
   }
 }

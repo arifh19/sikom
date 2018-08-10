@@ -2,20 +2,18 @@
 <html lang="{{ config('app.locale') }}">
 <head>
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" >
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('/fontawesome/css/all.min.css') }}" >
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Alert -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="{{ asset('/admin-lte/bootstrap/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('/ionicons-2.0.1/font-awesome.min.css') }}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('/ionicons-2.0.1/ionicons.min.css') }}">
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{ asset('/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
     <!-- Select2 -->
@@ -394,9 +392,6 @@
 <script src="{{ asset('/admin-lte/plugins/select2/select2.full.min.js') }}"></script>
 <!-- Custom JS -->
 <script src="{{ asset('/js/custom.js') }}"></script>
-<!-- Alert JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-@include('sweet::alert')
 
 @yield('scripts')
 
