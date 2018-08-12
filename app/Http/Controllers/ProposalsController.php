@@ -177,7 +177,7 @@ class ProposalsController extends Controller
     public function store(StoreProposalRequest $request)
     {
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
-            $available = Proposal::where('user_id',$request->input('user_id')->get());
+            $available = Proposal::where('user_id',$request->input('user_id'));
             if($available->count()>0)
                 return redirect()->back();
             else
@@ -314,7 +314,7 @@ class ProposalsController extends Controller
     public function update(UpdateProposalRequest $request, $id)
     {
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
-            $available = Proposal::where('user_id',$request->input('user_id')->get());
+            $available = Proposal::where('user_id',$request->input('user_id'));
             if($available->count()>0)
                 return redirect()->back();
         }

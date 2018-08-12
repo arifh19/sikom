@@ -105,7 +105,7 @@ class TeamsController extends Controller
     public function store(StoreTeamRequest $request)
     {   
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
-            $available = Team::where('user_id',$request->input('user_id'))->get();
+            $available = Team::where('user_id',$request->input('user_id'));
             if($available->count()>0)
                 return redirect()->back();
             else
@@ -169,7 +169,7 @@ class TeamsController extends Controller
     public function update(UpdateTeamRequest $request, $id)
     {
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
-            $available = Team::where('user_id',$request->input('user_id'))->get();
+            $available = Team::where('user_id',$request->input('user_id'));
             if($available->count()>0)
                 return redirect()->back();
         }
