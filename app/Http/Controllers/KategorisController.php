@@ -23,19 +23,11 @@ class KategorisController extends Controller
             $kategoris = Kategori::select(['id', 'nama_kategori']);
 
             return Datatables::of($kategoris)
-            ->addColumn('action', function($kategori) {
-                return view('datatable._action', [
-                    'model' => $kategori,
-                    'form_url' => route('kategoris.destroy', $kategori->id),
-                    'edit_url' => route('kategoris.edit', $kategori->id),
-                    'confirm_message' => 'Yakin mau menghapus ' . $kategori->nama_kategori . '?'
-                ]);
-            })->make(true);
+            ->make(true);
         }
 
         $html = $htmlBuilder
-        ->addColumn(['data' => 'nama_kategori', 'name' => 'nama_kategori', 'title' => 'Kategori'])
-        ->addColumn(['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => false]);
+        ->addColumn(['data' => 'nama_kategori', 'name' => 'nama_kategori', 'title' => 'Kategori']);
 
         return view('kategoris.index')->with(compact('html'));
     }

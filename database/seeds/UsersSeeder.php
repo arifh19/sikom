@@ -30,6 +30,12 @@ class UsersSeeder extends Seeder
         $dosenRole->name = "dosen";
         $dosenRole->display_name = "Dosen";
         $dosenRole->save();
+
+        // Create Staff role
+        $staffRole = new Role();
+        $staffRole->name = "staff";
+        $staffRole->display_name = "Staff";
+        $staffRole->save();
     
 
         // Create Admin sample
@@ -61,6 +67,16 @@ class UsersSeeder extends Seeder
         $member->is_verified = 1;
         $member->save();
         $member->attachRole($dosenRole);
+
+        // Create Sample Staff
+        $member = new User();
+        $member->name = 'Staff';
+        $member->email = 'staff@gmail.com';
+        $member->password = bcrypt('rahasia');
+        $member->avatar = "member_avatar.png";
+        $member->is_verified = 1;
+        $member->save();
+        $member->attachRole($staffRole);
 
 
     }

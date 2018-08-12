@@ -140,10 +140,15 @@
                                     <i class="fa fa-circle text-success"></i>
                                     Mahasiswa
                                 </a>
-                            @else
+                            @elseif (auth()->user()->hasRole('dosen'))
                                 <a href="#">
                                     <i class="fa fa-circle text-success"></i>
                                     Dosen
+                                </a>
+                            @elseif (auth()->user()->hasRole('staff'))
+                                <a href="#">
+                                    <i class="fa fa-circle text-success"></i>
+                                    Staff
                                 </a>
                             @endif
                         </div>
@@ -202,16 +207,27 @@
                             @endrole
 
                             @role('admin')
-                            <li class="treeview {!! Request::is('admin/kategoris*') ? 'active' : '' !!}">
-                                <a href="{{ route('kategoris.index') }}">
-                                    <i class="fas fa-clipboard-list"></i>
-                                    <span>Kategori</span>
+                            <li class="treeview {!! Request::is('admin/userz*') ? 'active' : '' !!}">
+                                <a href="{{ route('userz.index') }}">
+                                    <i class="fas fa-users-cog"></i>
+                                    <span>&nbsp;&nbsp;User Manager</span>
                                 </a>
                             </li>
+                            @endrole
+
+                            @role('admin')
+                            <li class="treeview {!! Request::is('admin/kategoris*') ? 'active' : '' !!}">
+                                <a href="{{ route('kategoris.index') }}">
+                                    <i class="fas fa-bars"></i>
+                                    <span>&nbsp;&nbsp;&nbsp;Kategori</span>
+                                </a>
+                            </li>
+                            @endrole
+                            
      
                             @role('admin')
-                            <li class="treeview {!! Request::is('admin/proposal*') ? 'active' : '' !!}">
-                                <a href="{{ route('proposals.index') }}">
+                            <li class="treeview {!! Request::is('admin/proposalz*') ? 'active' : '' !!}">
+                                <a href="{{ route('proposalz.index') }}">
                                     <i class="fa fa-book"></i>
                                     <span>Proposal Gemastik</span>
                                 </a>
@@ -219,8 +235,8 @@
                             @endrole
 
                             @role('admin')
-                            <li class="treeview {!! Request::is('admin/teams*') ? 'active' : '' !!}">
-                                <a href="{{ route('teams.index') }}">
+                            <li class="treeview {!! Request::is('admin/teamz*') ? 'active' : '' !!}">
+                                <a href="{{ route('teamz.index') }}">
                                     <i class="fa fa-users"></i>
                                     <span>Pendataan Tim</span>
                                 </a>
@@ -254,7 +270,7 @@
                                     <span>Proposal</span>
                                 </a>
                             </li> --}}
-                            @endrole
+                           
 
                             @role('member')
                             <li class="treeview {!! Request::is('mahasiswa/proposal/*') ? 'active' : '' !!}">
@@ -276,6 +292,22 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            @endrole
+
+                            @role('staff')
+            
+                            <li class="treeview {!! Request::is('staff/proposals*') ? 'active' : '' !!}">
+                                <a href="{{ route('proposals.index') }}">
+                                    <i class="fa fa-book"></i>
+                                    <span>Proposal Gemastik</span>
+                                </a>
+                            </li>
+                            <li class="treeview {!! Request::is('staff/teams*') ? 'active' : '' !!}">
+                                <a href="{{ route('teams.index') }}">
+                                    <i class="fa fa-users"></i>
+                                    <span>Pendataan Tim</span>
+                                </a>
                             </li>
                             @endrole
 

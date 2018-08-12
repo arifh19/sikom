@@ -29,27 +29,51 @@ class TeamsController extends Controller
         if (Laratrust::hasRole('admin')) {
             if ($request->ajax()) {
 
-            $teams = Team::with('user')->with('kategori');
+                $teams = Team::with('user')->with('kategori');
 
-            return Datatables::of($teams)
-                ->addColumn('action', function($team) {
-                    return view('datatable._actionAdmin', [
-                        'model'             => $team,
-                        'form_url'          => route('teams.destroy', $team->id),
-                        'edit_url'          => route('teams.edit', $team->id),
-                         'view_url'          => route('teams.show', $team->id),
-                        'confirm_message'    => 'Yakin mau menghapus ' . $team->user->name . '?'
-                    ]);
-            })->make(true);
+                return Datatables::of($teams)
+                    ->addColumn('action', function($team) {
+                        return view('datatable._actionAdmin', [
+                            'model'             => $team,
+                            'form_url'          => route('teamz.destroy', $team->id),
+                            'edit_url'          => route('teamz.edit', $team->id),
+                            'view_url'          => route('teamz.show', $team->id),
+                            'confirm_message'    => 'Yakin mau menghapus ' . $team->user->name . '?'
+                        ]);
+                })->make(true);
+            }
+
+            $html = $htmlBuilder
+                ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
+                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Nama Kategori'])
+                ->addColumn(['data' => 'nama_dosbing', 'name' => 'nama_dosbing', 'title' => 'Nama Dosen Pembimbing']);
+                
+            return view('teams.index')->with(compact('html'));
         }
+        if (Laratrust::hasRole('staff')) {
+            if ($request->ajax()) {
 
-        $html = $htmlBuilder
-            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
-            ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
-            ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Nama Kategori'])
-            ->addColumn(['data' => 'nama_dosbing', 'name' => 'nama_dosbing', 'title' => 'Nama Dosen Pembimbing']);
-            
-        return view('teams.index')->with(compact('html'));
+                $teams = Team::with('user')->with('kategori');
+
+                return Datatables::of($teams)
+                    ->addColumn('action', function($team) {
+                        return view('datatable._actionStaff', [
+                            'model'             => $team,
+                            'edit_url'          => route('teams.edit', $team->id),
+                            'view_url'          => route('teams.show', $team->id),
+                            'confirm_message'    => 'Yakin mau menghapus ' . $team->user->name . '?'
+                        ]);
+                })->make(true);
+            }
+
+            $html = $htmlBuilder
+                ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
+                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Nama Kategori'])
+                ->addColumn(['data' => 'nama_dosbing', 'name' => 'nama_dosbing', 'title' => 'Nama Dosen Pembimbing']);
+                
+            return view('teams.index')->with(compact('html'));
         }
         if (Laratrust::hasRole('member')) {
             $team = Team::where('user_id', Auth::user()->id)->first();
@@ -79,11 +103,20 @@ class TeamsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreTeamRequest $request)
-    {
-        $team = Team::create($request->except('foto_ktm_ketua','foto_ktm_anggota1','foto_ktm_anggota2','user_id'));
-        $user = Auth::user()->id;
-        $team->user_id = $user;
-        $team->save();
+    {   
+        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
+            $available = Team::where('user_id',$request->input('user_id'))->get();
+            if($available->count()>0)
+                return redirect()->back();
+            else
+                $team = Team::create($request->except('foto_ktm_ketua','foto_ktm_anggota1','foto_ktm_anggota2'));
+        }
+        if (Laratrust::hasRole('member')) {
+            $team = Team::create($request->except('foto_ktm_ketua','foto_ktm_anggota1','foto_ktm_anggota2','user_id'));
+            $user = Auth::user()->id;
+            $team->user_id = $user; 
+        }
+
         // Isi field upload jika ada proposal yang diupload
         if ($request->hasFile('foto_ktm_ketua')) {
             $uploaded_foto_ktm_ketua = $request->file('foto_ktm_ketua');
@@ -116,8 +149,15 @@ class TeamsController extends Controller
             "icon" => "fa fa-check",
             "message" => "Berhasil menyimpan $team->nama_ketua"
         ]);
-
-        return redirect()->route('team.index');
+        if (Laratrust::hasRole('admin')) {
+            return redirect()->route('teamz.index');
+        }
+        elseif (Laratrust::hasRole('staff')) {
+            return redirect()->route('teams.index');
+        }
+        elseif (Laratrust::hasRole('member')) {
+            return redirect()->route('team.index');
+        }
     }
     /**
      * Update the specified resource in storage.
@@ -128,6 +168,11 @@ class TeamsController extends Controller
      */
     public function update(UpdateTeamRequest $request, $id)
     {
+        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
+            $available = Team::where('user_id',$request->input('user_id'))->get();
+            if($available->count()>0)
+                return redirect()->back();
+        }
         $team = Team::find($id);
         
         if(!$team->update($request->all())) return redirect()->back();
@@ -196,7 +241,15 @@ class TeamsController extends Controller
             "icon" => "fa fa-check",
             "message" => "Berhasil menyimpan $team->id"
         ]);
-        return redirect()->route('team.index');
+        if (Laratrust::hasRole('admin')) {
+            return redirect()->route('teamz.index');
+        }
+        elseif (Laratrust::hasRole('staff')) {
+            return redirect()->route('teams.index');
+        }
+        elseif (Laratrust::hasRole('member')) {
+            return redirect()->route('team.index');
+        }
     }
     /**
      * Display the specified resource.
@@ -206,7 +259,7 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        if (Laratrust::hasRole('admin')) {
+        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $team = Team::find($id);
             return view('teams.team')->with(compact('team'));
         }
@@ -225,7 +278,7 @@ class TeamsController extends Controller
      */
     public function edit($id)
     {
-        if (Laratrust::hasRole('admin')) {
+        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $team = Team::find($id);
             return view('teams.edit')->with(compact('team'));
         }
@@ -300,6 +353,6 @@ class TeamsController extends Controller
             "message" => "Team berhasil dihapus"
         ]);
 
-        return redirect()->route('teams.index');
+        return redirect()->route('teamz.index');
     }
 }

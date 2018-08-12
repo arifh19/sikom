@@ -6,8 +6,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
 use Laratrust\Traits\LaratrustUserTrait;
-use App\Book;
-use App\BorrowLog;
 use App\Exceptions\BookException;
 
 class User extends Authenticatable

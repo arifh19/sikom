@@ -22,6 +22,9 @@ Proposal
                 <!-- /.box-header -->
                 <!-- form start -->
                 @role('admin')
+                {!! Form::open(['url' => route('proposalz.store'), 'method' => 'post', 'files' => 'true']) !!}
+                @endrole
+                @role('staff')
                 {!! Form::open(['url' => route('proposals.store'), 'method' => 'post', 'files' => 'true']) !!}
                 @endrole
                 @role('member')

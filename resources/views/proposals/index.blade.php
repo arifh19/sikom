@@ -30,6 +30,9 @@
                         {{-- <a class="btn btn-warning" href="{{ url('/admin/export/books') }}">Export</a> --}}
                     {{-- </p> --}}
                     @role('admin')
+                    <p><a class="btn btn-success" href="{{ route('proposalz.create') }}">Tambah</a></p>
+                    @endrole
+                    @role('staff')
                     <p><a class="btn btn-success" href="{{ route('proposals.create') }}">Tambah</a></p>
                     @endrole
                     {!! $html->table(['class' => 'table table-bordered table-striped']) !!}

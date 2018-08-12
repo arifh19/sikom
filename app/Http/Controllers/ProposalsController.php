@@ -65,8 +65,34 @@ class ProposalsController extends Controller
                     ->addColumn('action', function($proposal) {
                         return view('datatable._actionAdminProposal', [
                             'model'             => $proposal,
+                            'form_url'          => route('proposalz.destroy', $proposal->id),
+                            'edit_url'          => route('proposalz.edit', $proposal->id),
+                            'view_url'          => route('proposalz.show', $proposal->id),
+                            'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
+                        ]);
+                })->make(true);
+            }
+    
+            $html = $htmlBuilder
+                ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
+                ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
+                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
+                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+                ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input']);
+                
+            return view('proposals.index')->with(compact('html'));
+        }
+        if (Laratrust::hasRole('staff')) {
+            if ($request->ajax()) {
+
+                $proposals = Proposal::with('kategori')->with('user');
+    
+                return Datatables::of($proposals)
+                    ->addColumn('action', function($proposal) {
+                        return view('datatable._actionStaffProposal', [
+                            'model'             => $proposal,
                             'form_url'          => route('proposals.destroy', $proposal->id),
-                            'edit_url'          => route('proposals.show', $proposal->id),
+                            'edit_url'          => route('proposals.edit', $proposal->id),
                             'view_url'          => route('proposals.show', $proposal->id),
                             'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
                         ]);
@@ -150,9 +176,19 @@ class ProposalsController extends Controller
      */
     public function store(StoreProposalRequest $request)
     {
+        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
+            $available = Proposal::where('user_id',$request->input('user_id')->get());
+            if($available->count()>0)
+                return redirect()->back();
+            else
+                $proposal = Proposal::create($request->except('upload'));
+        }
+        else{
+            $user = Auth::user()->id;
+            $proposal = Proposal::create($request->except('upload','user_id'));
+            $proposal->user_id = $user;
+        }
         
-        $proposal = Proposal::create($request->except('upload','user_id'));
-        $user = Auth::user()->id;
         // Isi field upload jika ada proposal yang diupload
         if ($request->hasFile('upload')) {
 
@@ -171,7 +207,6 @@ class ProposalsController extends Controller
 
             // Mengisi field upload di tabel proposal dengan filename yang baru dibuat
             $proposal->upload = $filename;
-            $proposal->user_id = $user;
             $proposal->save();
         }
 
@@ -180,8 +215,15 @@ class ProposalsController extends Controller
             "icon" => "fa fa-check",
             "message" => "Berhasil menyimpan $proposal->judul"
         ]);
-
-        return redirect()->route('proposal.index');
+        if (Laratrust::hasRole('admin')) {
+            return redirect()->route('proposalz.index');
+        }
+        elseif (Laratrust::hasRole('staff')) {
+            return redirect()->route('proposals.index');
+        }
+        elseif (Laratrust::hasRole('member')) {
+            return redirect()->route('proposal.index');
+        }
     }
 
     /**
@@ -204,9 +246,11 @@ class ProposalsController extends Controller
             if (Laratrust::hasRole('admin')) {
                 return view('komentars.view')->with(compact('proposal', 'kategori','team'));
             }
-            elseif (Laratrust::hasRole('dosen')) {       
+            elseif (Laratrust::hasRole('staff')) {
                 return view('komentars.view')->with(compact('proposal', 'kategori','team'));
-                 
+            }
+            elseif (Laratrust::hasRole('dosen')) {       
+                return view('komentars.view')->with(compact('proposal', 'kategori','team'));   
             }
             else{
                 return redirect()->route('proposal.index');
@@ -222,12 +266,20 @@ class ProposalsController extends Controller
      */
     public function edit($id)
     {  
-        $cariproposal = Proposal::where('user_id', Auth::user()->id)->first();
-        $proposal = Proposal::find($id);
-        if($cariproposal->id==$id)
+        $proposal = Proposal::findOrfail($id);
+        if (Laratrust::hasRole('admin')) {
             return view('proposals.edit')->with(compact('proposal'));
-        else
+        }
+        if (Laratrust::hasRole('staff')) {
+            return view('proposals.edit')->with(compact('proposal'));
+        }
+        if (Laratrust::hasRole('member')) {
+            $cariproposal = Proposal::where('user_id', Auth::user()->id)->first();
+            if($cariproposal->id==$id)
+            return view('proposals.edit')->with(compact('proposal'));
+            else
             return redirect()->route('proposal.index');
+        }  
     }
 
     public function editproposal($id)
@@ -238,7 +290,7 @@ class ProposalsController extends Controller
         if($cariproposal->id==$id)
             return view('proposals.edit')->with(compact('proposal'));
         else
-            return redirect()->route('proposals.index');
+            return redirect()->route('proposal.index');
     }
     public function editgagal($id)
     {  
@@ -249,7 +301,7 @@ class ProposalsController extends Controller
             return view('proposals.edit')->with(compact('proposal'));
         }  
         else
-            return redirect()->route('proposals.index');
+            return redirect()->route('proposal.index');
     }
 
     /**
@@ -261,9 +313,16 @@ class ProposalsController extends Controller
      */
     public function update(UpdateProposalRequest $request, $id)
     {
-        
-        if($request->file('upload')->getClientOriginalExtension()!='pdf')
-        return redirect()->route('mahasiswa.proposals.edits',$id);
+        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
+            $available = Proposal::where('user_id',$request->input('user_id')->get());
+            if($available->count()>0)
+                return redirect()->back();
+        }
+        if (Laratrust::hasRole('member')) {
+            if ($request->file('upload')->getClientOriginalExtension()!='pdf') {
+                return redirect()->route('mahasiswa.proposals.edits', $id);
+            }
+        }
 
         $this->validate($request, [
             'judul' => 'required:proposals,judul',
@@ -325,7 +384,15 @@ class ProposalsController extends Controller
             "message" => "Berhasil menyimpan $proposal->judul"
         ]);
         //return redirect()->back()->with(session()->flash('status', 'Data proposal berhasil disimpan'));
-        return redirect()->route('mahasiswa.proposals.edit',$id);
+        if (Laratrust::hasRole('admin')) {
+            return redirect()->route('proposalz.index');
+        }
+        elseif (Laratrust::hasRole('staff')) {
+            return redirect()->route('proposals.index');
+        }
+        elseif (Laratrust::hasRole('member')) {
+            return redirect()->route('mahasiswa.proposals.edit', $id);
+        }
     }
 
     /**
@@ -363,7 +430,11 @@ class ProposalsController extends Controller
             "icon" => "fa fa-check",
             "message" => "Proposal berhasil dihapus"
         ]);
-
-        return redirect()->route('proposals.index');
+        if (Laratrust::hasRole('admin')) {
+            return redirect()->route('proposalz.index');
+        }
+        elseif (Laratrust::hasRole('staff')) {
+            return redirect()->route('proposals.index');
+        }
     }
 }

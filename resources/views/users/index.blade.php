@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('dashboard')
-   Teams
-   <small>Daftar Team</small>
+    Pengguna
+   <small>Daftar Pengguna</small>
 @endsection
 
 @section('breadcrumb')
    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-   <li class="active">Teams</li>
+   <li class="active">Users</li>
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Daftar Team</h3>
+                    <h3 class="box-title">Daftar Pengguna</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -29,12 +29,6 @@
                         {{-- <a class="btn btn-success" href="{{ url('/admin/proposals/create') }}">Tambah</a> --}}
                         {{-- <a class="btn btn-warning" href="{{ url('/admin/export/books') }}">Export</a> --}}
                     {{-- </p> --}}
-                    @role('admin')
-                    <p><a class="btn btn-success" href="{{ route('teamz.create') }}">Tambah</a></p>
-                    @endrole
-                    @role('staff')
-                    <p><a class="btn btn-success" href="{{ route('teams.create') }}">Tambah</a></p>
-                    @endrole
                     {!! $html->table(['class' => 'table table-bordered table-striped']) !!}
                 </div>
                 <!-- /.box-body -->

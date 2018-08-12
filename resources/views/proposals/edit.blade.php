@@ -32,6 +32,9 @@
                 </div>
                 <!-- /.box-header -->
                 @role('admin')
+                {!! Form::model($proposal, ['url' => route('proposalz.update', $proposal->id), 'method' => 'put', 'files' => 'true']) !!}
+                @endrole
+                @role('staff')
                 {!! Form::model($proposal, ['url' => route('proposals.update', $proposal->id), 'method' => 'put', 'files' => 'true']) !!}
                 @endrole
                 @role('member')

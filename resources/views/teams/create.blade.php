@@ -14,6 +14,9 @@
 @section('content')
     <div class="row">
         @role('admin')
+        {!! Form::open(['url' => route('teamz.store'), 'method' => 'post', 'files' => 'true']) !!}
+        @endrole
+        @role('staff')
         {!! Form::open(['url' => route('teams.store'), 'method' => 'post', 'files' => 'true']) !!}
         @endrole
         @role('member')

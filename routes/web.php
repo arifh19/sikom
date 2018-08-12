@@ -33,8 +33,11 @@ Route::group(['midlleware' => 'web'], function() {
     //
     
     Route::group(['prefix' => 'mahasiswa', 'middleware' => ['auth', 'role:member']], function() {
-        Route::resource('proposal', 'ProposalsController');
+        Route::resource('proposal', 'ProposalsController',[
+            'except' => ['show','destroy']
+        ]);
         Route::resource('team', 'TeamsController', [
+            'except' => ['destroy']
         ]);
         Route::get('proposal/{proposal}/edit/success', [
             'as' => 'mahasiswa.proposals.edit',
@@ -60,6 +63,7 @@ Route::group(['midlleware' => 'web'], function() {
 
     Route::group(['prefix' => 'dosen', 'middleware' => ['auth', 'role:dosen']], function() {
         Route::resource('komentars', 'KomentarsController', [
+            'only' => ['show','store']
         ]);
     });
 
@@ -92,22 +96,46 @@ Route::group(['midlleware' => 'web'], function() {
 
     // Admin
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function() {
-       // Route::resource('authors', 'AuthorsController');
-        Route::resource('kategoris', 'KategorisController');
-        Route::resource('teams', 'TeamsController');
+        Route::resource('kategoris', 'KategorisController',[
+            'only' => ['create','store','index']
+        ]);
+        Route::resource('teamz', 'TeamsController');
+        Route::resource('proposalz', 'ProposalsController');
+        Route::resource('userz', 'UsersController',[
+            'except' => ['create','store']
+        ]);
+        Route::resource('komentarz', 'KomentarsController', [
+            'only' => ['show','store']
+        ]);
+        Route::get('admin/userz/{userz}', [
+            'as' => 'admin.userz.verify',
+            'uses' => 'UsersController@verifikasi'
+        ]);
+        Route::get('admin/userv/{user}', [
+            'as' => 'admin.userz.admin',
+            'uses' => 'UsersController@ubahAdmin'
+        ]);
+        Route::get('admin/userw/{user}}', [
+            'as' => 'admin.userz.staff',
+            'uses' => 'UsersController@ubahStaff'
+        ]);
+        Route::get('admin/userx/{user}', [
+            'as' => 'admin.userz.dosen',
+            'uses' => 'UsersController@ubahDosen'
+        ]);
+        Route::get('admin/usery/{user}', [
+            'as' => 'admin.userz.mahasiswa',
+            'uses' => 'UsersController@ubahMahasiswa'
+        ]);
+    });
+    Route::group(['prefix' => 'staff', 'middleware' => ['auth', 'role:staff']], function() {
         Route::resource('proposals', 'ProposalsController');
-        //Route::resource('proposals', 'ProposalsController');
-      //  Route::resource('books', 'BooksController');
-      //  Route::resource('members', 'MembersController', [
-      //      'only' => ['index', 'show', 'destroy']
-      //  ]);
-
-        // Daftar peminjaman
-        // Route::get('statistics', [
-        //     'as' => 'statistics.index',
-        //     'uses' => 'StatisticsController@index'
+        Route::resource('komentars', 'KomentarsController', [
+            'only' => ['show','store']
+        ]);
+        Route::resource('teams', 'TeamsController');
+        // Route::resource('users', 'UsersController',[
+        //     'except' => ['create','store','destroy']
         // ]);
-
-        
     });
 });

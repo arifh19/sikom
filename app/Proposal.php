@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proposal extends Model
 {
-    protected $fillable = ['judul', 'kategori_id','upload'];
+    protected $fillable = ['judul', 'kategori_id','upload','user_id'];
 
     protected $casts = [
         'is_lock'   =>  'boolean',

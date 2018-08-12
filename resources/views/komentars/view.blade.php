@@ -57,7 +57,15 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+            @role('admin')
+            {!! Form::open(['url' => route('komentarz.store'), 'method' => 'post']) !!}
+            @endrole
+            @role('staff')
             {!! Form::open(['url' => route('komentars.store'), 'method' => 'post']) !!}
+            @endrole
+            @role('dosen')
+            {!! Form::open(['url' => route('komentars.store'), 'method' => 'post']) !!}
+            @endrole
                 @if ($proposal->kategori_id==1)
                     @include('komentars._animasi')
                 @elseif($proposal->kategori_id==2)
@@ -81,7 +89,15 @@
                 @endif
             {!! Form::close() !!}
             <div class="box-footer">
+                    @role('admin')
+                    {!! Form::open(['url' => route('komentarz.show',$proposal->id), 'method' => 'get']) !!}
+                    @endrole
+                    @role('staff')
                     {!! Form::open(['url' => route('komentars.show',$proposal->id), 'method' => 'get']) !!}
+                    @endrole
+                    @role('dosen')
+                    {!! Form::open(['url' => route('komentars.show',$proposal->id), 'method' => 'get']) !!}
+                    @endrole
                     {!! Form::submit('Lihat Review Sebelumnya', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
             </div>

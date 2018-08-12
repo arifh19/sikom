@@ -77,7 +77,7 @@ class CreateKomentarsTable extends Migration
             
             $table->unsignedInteger('proposal_id');
             $table->unsignedInteger('user_id')->nullable();
-            $table->foreign('proposal_id')->references('id')->on('proposals');
+            $table->foreign('proposal_id')->references('id')->on('proposals')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

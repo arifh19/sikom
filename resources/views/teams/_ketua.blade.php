@@ -1,4 +1,20 @@
 <div class="box-body">
+    @role('admin')
+    <div class="form-group has-feedback{{ $errors->has('user_id') ? ' has-error' : '' }}">
+        {!! Form::label('user_id', 'Nama Tim') !!}
+
+        {!! Form::select('user_id', App\User::pluck('name','id')->all(), null, ['class' => 'form-control js-select2','placeholder'=>'','required']) !!}
+        {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+    </div>
+    @endrole
+    @role('staff')
+    <div class="form-group has-feedback{{ $errors->has('user_id') ? ' has-error' : '' }}">
+        {!! Form::label('user_id', 'Nama Tim') !!}
+
+        {!! Form::select('user_id', App\User::pluck('name','id')->all(), null, ['class' => 'form-control js-select2','placeholder'=>'','required']) !!}
+        {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+    </div>
+    @endrole
     <div class="form-group has-feedback{{ $errors->has('kategori_id') ? ' has-error' : '' }}">
         {!! Form::label('kategori_id', 'Kategori') !!}
 

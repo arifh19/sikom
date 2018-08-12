@@ -15,6 +15,9 @@
     <div class="row">
             
     @role('admin')
+    {!! Form::model($team, ['url' => route('teamz.update', $team->id), 'method' => 'put', 'files' => 'true']) !!}
+    @endrole
+    @role('staff')
     {!! Form::model($team, ['url' => route('teams.update', $team->id), 'method' => 'put', 'files' => 'true']) !!}
     @endrole
     @role('member')

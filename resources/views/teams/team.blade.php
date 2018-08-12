@@ -13,6 +13,9 @@
 @section('content')
     <div class="box-footer clearfix">
         @role('admin')
+        <a href="{{ route('teamz.edit', $team->id) }}" class="btn btn-info">Ubah</a>
+        @endrole
+        @role('staff')
         <a href="{{ route('teams.edit', $team->id) }}" class="btn btn-info">Ubah</a>
         @endrole
         @role('member')
