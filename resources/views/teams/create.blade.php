@@ -7,7 +7,18 @@
 
 @section('breadcrumb')
    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-   <li><a href="{{ url('/mahasiswa/teams') }}">Team</a></li>
+    @role('admin')
+    <li><a href="{{ url('/admin/teamz') }}">Team</a></li>
+    @endrole
+    @role('staff')
+    <li><a href="{{ url('/staff/teams') }}">Team</a></li>
+    @endrole
+    @role('member')
+    <li><a href="{{ url('/mahasiswa/team') }}">Team</a></li>
+    @endrole
+    @role('dosen')
+    <li><a href="{{ url('/dosen/teams') }}">Team</a></li>
+    @endrole
    <li class="active">Input Informasi Tim</li>
 @endsection
 

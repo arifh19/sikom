@@ -7,7 +7,7 @@ Pengguna
 
 @section('breadcrumb')
    <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-   <li><a href="{{ url('/admin/kategoris') }}">Users</a></li>
+   <li><a href="{{ url('/admin/userz') }}">Users</a></li>
    <li class="active">Ubah Pengguna</li>
 @endsection
 
