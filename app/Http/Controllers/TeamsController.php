@@ -106,9 +106,9 @@ class TeamsController extends Controller
     {   
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $available = Team::where('user_id',$request->input('user_id'));
-            if($available->count()>0)
-                return redirect()->back();
-            else
+            // if($available->count()>0)
+            //     return redirect()->back();
+            // else
                 $team = Team::create($request->except('foto_ktm_ketua','foto_ktm_anggota1','foto_ktm_anggota2'));
         }
         if (Laratrust::hasRole('member')) {
@@ -170,8 +170,8 @@ class TeamsController extends Controller
     {
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $available = Team::where('user_id',$request->input('user_id'));
-            if($available->count()>0)
-                return redirect()->back();
+            // if($available->count()>0)
+            //     return redirect()->back();
         }
         $team = Team::find($id);
         

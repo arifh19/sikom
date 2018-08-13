@@ -178,9 +178,9 @@ class ProposalsController extends Controller
     {
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $available = Proposal::where('user_id',$request->input('user_id'));
-            if($available->count()>0)
-                return redirect()->back();
-            else
+            // if($available->count()>0)
+            //     return redirect()->back();
+            // else
                 $proposal = Proposal::create($request->except('upload'));
         }
         else{
@@ -315,8 +315,6 @@ class ProposalsController extends Controller
     {
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $available = Proposal::where('user_id',$request->input('user_id'));
-            if($available->count()>0)
-                return redirect()->back();
         }
         if (Laratrust::hasRole('member')) {
             if ($request->file('upload')->getClientOriginalExtension()!='pdf') {
