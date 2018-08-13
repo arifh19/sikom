@@ -130,9 +130,7 @@ Route::group(['midlleware' => 'web'], function() {
     });
     Route::group(['prefix' => 'staff', 'middleware' => ['auth', 'role:staff']], function() {
         Route::resource('proposals', 'ProposalsController');
-        Route::resource('komentars', 'KomentarsController', [
-            'only' => ['show','store']
-        ]);
+        Route::resource('komentars', 'KomentarsController');
         Route::resource('teams', 'TeamsController');
         // Route::resource('users', 'UsersController',[
         //     'except' => ['create','store','destroy']
