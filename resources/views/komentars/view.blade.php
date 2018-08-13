@@ -61,7 +61,7 @@
             {!! Form::open(['url' => route('komentarz.store'), 'method' => 'post']) !!}
             @endrole
             @role('staff')
-            {!! Form::open(['url' => route('komentars.store'), 'method' => 'post']) !!}
+            {!! Form::open(['url' => route('komentar.store'), 'method' => 'post']) !!}
             @endrole
             @role('dosen')
             {!! Form::open(['url' => route('komentars.store'), 'method' => 'post']) !!}
@@ -93,7 +93,7 @@
                     {!! Form::open(['url' => route('komentarz.show',$proposal->id), 'method' => 'get']) !!}
                     @endrole
                     @role('staff')
-                    {!! Form::open(['url' => route('komentars.show',$proposal->id), 'method' => 'get']) !!}
+                    {!! Form::open(['url' => route('komentar.show',$proposal->id), 'method' => 'get']) !!}
                     @endrole
                     @role('dosen')
                     {!! Form::open(['url' => route('komentars.show',$proposal->id), 'method' => 'get']) !!}
