@@ -122,6 +122,6 @@
     <!-- Alert JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     @include('sweet::alert')
-  <center><strong>SIKOMATIK V 1.0<br>Copyright &copy; {!! date("Y") !!} <a href="http://komatik.wg.ugm.ac.id">SIKOMATIK</a>.</strong> All rights reserved.</center>
+  <center><strong>SIKOMATIK V 1.5<br>Copyright &copy; {!! date("Y") !!} <a href="http://komatik.wg.ugm.ac.id">SIKOMATIK</a>.</strong> All rights reserved.</center>
 </body>
 </html>

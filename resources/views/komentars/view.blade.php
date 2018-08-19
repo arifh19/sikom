@@ -71,12 +71,10 @@
             @role('admin')
             {!! Form::open(['url' => route('komentarz.store'), 'method' => 'post']) !!}
             @endrole
-            @role('staff')
-            {!! Form::open(['url' => route('komentar.store'), 'method' => 'post']) !!}
-            @endrole
             @role('dosen')
             {!! Form::open(['url' => route('komentars.store'), 'method' => 'post']) !!}
             @endrole
+            @role('admin')
                 @if ($proposal->kategori_id==1)
                     @include('komentars._animasi')
                 @elseif($proposal->kategori_id==2)
@@ -98,19 +96,51 @@
                 @else
                     {{route('proposals.index')}}
                 @endif
+            @endrole
+            @role('dosen')
+                @if ($proposal->kategori_id==1)
+                    @include('komentars._animasi')
+                @elseif($proposal->kategori_id==2)
+                    @include('komentars._desainux')
+                @elseif($proposal->kategori_id==5)
+                    @include('komentars._datamining')
+                @elseif($proposal->kategori_id==6)
+                    @include('komentars._game')        
+                @elseif($proposal->kategori_id==7)
+                    @include('komentars._ppl')   
+                @elseif($proposal->kategori_id==8)
+                    @include('komentars._bisnis')  
+                @elseif($proposal->kategori_id==9)
+                    @include('komentars._piranti')  
+                @elseif($proposal->kategori_id==10)
+                    @include('komentars._smart')  
+                @elseif($proposal->kategori_id==11)
+                    @include('komentars._kti')  
+                @else
+                    {{route('proposals.index')}}
+                @endif
+            @endrole
             {!! Form::close() !!}
+            @role('staff')
+                {!! Form::open(['url' => route('riwayatproposals.store'), 'method' => 'post']) !!}
+                    @include('komentars._keterangan')  
+                {!! Form::close() !!}
+            @endrole
             <div class="box-footer">
                     @role('admin')
-                    {!! Form::open(['url' => route('komentarz.show',$proposal->id), 'method' => 'get']) !!}
+                    <a href="{{route('komentarz.show',$proposal->id)}}" class="btn btn-success btn-md">Lihat Review Dosen</a>           
+                    <a href="{{route('riwayatproposalz.show',$proposal->id)}}" class="btn btn-warning btn-md">Lihat Review Staff</a> 
                     @endrole
                     @role('staff')
-                    {!! Form::open(['url' => route('komentar.show',$proposal->id), 'method' => 'get']) !!}
+                    <a href="{{route('komentar.show',$proposal->id)}}" class="btn btn-success btn-md">Lihat Review Dosen</a>           
+                    <a href="{{route('riwayatproposals.show',$proposal->id)}}" class="btn btn-warning btn-md">Lihat Review Staff</a> 
                     @endrole
                     @role('dosen')
                     {!! Form::open(['url' => route('komentars.show',$proposal->id), 'method' => 'get']) !!}
-                    @endrole
                     {!! Form::submit('Lihat Review Sebelumnya', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
+                    @endrole  
+                   
             </div>
         </div>
     </div>

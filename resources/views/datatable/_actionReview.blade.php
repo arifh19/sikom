@@ -1,5 +1,5 @@
 @if(Auth::user()->Reviews()->where('proposal_id', $proposal_id)->where('user_id',Auth::user()->id)->where('is_review', 1)->count() > 0)
-Sudah anda Review
+<h4><span class="label label-info label-md">Sudah anda Review</span></h4>
 @else
-Belum anda Review
+<h4><span class="label label-warning label-md">Belum anda Review</span></h4>
 @endif

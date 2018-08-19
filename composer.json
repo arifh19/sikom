@@ -16,7 +16,9 @@
         "santigarcor/laratrust": "3.2.*",
         "uxweb/sweet-alert": "^2.0",
         "yajra/laravel-datatables-buttons": "^1.0",
-        "yajra/laravel-datatables-oracle": "7.3.0"
+        "yajra/laravel-datatables-oracle": "7.3.0",
+		"datatables-responsive": "~1.0.4",
+		"datatables": "~1.10.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

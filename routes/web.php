@@ -104,6 +104,9 @@ Route::group(['midlleware' => 'web'], function() {
         Route::resource('userz', 'UsersController',[
             'except' => ['create','store']
         ]);
+        Route::resource('riwayatproposalz', 'RiwayatProposalsController',[
+            'only' => ['store','show']
+        ]);
         Route::resource('komentarz', 'KomentarsController', [
             'only' => ['show','store']
         ]);
@@ -129,7 +132,12 @@ Route::group(['midlleware' => 'web'], function() {
         ]);
     });
     Route::group(['prefix' => 'staff', 'middleware' => ['auth', 'role:staff']], function() {
-        Route::resource('proposals', 'ProposalsController');
+        Route::resource('proposals', 'ProposalsController',[
+            'except' => ['edit','update','destroy']
+        ]);
+        Route::resource('riwayatproposals', 'RiwayatProposalsController',[
+            'only' => ['store','show']
+        ]);
         Route::resource('komentar', 'KomentarsController');
         Route::resource('teams', 'TeamsController');
         // Route::resource('users', 'UsersController',[

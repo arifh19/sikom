@@ -21,7 +21,12 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
+                    @role(!'member')
                     <h3 class="box-title">Proposal</h3>
+                    @endrole
+                    @role('member')
+                <h3 class="box-title">Proposal Kategori {{$revisi->kategori->nama_kategori}}</h3>
+                    @endrole
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -34,6 +39,9 @@
                     @endrole
                     @role('staff')
                     <p><a class="btn btn-success" href="{{ route('proposals.create') }}">Tambah</a></p>
+                    @endrole
+                    @role('member')
+                    <p><a class="btn btn-info" href="{{ route('proposal.edit',$revisi->id) }}">Revisi</a></p>
                     @endrole
                     {!! $html->table(['class' => 'table table-bordered table-striped']) !!}
                 </div>

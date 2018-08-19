@@ -13,39 +13,27 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Profil</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <td class="text-muted">Name</td>
-                            <td>{{ auth()->user()->name }}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-muted">Email</td>
-                            <td>{{ auth()->user()->email }}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-muted">Foto Profil</td>
-                            <td><img src="{{ asset('/img/'. auth()->user()->avatar) }}" class="img-circle img-responsive" alt="User Image"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-muted">Login Terakhir</td>
-                            <td>{{ auth()->user()->last_login }}</td>
-                        </tr>
-                    </table>
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer clearfix">
-                  <a href="{{ url('/settings/profile/edit') }}" class="btn btn-info">Ubah</a>
-                </div>
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-yellow">
+              <div class="widget-user-image">
+                <img class="img-circle" src="{{ asset('/img/'. auth()->user()->avatar) }}" alt="User Avatar">
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class="widget-user-username">{{ auth()->user()->name }}</h3>
+              <h5 class="widget-user-desc">{{ auth()->user()->name }}</h5>
             </div>
-            <!-- /.box -->
-        </div>
-        <!-- /.col -->
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">Nama Lengkap/Tim <span class="pull-right badge bg-blue">{{ auth()->user()->name }}</span></a></li>
+                <li><a href="#">Email <span class="pull-right badge bg-aqua">{{ auth()->user()->email }}</span></a></li>
+                <li><a href="#">Login Terakhir <span class="pull-right badge bg-green">{{ auth()->user()->last_login }}</span></a></li>
+                {{-- <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li> --}}
+              </ul>
+            </div>
+            <div class="box-footer clearfix">
+                    <a href="{{ url('/settings/profile/edit') }}" class="btn btn-info">Ubah</a>
+            </div>
     </div>
-    <!-- /.row -->
 @endsection

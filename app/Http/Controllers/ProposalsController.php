@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Proposal;
 use App\Kategori;
 use App\Review;
+use App\RiwayatProposal;
 use App\User;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
@@ -32,29 +33,36 @@ class ProposalsController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if (Laratrust::hasRole('member')) {
-            if ($request->ajax()) {
-                $proposals = Proposal::where('user_id', Auth::user()->id)->with('kategori')->with('user');
+            $revisi = Proposal::where('user_id', Auth::user()->id)->first();
+            if ($revisi) {
+                if ($request->ajax()) {
+                    $proposals = Proposal::where('user_id', Auth::user()->id)->first();
+                    $riwayats = RiwayatProposal::where('proposal_id', $proposals->id)->with('proposal')->with('user');
+                    return Datatables::of($riwayats)
+                    ->addColumn('statusx', function($riwayat) {
+                        return view('datatable._statusProposal', [
+                            'model'             => $riwayat,
+                        ]);
+                    })
+                    ->addColumn('keteranganx', function($riwayat) {
+                        return view('datatable._keterangan', [
+                            'model'             => $riwayat,
+                        ]);
+                    })
+                    ->rawColumns(['statusx','keteranganx'])
+                    ->orderBy('updated_at','desc')->make(true);
+                }
 
-                return Datatables::of($proposals)
-                ->addColumn('action', function ($proposal) {
-                    return view('datatable._action', [
-                        'model'             => $proposal,
-                        //'form_url'          => route('proposals.destroy', $proposal->id),
-                        'edit_url'          => route('proposal.edit', $proposal->id),
-                        // 'view_url'          => route('proposals.show', $proposal->id),
-                        'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
-                    ]);
-                })->make(true);
-            }
-
-            $html = $htmlBuilder
-            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])
-            ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
-            ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
-            ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
-            ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input']);
+                $html = $htmlBuilder
+                ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
+                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa/Pemohon','orderable' => false])
+                ->addColumn(['data' => 'proposal.judul', 'name' => 'proposal.judul', 'title' => 'Judul','orderable' => false])
+                ->addColumn(['data' => 'statusx', 'name' => 'statusx', 'title' => 'Status','orderable' => false])
+                ->addColumn(['data' => 'keteranganx', 'name' => 'keteranganx', 'title' => 'Keterangan','orderable' => false]);
             
-            return view('proposals.index')->with(compact('html'));
+                return view('proposals.index')->with(compact('html', 'revisi'));
+            }
+            else return redirect()->route('proposal.create');
         }
         if (Laratrust::hasRole('admin')) {
             if ($request->ajax()) {
@@ -78,7 +86,7 @@ class ProposalsController extends Controller
                 ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
                 ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
                 ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
-                ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input']);
+                ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input']);
                 
             return view('proposals.index')->with(compact('html'));
         }
@@ -91,11 +99,17 @@ class ProposalsController extends Controller
                     ->addColumn('action', function($proposal) {
                         return view('datatable._actionStaffProposal', [
                             'model'             => $proposal,
-                            'form_url'          => route('proposals.destroy', $proposal->id),
-                            'edit_url'          => route('proposals.edit', $proposal->id),
+                           // 'form_url'          => route('proposals.destroy', $proposal->id),
+                           // 'edit_url'          => route('proposals.edit', $proposal->id),
                             'view_url'          => route('proposals.show', $proposal->id),
-                            'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
+                          //  'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
                         ]);
+                    })
+                    ->addColumn('status', function($proposal) {
+                    return view('datatable._actionReview',[
+                        'model'             => $proposal,
+                        'proposal_id'          => $proposal->id,
+                    ]);
                 })->make(true);
             }
     
@@ -104,7 +118,8 @@ class ProposalsController extends Controller
                 ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
                 ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
                 ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
-                ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input']);
+                ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
+                ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status']);
                 
             return view('proposals.index')->with(compact('html'));
         }
@@ -136,7 +151,7 @@ class ProposalsController extends Controller
                         'model'             => $proposal,
                         'proposal_id'          => $proposal->id,
                     ]);
-            })->make(true);
+            })->rawColumns(['action','status','frekuensi'])->make(true);
         }
 
         $html = $htmlBuilder
@@ -144,8 +159,8 @@ class ProposalsController extends Controller
             ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
             ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
             ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
-            ->addColumn(['data' => 'kategori.updated_at', 'name' => 'kategori.updated_at', 'title' => 'Tanggal Input'])
-            ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false, 'searchable' => false])
+            ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
+            ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false])
             ->addColumn(['data' => 'frekuensi', 'name' => 'frekuensi', 'title' => 'Reviewed by me', 'orderable' => false, 'searchable' => false]);
             
 
@@ -182,6 +197,7 @@ class ProposalsController extends Controller
             //     return redirect()->back();
             // else
                 $proposal = Proposal::create($request->except('upload'));
+                $user = $request->input('user_id');
         }
         else{
             $user = Auth::user()->id;
@@ -209,6 +225,13 @@ class ProposalsController extends Controller
             $proposal->upload = $filename;
             $proposal->save();
         }
+        $proposal_id = Proposal::where('user_id',$user)->first();
+        $riwayat = new RiwayatProposal;
+        $riwayat->user_id = $user;
+        $riwayat->proposal_id = $proposal_id->id;
+        $riwayat->status = 'Submit proposal';
+        $riwayat->keterangan = 'Mengajukan proposal';
+        $riwayat->save();
 
         Session::flash("flash_notification", [
             "level" => "success",
@@ -279,7 +302,7 @@ class ProposalsController extends Controller
             return view('proposals.edit')->with(compact('proposal'));
             else
             return redirect()->route('proposal.index');
-        }  
+        }
     }
 
     public function editproposal($id)
@@ -315,8 +338,10 @@ class ProposalsController extends Controller
     {
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $available = Proposal::where('user_id',$request->input('user_id'));
+            $user = $request->input('user_id');
         }
         if (Laratrust::hasRole('member')) {
+            $user = Auth::user()->id;
             if ($request->file('upload')->getClientOriginalExtension()!='pdf') {
                 return redirect()->route('mahasiswa.proposals.edits', $id);
             }
@@ -375,6 +400,14 @@ class ProposalsController extends Controller
             $key->is_review=0;
             $key->save();
         }
+
+        $proposal_id = Proposal::where('user_id',$user)->first();
+        $riwayat = new RiwayatProposal;
+        $riwayat->user_id = $user;
+        $riwayat->proposal_id = $proposal_id->id;
+        $riwayat->status = 'Submit proposal';
+        $riwayat->keterangan = 'Mengajukan proposal';
+        $riwayat->save();
 
         Session::flash("flash_notification", [
             "level" => "success",

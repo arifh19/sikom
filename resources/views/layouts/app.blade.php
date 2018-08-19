@@ -424,7 +424,13 @@
 <script src="{{ asset('/admin-lte/plugins/select2/select2.full.min.js') }}"></script>
 <!-- Custom JS -->
 <script src="{{ asset('/js/custom.js') }}"></script>
-
+<script>
+$('.dataTable').DataTable({
+                        responsive: true,
+                        autoWidth: false
+                    });
+</script>
+  
 @yield('scripts')
 
 </body>
