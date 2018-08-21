@@ -69,15 +69,25 @@ class RiwayatProposalsController extends Controller
             if ($request->ajax()) {
                 $riwayats = RiwayatProposal::where('proposal_id', $id)->with('proposal')->with('user');
                 return Datatables::of($riwayats)
-                ->orderBy('updated_at','desc')->make(true);
+                ->addColumn('statusx', function($riwayat) {
+                    return view('datatable._statusProposal', [
+                        'model'             => $riwayat,
+                    ]);
+                })
+                ->addColumn('keteranganx', function($riwayat) {
+                    return view('datatable._keterangan', [
+                        'model'             => $riwayat,
+                    ]);
+                })
+                ->rawColumns(['statusx','keteranganx'])->orderBy('updated_at','desc')->make(true);
             }
 
             $html = $htmlBuilder
             ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
             ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa/Pemohon','orderable' => false])
             ->addColumn(['data' => 'proposal.judul', 'name' => 'proposal.judul', 'title' => 'Judul','orderable' => false])
-            ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status','orderable' => false])
-            ->addColumn(['data' => 'keterangan', 'name' => 'keterangan', 'title' => 'Keterangan','orderable' => false]);
+            ->addColumn(['data' => 'statusx', 'name' => 'status', 'title' => 'Status','orderable' => false])
+            ->addColumn(['data' => 'keteranganx', 'name' => 'keterangan', 'title' => 'Keterangan','orderable' => false]);
         
             return view('komentars.index')->with(compact('html', 'cekkategori'));
         }
