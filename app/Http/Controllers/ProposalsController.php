@@ -110,7 +110,7 @@ class ProposalsController extends Controller
                         'model'             => $proposal,
                         'proposal_id'          => $proposal->id,
                     ]);
-                })->make(true);
+                })->rawColumns(['action','status'])->make(true);
             }
     
             $html = $htmlBuilder
