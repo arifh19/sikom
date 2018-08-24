@@ -160,8 +160,8 @@ class HomeController extends Controller
             $cp = Team::where('kategori_id',Kategori::where('nama_kategori','Pemrograman')->first()->id);
             $datmin = Team::where('kategori_id',Kategori::where('nama_kategori','Penambangan Data(Data Mining)')->first()->id);
             $gamedev = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Aplikasi Permainan')->first()->id);
-            $bistik = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Perangkat Lunak')->first()->id);
-            $ppl = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Bisnis TIK')->first()->id);
+            $bistik = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Bisnis TIK')->first()->id);
+            $ppl = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Perangkat Lunak')->first()->id);
             $piranti = Team::where('kategori_id',Kategori::where('nama_kategori','Piranti Cerdas, Sistem Benam dan IoT')->first()->id);
             $smartcity = Team::where('kategori_id',Kategori::where('nama_kategori','Kota Cerdas (Smart City)')->first()->id);
             $kti = Team::where('kategori_id',Kategori::where('nama_kategori','Karya Tulis Ilmiah TIK')->first()->id);
@@ -177,8 +177,8 @@ class HomeController extends Controller
             $cp = Team::where('kategori_id',Kategori::where('nama_kategori','Pemrograman')->first()->id);
             $datmin = Team::where('kategori_id',Kategori::where('nama_kategori','Penambangan Data(Data Mining)')->first()->id);
             $gamedev = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Aplikasi Permainan')->first()->id);
-            $bistik = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Perangkat Lunak')->first()->id);
-            $ppl = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Bisnis TIK')->first()->id);
+            $bistik = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Bisnis TIK')->first()->id);
+            $ppl = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Perangkat Lunak')->first()->id);
             $piranti = Team::where('kategori_id',Kategori::where('nama_kategori','Piranti Cerdas, Sistem Benam dan IoT')->first()->id);
             $smartcity = Team::where('kategori_id',Kategori::where('nama_kategori','Kota Cerdas (Smart City)')->first()->id);
             $kti = Team::where('kategori_id',Kategori::where('nama_kategori','Karya Tulis Ilmiah TIK')->first()->id);
