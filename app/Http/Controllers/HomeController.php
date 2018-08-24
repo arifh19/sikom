@@ -160,8 +160,8 @@ class HomeController extends Controller
             $cp = Team::where('kategori_id',Kategori::find(4)->id);
             $datmin = Team::where('kategori_id',Kategori::find(5)->id);
             $gamedev = Team::where('kategori_id',Kategori::find(6)->id);
-            $bistik = Team::where('kategori_id',Kategori::find(7)->id);
-            $ppl = Team::where('kategori_id',Kategori::find(8)->id);
+            $ppl = Team::where('kategori_id',Kategori::find(7)->id);
+            $bistik = Team::where('kategori_id',Kategori::find(8)->id);
             $piranti = Team::where('kategori_id',Kategori::find(9)->id);
             $smartcity = Team::where('kategori_id',Kategori::find(10)->id);
             $kti = Team::where('kategori_id',Kategori::find(11)->id);
@@ -177,8 +177,8 @@ class HomeController extends Controller
             $cp = Team::where('kategori_id',Kategori::find(4)->id);
             $datmin = Team::where('kategori_id',Kategori::find(5)->id);
             $gamedev = Team::where('kategori_id',Kategori::find(6)->id);
-            $bistik = Team::where('kategori_id',Kategori::find(7)->id);
-            $ppl = Team::where('kategori_id',Kategori::find(8)->id);
+            $ppl = Team::where('kategori_id',Kategori::find(7)->id);
+            $bistik = Team::where('kategori_id',Kategori::find(8)->id);
             $piranti = Team::where('kategori_id',Kategori::find(9)->id);
             $smartcity = Team::where('kategori_id',Kategori::find(10)->id);
             $kti = Team::where('kategori_id',Kategori::find(11)->id);
@@ -193,8 +193,8 @@ class HomeController extends Controller
             $cp = Team::where('kategori_id',Kategori::find(4)->id);
             $datmin = Team::where('kategori_id',Kategori::find(5)->id);
             $gamedev = Team::where('kategori_id',Kategori::find(6)->id);
-            $bistik = Team::where('kategori_id',Kategori::find(7)->id);
-            $ppl = Team::where('kategori_id',Kategori::find(8)->id);
+            $ppl = Team::where('kategori_id',Kategori::find(7)->id);
+            $bistik = Team::where('kategori_id',Kategori::find(8)->id);
             $piranti = Team::where('kategori_id',Kategori::find(9)->id);
             $smartcity = Team::where('kategori_id',Kategori::find(10)->id);
             $kti = Team::where('kategori_id',Kategori::find(11)->id);
