@@ -154,50 +154,50 @@ class HomeController extends Controller
 
         if (Laratrust::hasRole('admin')) {
 
-            $animasi = Team::where('kategori_id',Kategori::where('nama_kategori','Animasi')->first()->id);
-            $ux = Team::where('kategori_id',Kategori::where('nama_kategori','Desain Pengalaman Pengguna(UX)')->first()->id);
-            $kjsi = Team::where('kategori_id',Kategori::where('nama_kategori','Keamanan Jaringan dan Sistem Informasi')->first()->id);
-            $cp = Team::where('kategori_id',Kategori::where('nama_kategori','Pemrograman')->first()->id);
-            $datmin = Team::where('kategori_id',Kategori::where('nama_kategori','Penambangan Data(Data Mining)')->first()->id);
-            $gamedev = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Aplikasi Permainan')->first()->id);
-            $bistik = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Bisnis TIK')->first()->id);
-            $ppl = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Perangkat Lunak')->first()->id);
-            $piranti = Team::where('kategori_id',Kategori::where('nama_kategori','Piranti Cerdas, Sistem Benam dan IoT')->first()->id);
-            $smartcity = Team::where('kategori_id',Kategori::where('nama_kategori','Kota Cerdas (Smart City)')->first()->id);
-            $kti = Team::where('kategori_id',Kategori::where('nama_kategori','Karya Tulis Ilmiah TIK')->first()->id);
-
+            $animasi = Team::where('kategori_id',Kategori::find(1)->first()->id);
+            $ux = Team::where('kategori_id',Kategori::find(2)->first()->id);
+            $kjsi = Team::where('kategori_id',Kategori::find(3)->first()->id);
+            $cp = Team::where('kategori_id',Kategori::find(4)->first()->id);
+            $datmin = Team::where('kategori_id',Kategori::find(5)->first()->id);
+            $gamedev = Team::where('kategori_id',Kategori::find(6)->first()->id);
+            $bistik = Team::where('kategori_id',Kategori::find(7)->first()->id);
+            $ppl = Team::where('kategori_id',Kategori::find(8)->first()->id);
+            $piranti = Team::where('kategori_id',Kategori::find(9)->first()->id);
+            $smartcity = Team::where('kategori_id',Kategori::find(10)->first()->id);
+            $kti = Team::where('kategori_id',Kategori::find(11)->first()->id);
+            
             return view('dashboard.admin', compact('animasi', 'ux', 'kjsi', 'cp','datmin','gamedev','bistik','ppl','piranti','smartcity','kti'));
         }
 
         if (Laratrust::hasRole('dosen')) {
 
-            $animasi = Team::where('kategori_id',Kategori::where('nama_kategori','Animasi')->first()->id);
-            $ux = Team::where('kategori_id',Kategori::where('nama_kategori','Desain Pengalaman Pengguna(UX)')->first()->id);
-            $kjsi = Team::where('kategori_id',Kategori::where('nama_kategori','Keamanan Jaringan dan Sistem Informasi')->first()->id);
-            $cp = Team::where('kategori_id',Kategori::where('nama_kategori','Pemrograman')->first()->id);
-            $datmin = Team::where('kategori_id',Kategori::where('nama_kategori','Penambangan Data(Data Mining)')->first()->id);
-            $gamedev = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Aplikasi Permainan')->first()->id);
-            $bistik = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Bisnis TIK')->first()->id);
-            $ppl = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Perangkat Lunak')->first()->id);
-            $piranti = Team::where('kategori_id',Kategori::where('nama_kategori','Piranti Cerdas, Sistem Benam dan IoT')->first()->id);
-            $smartcity = Team::where('kategori_id',Kategori::where('nama_kategori','Kota Cerdas (Smart City)')->first()->id);
-            $kti = Team::where('kategori_id',Kategori::where('nama_kategori','Karya Tulis Ilmiah TIK')->first()->id);
+            $animasi = Team::where('kategori_id',Kategori::find(1)->first()->id);
+            $ux = Team::where('kategori_id',Kategori::find(2)->first()->id);
+            $kjsi = Team::where('kategori_id',Kategori::find(3)->first()->id);
+            $cp = Team::where('kategori_id',Kategori::find(4)->first()->id);
+            $datmin = Team::where('kategori_id',Kategori::find(5)->first()->id);
+            $gamedev = Team::where('kategori_id',Kategori::find(6)->first()->id);
+            $bistik = Team::where('kategori_id',Kategori::find(7)->first()->id);
+            $ppl = Team::where('kategori_id',Kategori::find(8)->first()->id);
+            $piranti = Team::where('kategori_id',Kategori::find(9)->first()->id);
+            $smartcity = Team::where('kategori_id',Kategori::find(10)->first()->id);
+            $kti = Team::where('kategori_id',Kategori::find(11)->first()->id);
 
             return view('dashboard.dosen', compact('animasi', 'ux', 'kjsi', 'cp','datmin','gamedev','bistik','ppl','piranti','smartcity','kti'));
         }
         if (Laratrust::hasRole('staff')) {
 
-            $animasi = Team::where('kategori_id',Kategori::where('nama_kategori','Animasi')->first()->id);
-            $ux = Team::where('kategori_id',Kategori::where('nama_kategori','Desain Pengalaman Pengguna(UX)')->first()->id);
-            $kjsi = Team::where('kategori_id',Kategori::where('nama_kategori','Keamanan Jaringan dan Sistem Informasi')->first()->id);
-            $cp = Team::where('kategori_id',Kategori::where('nama_kategori','Pemrograman')->first()->id);
-            $datmin = Team::where('kategori_id',Kategori::where('nama_kategori','Penambangan Data(Data Mining)')->first()->id);
-            $gamedev = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Aplikasi Permainan')->first()->id);
-            $bistik = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Perangkat Lunak')->first()->id);
-            $ppl = Team::where('kategori_id',Kategori::where('nama_kategori','Pengembangan Bisnis TIK')->first()->id);
-            $piranti = Team::where('kategori_id',Kategori::where('nama_kategori','Piranti Cerdas, Sistem Benam dan IoT')->first()->id);
-            $smartcity = Team::where('kategori_id',Kategori::where('nama_kategori','Kota Cerdas (Smart City)')->first()->id);
-            $kti = Team::where('kategori_id',Kategori::where('nama_kategori','Karya Tulis Ilmiah TIK')->first()->id);
+            $animasi = Team::where('kategori_id',Kategori::find(1)->first()->id);
+            $ux = Team::where('kategori_id',Kategori::find(2)->first()->id);
+            $kjsi = Team::where('kategori_id',Kategori::find(3)->first()->id);
+            $cp = Team::where('kategori_id',Kategori::find(4)->first()->id);
+            $datmin = Team::where('kategori_id',Kategori::find(5)->first()->id);
+            $gamedev = Team::where('kategori_id',Kategori::find(6)->first()->id);
+            $bistik = Team::where('kategori_id',Kategori::find(7)->first()->id);
+            $ppl = Team::where('kategori_id',Kategori::find(8)->first()->id);
+            $piranti = Team::where('kategori_id',Kategori::find(9)->first()->id);
+            $smartcity = Team::where('kategori_id',Kategori::find(10)->first()->id);
+            $kti = Team::where('kategori_id',Kategori::find(11)->first()->id);
 
             return view('dashboard.staff', compact('animasi', 'ux', 'kjsi', 'cp','datmin','gamedev','bistik','ppl','piranti','smartcity','kti'));
         }
