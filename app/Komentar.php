@@ -12,7 +12,7 @@ class Komentar extends Model
         'originalitas','kebaruan','manfaat','clarity','kelengkapan_laporan',
         'Story','Mechanics','Aesthetics','Gameplay','kesesuaian_proposal',
         'Aspek_Inovasi','Dampak_pengguna_masyarakat','Desain_dan_usability','metodologi_pengembangan','Kesesuaian_ide','Urgensi_permasalahan',
-        'Penjelasan_Problem_Bisnis','Produk_Layanan','Pasar_Market','Strategi_Bisnis','Anggota_Perusahaan','Daya_Tarik_Traction','Elevator_Pitch'.
+        'Penjelasan_Problem_Bisnis','Produk_Layanan','Pasar_Market','Strategi_Bisnis','Anggota_Perusahaan','Daya_Tarik_Traction','Elevator_Pitch',
         'Aspek_kreativitas','Penulisan_proposal','Potensi_Kegunaan_Hasil_Bagi_Masyarakat','Kemungkinan_Proposal_Dapat_Diselesaikan',
         'Permasalahan_yang_diangkat','Pemaparan_permasalahan','Dampak_implementasi','Inovasi_pengembangan',
         'judul','abstrak','pendahuluan','tujuan','metode','hasil_pembahasan','kesimpulan','daftar_pustaka'];
