@@ -26,7 +26,9 @@ class StoreProposalRequest extends FormRequest
     public function rules()
     {
         return [
-          
+            'judul' => 'required:proposals',
+            'kategori_id' => 'required:proposals',
+            'upload' => 'required:mimes:pdf',
         ];
     }
 
