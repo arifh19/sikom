@@ -40,7 +40,10 @@ class StoreProposalRequest extends FormRequest
     public function messages()
     {
         return [
-            
+            'judul.required' => 'Judul masih kosong',
+            'kategori_id.required' => 'Kategori masih kosong',
+            'upload.required' => 'File masih kosong',
+            'upload.mimes' => 'Format file harus PDF',
         ];
         
 

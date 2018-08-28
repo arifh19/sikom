@@ -104,6 +104,29 @@ class TeamsController extends Controller
      */
     public function store(StoreTeamRequest $request)
     {   
+        $this->validate($request, [
+            'kategori_id' => 'required|exists:kategoris,id',
+            'nama_ketua' => 'required:teams',
+            'nim_ketua' => 'required:teams',
+            'fkja_ketua' => 'required:teams',
+            'no_hp_ketua' => 'required:teams',
+            'foto_ktm_ketua' => 'required|image|max:1024',
+            'foto_ktm_anggota1' => 'image|max:1024',
+            'foto_ktm_anggota2' => 'image|max:1024',
+        ], [
+            'kategori_id.required' => 'Kategori Tim masih kosong',            
+            'nama_ketua.required' => 'Nama Ketua Tim masih kosong',
+            'nim_ketua.required' => 'Nim Ketua Tim masih kosong',
+            'fkja_ketua.required' => 'Fakultas Ketua Tim masih kosong',
+            'no_hp_ketua.required' => 'No HP masih kosong',
+            'foto_ktm_ketua.required' => 'File KTM Ketua masih kosong',
+            'foto_ktm_ketua.image' => 'Format File KTM harus Gambar',
+            'foto_ktm_ketua.max' => 'Size proposal terlalu besar',
+            'foto_ktm_anggota1.image' => 'Format File KTM harus Gambar',
+            'foto_ktm_anggota1.max' => 'Size proposal terlalu besar',
+            'foto_ktm_anggota2.image' => 'Format File KTM harus Gambar',
+            'foto_ktm_anggota2.max' => 'Size proposal terlalu besar',
+        ]);
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $available = Team::where('user_id',$request->input('user_id'));
             // if($available->count()>0)
@@ -166,8 +189,31 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTeamRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'kategori_id' => 'required|exists:kategoris,id',
+            'nama_ketua' => 'required:teams',
+            'nim_ketua' => 'required:teams',
+            'fkja_ketua' => 'required:teams',
+            'no_hp_ketua' => 'required:teams',
+            'foto_ktm_ketua' => 'required|image|max:1024',
+            'foto_ktm_anggota1' => 'image|max:1024',
+            'foto_ktm_anggota2' => 'image|max:1024',
+        ], [
+            'kategori_id.required' => 'Kategori Tim masih kosong',            
+            'nama_ketua.required' => 'Nama Ketua Tim masih kosong',
+            'nim_ketua.required' => 'Nim Ketua Tim masih kosong',
+            'fkja_ketua.required' => 'Fakultas Ketua Tim masih kosong',
+            'no_hp_ketua.required' => 'No HP masih kosong',
+            'foto_ktm_ketua.required' => 'File KTM Ketua masih kosong',
+            'foto_ktm_ketua.image' => 'Format File KTM harus Gambar',
+            'foto_ktm_ketua.max' => 'Size proposal terlalu besar',
+            'foto_ktm_anggota1.image' => 'Format File KTM harus Gambar',
+            'foto_ktm_anggota1.max' => 'Size proposal terlalu besar',
+            'foto_ktm_anggota2.image' => 'Format File KTM harus Gambar',
+            'foto_ktm_anggota2.max' => 'Size proposal terlalu besar',
+        ]);
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $available = Team::where('user_id',$request->input('user_id'));
             // if($available->count()>0)

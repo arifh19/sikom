@@ -32,7 +32,7 @@ class SettingsController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
-            'avatar' => 'nullable',
+            'avatar' => 'image|max:1024',
         ]);
 
         $user->name = $request->get('name');
