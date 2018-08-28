@@ -191,6 +191,18 @@ class ProposalsController extends Controller
      */
     public function store(StoreProposalRequest $request)
     {
+        $this->validate($request, [
+            'judul' => 'required:proposals,judul',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'upload' => 'required|mimes:pdf|max:10240'
+        ], [
+            'judul.required' => 'Judul proposal masih kosong',
+            'kategori_id.required' => 'Kategori Lomba masih kosong',
+            'kategori_id.exists' => 'Kategori Lomba tidak ada',
+            'upload.mimes' => 'proposal harus format pdf',
+            'upload.max' => 'Size proposal terlalu besar'
+        ]);
+
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
             $available = Proposal::where('user_id',$request->input('user_id'));
             // if($available->count()>0)
@@ -204,6 +216,7 @@ class ProposalsController extends Controller
             $proposal = Proposal::create($request->except('upload','user_id'));
             $proposal->user_id = $user;
         }
+        
         
         // Isi field upload jika ada proposal yang diupload
         if ($request->hasFile('upload')) {
@@ -336,17 +349,6 @@ class ProposalsController extends Controller
      */
     public function update(UpdateProposalRequest $request, $id)
     {
-        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
-            $available = Proposal::where('user_id',$request->input('user_id'));
-            $user = $request->input('user_id');
-        }
-        if (Laratrust::hasRole('member')) {
-            $user = Auth::user()->id;
-            if ($request->file('upload')->getClientOriginalExtension()!='pdf') {
-                return redirect()->route('mahasiswa.proposals.edits', $id);
-            }
-        }
-
         $this->validate($request, [
             'judul' => 'required:proposals,judul',
             'kategori_id' => 'required|exists:kategoris,id',
@@ -358,6 +360,18 @@ class ProposalsController extends Controller
             'upload.mimes' => 'proposal harus format pdf',
             'upload.max' => 'Size proposal terlalu besar'
         ]);
+        
+        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
+            $available = Proposal::where('user_id',$request->input('user_id'));
+            $user = $request->input('user_id');
+        }
+        if (Laratrust::hasRole('member')) {
+            $user = Auth::user()->id;
+            if ($request->file('upload')->getClientOriginalExtension()!='pdf') {
+                return redirect()->route('mahasiswa.proposals.edits', $id);
+            }
+        }
+
 
         $proposal = Proposal::find($id);
         
