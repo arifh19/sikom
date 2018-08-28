@@ -75,6 +75,29 @@ class TeamsController extends Controller
                 
             return view('teams.index')->with(compact('html'));
         }
+        if (Laratrust::hasRole('dosen')) {
+            if ($request->ajax()) {
+
+                $teams = Team::with('user')->with('kategori');
+
+                return Datatables::of($teams)
+                    ->addColumn('action', function($team) {
+                        return view('datatable._actionDosenTim', [
+                            'model'             => $team,
+                            'view_url'          => route('dosen.teams.show', $team->id),
+                            'confirm_message'    => 'Yakin mau menghapus ' . $team->user->name . '?'
+                        ]);
+                })->make(true);
+            }
+
+            $html = $htmlBuilder
+                ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
+                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Nama Kategori'])
+                ->addColumn(['data' => 'nama_dosbing', 'name' => 'nama_dosbing', 'title' => 'Nama Dosen Pembimbing']);
+                
+            return view('teams.index')->with(compact('html'));
+        }
         if (Laratrust::hasRole('member')) {
             $team = Team::where('user_id', Auth::user()->id)->first();
             $hitung = Team::where('user_id', Auth::user()->id)->count();
@@ -305,7 +328,7 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
+        if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')||Laratrust::hasRole('dosen')) {
             $team = Team::find($id);
             return view('teams.team')->with(compact('team'));
         }

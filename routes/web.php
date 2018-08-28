@@ -60,6 +60,16 @@ Route::group(['midlleware' => 'web'], function() {
         'as' => 'dosen.proposals.show',
         'uses' => 'ProposalsController@show'
     ]);
+    Route::get('dosen/teams', [
+        'middleware' => ['auth', 'role:dosen'],
+        'as' => 'dosen.teams.index',
+        'uses' => 'TeamsController@index'
+    ]);
+    Route::get('dosen/teams/{team}', [
+        'middleware' => ['auth', 'role:dosen'],
+        'as' => 'dosen.teams.show',
+        'uses' => 'TeamsController@show'
+    ]);
 
     Route::group(['prefix' => 'dosen', 'middleware' => ['auth', 'role:dosen']], function() {
         Route::resource('komentars', 'KomentarsController', [

@@ -195,6 +195,12 @@
                                     <span>Review Proposal</span>
                                 </a>
                             </li>
+                            <li class="treeview {!! Request::is('dosen/teams') ? 'active' : '' !!}">
+                                <a href="{{ url('dosen/teams') }}">
+                                    <i class="fa fa-users"></i>
+                                    <span>ListGI Tim</span>
+                                </a>
+                            </li>
                             @endrole
 
                             @role('member')
