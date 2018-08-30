@@ -198,7 +198,7 @@
                             <li class="treeview {!! Request::is('dosen/teams') ? 'active' : '' !!}">
                                 <a href="{{ url('dosen/teams') }}">
                                     <i class="fa fa-users"></i>
-                                    <span>Daftar Tim</span>
+                                    <span>Pendataan Tim</span>
                                 </a>
                             </li>
                             @endrole
