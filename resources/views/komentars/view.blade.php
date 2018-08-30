@@ -24,6 +24,7 @@
 
 @section('content')
 <div class="row">
+        <center><iframe src ="{{ asset('/proposal/'.$proposal->upload) }}" width="1000px" height="400px"></iframe></center>
     <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -61,7 +62,7 @@
       
         <!-- /.col -->
     </div>
-    <center><iframe src ="{{ asset('/proposal/'.$proposal->upload) }}" width="1000px" height="400px"></iframe></center>
+    
     <div class="col-md-6">
         <div class="box box-info">
             <div class="box-header with-border">
