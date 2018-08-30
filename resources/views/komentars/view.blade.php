@@ -61,6 +61,7 @@
       
         <!-- /.col -->
     </div>
+    <center><iframe src ="{{ asset('/proposal/'.$proposal->upload) }}" width="1000px" height="400px"></iframe></center>
     <div class="col-md-6">
         <div class="box box-info">
             <div class="box-header with-border">
@@ -146,7 +147,7 @@
     </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <center><iframe src ="{{ asset('/proposal/'.$proposal->upload) }}" width="1000px" height="400px"></iframe></center>
+                {{-- <center><iframe src ="{{ asset('/proposal/'.$proposal->upload) }}" width="1000px" height="400px"></iframe></center> --}}
 
     <!-- /.row -->
 @endsection
