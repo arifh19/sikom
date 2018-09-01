@@ -6,6 +6,7 @@
     </div>
     <div class="form-group has-feedback{{ $errors->has('nidn') ? ' has-error' : '' }}">
         {!! Form::label('nidn', 'NIDN Dosen Pembimbing') !!}
+        <p class="help-block">Lengkap dengan gelar</p>
         {!! Form::text('nidn', null, ['class' => 'form-control', 'placeholder' => 'NIDN Dosen Pembimbing','required']) !!}
         {!! $errors->first('nidn', '<p class="help-block">:message</p>') !!}
     </div>

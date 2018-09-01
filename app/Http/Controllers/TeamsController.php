@@ -46,7 +46,7 @@ class TeamsController extends Controller
             $html = $htmlBuilder
                 ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
                 ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
-                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Nama Kategori'])
+                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori_id', 'title' => 'Nama Kategori'])
                 ->addColumn(['data' => 'nama_dosbing', 'name' => 'nama_dosbing', 'title' => 'Nama Dosen Pembimbing']);
                 
             return view('teams.index')->with(compact('html'));
@@ -70,7 +70,7 @@ class TeamsController extends Controller
             $html = $htmlBuilder
                 ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
                 ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
-                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Nama Kategori'])
+                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori_id', 'title' => 'Nama Kategori'])
                 ->addColumn(['data' => 'nama_dosbing', 'name' => 'nama_dosbing', 'title' => 'Nama Dosen Pembimbing']);
                 
             return view('teams.index')->with(compact('html'));
@@ -93,7 +93,7 @@ class TeamsController extends Controller
             $html = $htmlBuilder
                 ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
                 ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
-                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Nama Kategori'])
+                ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori_id', 'title' => 'Nama Kategori'])
                 ->addColumn(['data' => 'nama_dosbing', 'name' => 'nama_dosbing', 'title' => 'Nama Dosen Pembimbing']);
                 
             return view('teams.index')->with(compact('html'));
@@ -229,7 +229,6 @@ class TeamsController extends Controller
             'nim_ketua.required' => 'Nim Ketua Tim masih kosong',
             'fkja_ketua.required' => 'Fakultas Ketua Tim masih kosong',
             'no_hp_ketua.required' => 'No HP masih kosong',
-            'foto_ktm_ketua.required' => 'File KTM Ketua masih kosong',
             'foto_ktm_ketua.image' => 'Format File KTM harus Gambar',
             'foto_ktm_ketua.max' => 'Size proposal terlalu besar',
             'foto_ktm_anggota1.image' => 'Format File KTM harus Gambar',
