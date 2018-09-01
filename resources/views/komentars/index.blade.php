@@ -23,7 +23,7 @@
                         {{-- <a class="btn btn-success" href="{{ url('/admin/proposals/create') }}">Tambah</a> --}}
                         {{-- <a class="btn btn-warning" href="{{ url('/admin/export/books') }}">Export</a> --}}
                     {{-- </p> --}}
-                    {!! $html->table(['class' => 'table table-bordered table-striped']) !!}
+                    {!! $html->table(['class' => 'table w3-responsive w3-table-all']) !!}
                 </div>
                 <!-- /.box-body -->
             </div>
