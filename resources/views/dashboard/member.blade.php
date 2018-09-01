@@ -38,7 +38,7 @@
                     @if (App\Proposal::where('user_id',Auth::user()->id)->count() == 0)
                                 Tidak ada proposal yang diinputkan
                     @else
-                    {!! $html->table(['class' => 'table table-bordered table-striped']) !!}
+                    {!! $html->table(['class' => 'table w3-responsive w3-table-all']) !!}
                     @endif
                 </div>
                 <!-- /.box-body -->
