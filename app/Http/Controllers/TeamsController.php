@@ -220,7 +220,7 @@ class TeamsController extends Controller
             'nim_ketua' => 'required:teams',
             'fkja_ketua' => 'required:teams',
             'no_hp_ketua' => 'required:teams',
-            'foto_ktm_ketua' => 'required|image|max:1024',
+            'foto_ktm_ketua' => 'image|max:1024',
             'foto_ktm_anggota1' => 'image|max:1024',
             'foto_ktm_anggota2' => 'image|max:1024',
         ], [
