@@ -43,7 +43,7 @@
                     @role('member')
                     <p><a class="btn btn-info" href="{{ route('proposal.edit',$revisi->id) }}">Revisi</a></p>
                     @endrole
-                    {!! $html->table(['class' => 'table table-bordered table-striped']) !!}
+                    {!! $html->table(['class' => 'table w3-responsive w3-table-all']) !!}
                 </div>
                 <!-- /.box-body -->
             </div>
