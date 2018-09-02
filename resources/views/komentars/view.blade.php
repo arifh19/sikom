@@ -68,6 +68,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Penilaian Proposal</h3>
             </div>
+            <p class="help-block col-sm-12">*Untuk rubrik penilaian dapat dilakukan dengan memberikan komentar kritik/saran berupa tulisan maupun penilaian angka</p>
             <!-- /.box-header -->
             <!-- form start -->
             @role('admin')
@@ -119,7 +120,7 @@
                 @elseif($proposal->kategori_id==11)
                     @include('komentars._kti')  
                 @else
-                    {{route('proposals.index')}}
+                    {{route('dosen.proposals.index')}}
                 @endif
             @endrole
             {!! Form::close() !!}
