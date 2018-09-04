@@ -10,6 +10,7 @@ use Yajra\Datatables\Datatables;
 use App\Proposal;
 use App\Kategori;
 use App\Team;
+use App\Dokumen;
 use App\Komentar;
 use App\Role;
 use App\BorrowLog;
@@ -42,7 +43,14 @@ class HomeController extends Controller
                 $proposals = Proposal::where('user_id', Auth::user()->id)->first();
                 $komentars = Komentar::where('proposal_id', $proposals->id)->with('user');
     
-                return Datatables::of($komentars)->orderBy('updated_at','desc')->make(true);
+                return Datatables::of($komentars)
+                ->addColumn('action', function($komentar) {
+                    return view('datatable._actionLink',[
+                        'model'             => $komentar,
+                        'dokumen'          => Dokumen::where('komentar_id',$komentar->id),
+                    ]);
+                })->orderBy('updated_at','desc')
+                ->make(true);
             }
             if($cekproposal->count()==1){
                 if($cekkategori->kategori_id==1){
@@ -53,17 +61,19 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'Konsistensi_tema', 'name' => 'Konsistensi_tema', 'title' => 'Konsistensi Tema','orderable' => false])
                     ->addColumn(['data' => 'Kreativitas_dalam_implementasi', 'name' => 'Kreativitas_dalam_implementasi', 'title' => 'Kreativitas dalam implementasi','orderable' => false])
                     ->addColumn(['data' => 'Teknik_modelling_lighting_motion', 'name' => 'Teknik_modelling_lighting_motion', 'title' => 'Teknik (modelling,lighting,motion)','orderable' => false])
-                    ->addColumn(['data' => 'Kekuatan_pesan_artistik', 'name' => 'Kekuatan_pesan_artistik', 'title' => 'Kekuatan pesan artistik','orderable' => false]);
+                    ->addColumn(['data' => 'Kekuatan_pesan_artistik', 'name' => 'Kekuatan_pesan_artistik', 'title' => 'Kekuatan pesan artistik','orderable' => false])
+                    ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Lampiran', 'orderable' => false, 'searchable' => false]) ;
                 }
                 elseif($cekkategori->kategori_id==2){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable'=>false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false]) 
                     ->addColumn(['data' => 'Identifikasi_permasalahan', 'name' => 'Identifikasi_permasalahan', 'title' => 'Identifikasi Permasalahan','orderable'=>false])
                     ->addColumn(['data' => 'Inovasi_desain', 'name' => 'Inovasi_desain', 'title' => 'Inovasi Desain','orderable'=>false])
                     ->addColumn(['data' => 'Metode_Desain', 'name' => 'Metode_Desain', 'title' => 'Metode Desain','orderable'=>false])
                    // ->addColumn(['data' => 'Prototype', 'name' => 'Prototype', 'title' => 'Low Fidelity Prototype','orderable'=>false])
-                    ->addColumn(['data' => 'Komunikasi', 'name' => 'Komunikasi', 'title' => 'Komunikasi (PPV)','orderable'=>false]);
+                    ->addColumn(['data' => 'Komunikasi', 'name' => 'Komunikasi', 'title' => 'Komunikasi (PPV)','orderable'=>false])
+                    ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Lampiran', 'orderable' => false, 'searchable' => false]) ;
                 }
                 elseif($cekkategori->kategori_id==5){
                     $html = $htmlBuilder
@@ -73,7 +83,8 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'kebaruan', 'name' => 'kebaruan', 'title' => 'Kebaruan','orderable'=>false])
                     ->addColumn(['data' => 'manfaat', 'name' => 'manfaat', 'title' => 'Manfaat','orderable'=>false])
                     ->addColumn(['data' => 'clarity', 'name' => 'clarity', 'title' => 'Clarity dalam tulisan','orderable'=>false])                
-                    ->addColumn(['data' => 'kelengkapan_laporan', 'name' => 'kelengkapan_laporan', 'title' => 'Kelengkapan Laporan','orderable'=>false]);
+                    ->addColumn(['data' => 'kelengkapan_laporan', 'name' => 'kelengkapan_laporan', 'title' => 'Kelengkapan Laporan','orderable'=>false])
+                    ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Lampiran', 'orderable' => false, 'searchable' => false]);
                 }
                 elseif($cekkategori->kategori_id==6){
                     $html = $htmlBuilder
@@ -83,7 +94,8 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'Mechanics', 'name' => 'Mechanics', 'title' => 'Kreativitas dalam pengembangan permainan','orderable'=>false])
                     ->addColumn(['data' => 'Aesthetics', 'name' => 'Aesthetics', 'title' => 'Unsur Aesthetics','orderable'=>false])
                     ->addColumn(['data' => 'Gameplay', 'name' => 'Gameplay', 'title' => 'Gameplay menarik dan menghibur','orderable'=>false])
-                    ->addColumn(['data' => 'kesesuaian_proposal', 'name' => 'kesesuaian_proposal', 'title' => 'Kesesuaian fitur dengan Proposal','orderable'=>false]);
+                    ->addColumn(['data' => 'kesesuaian_proposal', 'name' => 'kesesuaian_proposal', 'title' => 'Kesesuaian fitur dengan Proposal','orderable'=>false])
+                    ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Lampiran', 'orderable' => false, 'searchable' => false]);
                 }
                 elseif($cekkategori->kategori_id==7){
                     $html = $htmlBuilder
@@ -94,7 +106,8 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'Desain_dan_usability', 'name' => 'Desain_dan_usability', 'title' => 'Desain antarmuka dan usability','orderable'=>false])
                     ->addColumn(['data' => 'metodologi_pengembangan', 'name' => 'metodologi_pengembangan', 'title' => 'Metodologi Pengembangan','orderable'=>false])
                     ->addColumn(['data' => 'Kesesuaian_ide', 'name' => 'Kesesuaian_ide', 'title' => 'Kesesuaian Ide','orderable'=>false])
-                    ->addColumn(['data' => 'Urgensi_permasalahan', 'name' => 'Urgensi_permasalahan', 'title' => 'Urgensi Permasalahan','orderable'=>false]);
+                    ->addColumn(['data' => 'Urgensi_permasalahan', 'name' => 'Urgensi_permasalahan', 'title' => 'Urgensi Permasalahan','orderable'=>false])
+                    ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Lampiran', 'orderable' => false, 'searchable' => false]);
                 }
                 elseif($cekkategori->kategori_id==8){
                     $html = $htmlBuilder
@@ -106,7 +119,8 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'Strategi_Bisnis', 'name' => 'Strategi_Bisnis', 'title' => 'Strategi Bisnis','orderable'=>false])
                     ->addColumn(['data' => 'Anggota_Perusahaan', 'name' => 'Anggota_Perusahaan', 'title' => 'Anggota Perusahaan','orderable'=>false])
                     ->addColumn(['data' => 'Daya_Tarik_Traction', 'name' => 'Daya_Tarik_Traction', 'title' => 'Daya Tarik atau Traksi','orderable'=>false])
-                    ->addColumn(['data' => 'Elevator_Pitch', 'name' => 'Elevator_Pitch', 'title' => 'Elevator Pitch','orderable'=>false]);
+                    ->addColumn(['data' => 'Elevator_Pitch', 'name' => 'Elevator_Pitch', 'title' => 'Elevator Pitch','orderable'=>false])
+                    ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Lampiran', 'orderable' => false, 'searchable' => false]);
                 }
                 elseif($cekkategori->kategori_id==9){
                     $html = $htmlBuilder
@@ -115,7 +129,8 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'Aspek_kreativitas', 'name' => 'Aspek_kreativitas', 'title' => 'Aspek kreativitas','orderable'=>false])
                     ->addColumn(['data' => 'Penulisan_proposal', 'name' => 'Penulisan_proposal', 'title' => 'Penulisan proposal','orderable'=>false])
                     ->addColumn(['data' => 'Potensi_Kegunaan_Hasil_Bagi_Masyarakat', 'name' => 'Potensi_Kegunaan_Hasil_Bagi_Masyarakat', 'title' => 'Potensi Kegunaan Hasil Bagi Masyarakat','orderable'=>false])
-                    ->addColumn(['data' => 'Kemungkinan_Proposal_Dapat_Diselesaikan', 'name' => 'Kemungkinan_Proposal_Dapat_Diselesaikan', 'title' => 'Kemungkinan Proposal dapat diselesaikan','orderable'=>false]);
+                    ->addColumn(['data' => 'Kemungkinan_Proposal_Dapat_Diselesaikan', 'name' => 'Kemungkinan_Proposal_Dapat_Diselesaikan', 'title' => 'Kemungkinan Proposal dapat diselesaikan','orderable'=>false])
+                    ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Lampiran', 'orderable' => false, 'searchable' => false]);
                 }
                 elseif($cekkategori->kategori_id==10){
                     $html = $htmlBuilder
@@ -124,7 +139,8 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'Permasalahan_yang_diangkat', 'name' => 'Permasalahan_yang_diangkat', 'title' => 'Permasalahan yang diangkat','orderable'=>false])
                     ->addColumn(['data' => 'Pemaparan_permasalahan', 'name' => 'Pemaparan_permasalahan', 'title' => 'Pemaparan permasalahan','orderable'=>false])
                     ->addColumn(['data' => 'Dampak_implementasi', 'name' => 'Dampak_implementasi', 'title' => 'Dampak implementasi','orderable'=>false])
-                    ->addColumn(['data' => 'Inovasi_pengembangan', 'name' => 'Inovasi_pengembangan', 'title' => 'Inovasi Pengembangan','orderable'=>false]);
+                    ->addColumn(['data' => 'Inovasi_pengembangan', 'name' => 'Inovasi_pengembangan', 'title' => 'Inovasi Pengembangan','orderable'=>false])
+                    ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Lampiran', 'orderable' => false, 'searchable' => false]);
                 }
                 elseif($cekkategori->kategori_id==11){
                     $html = $htmlBuilder
@@ -137,7 +153,8 @@ class HomeController extends Controller
                     ->addColumn(['data' => 'metode', 'name' => 'metode', 'title' => 'Metode','orderable'=>false])
                     ->addColumn(['data' => 'hasil_pembahasan', 'name' => 'hasil_pembahasan', 'title' => 'Hasil dan Pembahasan','orderable'=>false])
                     ->addColumn(['data' => 'kesimpulan', 'name' => 'kesimpulan', 'title' => 'Kesimpulan','orderable'=>false])
-                    ->addColumn(['data' => 'daftar_pustaka', 'name' => 'daftar_pustaka', 'title' => 'Daftar Pustaka','orderable'=>false]);
+                    ->addColumn(['data' => 'daftar_pustaka', 'name' => 'daftar_pustaka', 'title' => 'Daftar Pustaka','orderable'=>false])
+                    ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Lampiran', 'orderable' => false, 'searchable' => false]) ;
                 }
                 else{
                     $html = $htmlBuilder

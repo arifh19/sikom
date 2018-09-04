@@ -72,10 +72,10 @@
             <!-- /.box-header -->
             <!-- form start -->
             @role('admin')
-            {!! Form::open(['url' => route('komentarz.store'), 'method' => 'post']) !!}
+            {!! Form::open(['url' => route('komentarz.store'), 'method' => 'post','files' => 'true']) !!}
             @endrole
             @role('dosen')
-            {!! Form::open(['url' => route('komentars.store'), 'method' => 'post']) !!}
+            {!! Form::open(['url' => route('komentars.store'), 'method' => 'post','files' => 'true']) !!}
             @endrole
             @role('admin')
                 @if ($proposal->kategori_id==1)

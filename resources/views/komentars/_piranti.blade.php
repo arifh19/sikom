@@ -27,6 +27,7 @@
       </div>
     {!! $errors->first('Kemungkinan_Proposal_Dapat_Diselesaikan', '<p class="help-block">:message</p>') !!}
     </div>
+    @include('komentars._dokumen') 
 </div>
 <!-- /.box-body -->
 

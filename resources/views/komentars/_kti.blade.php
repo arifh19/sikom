@@ -55,6 +55,7 @@
       </div>
     {!! $errors->first('daftar_pustaka', '<p class="help-block">:message</p>') !!}
     </div>
+    @include('komentars._dokumen') 
 </div>
 <!-- /.box-body -->
 

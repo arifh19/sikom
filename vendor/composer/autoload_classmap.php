@@ -9,6 +9,7 @@ return array(
     'AddLastLoginToUsersTable' => $baseDir . '/database/migrations/2017_04_02_184242_add_last_login_to_users_table.php',
     'AddVerificationToUsers' => $baseDir . '/database/migrations/2017_03_31_085336_add_verification_to_users.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
+    'CreateDokumensTable' => $baseDir . '/database/migrations/2018_09_03_160237_create_dokumens_table.php',
     'CreateKategorisTable' => $baseDir . '/database/migrations/2018_07_25_151151_create_kategoris_table.php',
     'CreateKomentarsTable' => $baseDir . '/database/migrations/2018_07_25_154215_create_komentars_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',

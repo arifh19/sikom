@@ -48,6 +48,7 @@
       </div>
     {!! $errors->first('Elevator_Pitch', '<p class="help-block">:message</p>') !!}
     </div>
+    @include('komentars._dokumen') 
 </div>
 <!-- /.box-body -->
 

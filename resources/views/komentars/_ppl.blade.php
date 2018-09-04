@@ -41,6 +41,7 @@
     </div> 
     {!! $errors->first('Urgensi_permasalahan', '<p class="help-block">:message</p>') !!}
     </div>
+    @include('komentars._dokumen') 
 </div>
 <!-- /.box-body -->
 

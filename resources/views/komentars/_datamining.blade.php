@@ -34,6 +34,7 @@
       </div>
     {!! $errors->first('kelengkapan_laporan', '<p class="help-block">:message</p>') !!}
     </div>
+    @include('komentars._dokumen') 
 </div>
 <!-- /.box-body -->
 
