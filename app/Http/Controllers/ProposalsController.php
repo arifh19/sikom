@@ -436,7 +436,7 @@ class ProposalsController extends Controller
             return redirect()->route('proposals.index');
         }
         elseif (Laratrust::hasRole('member')) {
-            return redirect()->route('mahasiswa.proposals.edit', $id);
+            return redirect()->route('proposal.index');
         }
     }
 
