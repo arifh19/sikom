@@ -365,12 +365,12 @@ class ProposalsController extends Controller
             $available = Proposal::where('user_id',$request->input('user_id'));
             $user = $request->input('user_id');
         }
-        if (Laratrust::hasRole('member')) {
-            $user = Auth::user()->id;
-            if ($request->file('upload')->getClientOriginalExtension()!='pdf') {
-                return redirect()->route('mahasiswa.proposals.edits', $id);
-            }
-        }
+        // if (Laratrust::hasRole('member')) {
+        //     $user = Auth::user()->id;
+        //     if ($request->file('upload')->getClientOriginalExtension()!='pdf') {
+        //         return redirect()->route('mahasiswa.proposals.edits', $id);
+        //     }
+        // }
 
 
         $proposal = Proposal::find($id);
