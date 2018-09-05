@@ -140,6 +140,9 @@ Route::group(['midlleware' => 'web'], function() {
             'as' => 'admin.userz.mahasiswa',
             'uses' => 'UsersController@ubahMahasiswa'
         ]);
+        Route::resource('riwayatproposalz', 'RiwayatProposalsController',[
+            'only' => ['store','show']
+        ]);
     });
     Route::group(['prefix' => 'staff', 'middleware' => ['auth', 'role:staff']], function() {
         Route::resource('proposals', 'ProposalsController',[

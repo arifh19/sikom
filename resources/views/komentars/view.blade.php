@@ -77,7 +77,7 @@
             @role('dosen')
             {!! Form::open(['url' => route('komentars.store'), 'method' => 'post','files' => 'true']) !!}
             @endrole
-            @role('admin')
+            {{-- @role('admin')
                 @if ($proposal->kategori_id==1)
                     @include('komentars._animasi')
                 @elseif($proposal->kategori_id==2)
@@ -99,7 +99,7 @@
                 @else
                     {{route('proposals.index')}}
                 @endif
-            @endrole
+            @endrole --}}
             @role('dosen')
                 @if ($proposal->kategori_id==1)
                     @include('komentars._animasi')
@@ -124,6 +124,11 @@
                 @endif
             @endrole
             {!! Form::close() !!}
+            @role('admin')
+                {!! Form::open(['url' => route('riwayatproposalz.store'), 'method' => 'post']) !!}
+                    @include('komentars._keterangan')  
+                {!! Form::close() !!}
+            @endrole
             @role('staff')
                 {!! Form::open(['url' => route('riwayatproposals.store'), 'method' => 'post']) !!}
                     @include('komentars._keterangan')  
