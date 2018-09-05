@@ -152,7 +152,7 @@ class ProposalsController extends Controller
                         'proposal_id'          => $proposal->id,
                     ]);
             })->rawColumns(['action','status','frekuensi'])->make(true);
-        }
+        } 
 
         $html = $htmlBuilder
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
