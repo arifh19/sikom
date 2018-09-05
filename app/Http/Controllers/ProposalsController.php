@@ -160,7 +160,7 @@ class ProposalsController extends Controller
             ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
             ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
             ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
-            ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false])
+            ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false,'searchable' => false])
             ->addColumn(['data' => 'frekuensi', 'name' => 'frekuensi', 'title' => 'Reviewed by me', 'orderable' => false, 'searchable' => false]);
             
 
