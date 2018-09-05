@@ -93,7 +93,7 @@ class ProposalsController extends Controller
         if (Laratrust::hasRole('staff')) {
             if ($request->ajax()) {
 
-                $proposals = Proposal::with('kategori')->with('user')->orderBy('updated_at', 'desc');
+                $proposals = Proposal::with('kategori')->with('user');
     
                 return Datatables::of($proposals)
                     ->addColumn('action', function($proposal) {
