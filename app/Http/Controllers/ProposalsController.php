@@ -129,7 +129,7 @@ class ProposalsController extends Controller
     {
         if ($request->ajax()) {
 
-            $proposals = Proposal::with('kategori')->with('user');
+            $proposals = Proposal::with('kategori')->with('user')->latest('updated_at');
 
             return Datatables::of($proposals)
                 ->addColumn('action', function($proposal) {
