@@ -119,7 +119,7 @@ class ProposalsController extends Controller
                 ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori_id', 'title' => 'Kategori'])
                 ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Nama Tim'])
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
-                ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status']);
+                ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status','orderable' => false, 'searchable' => false]);
                 
             return view('proposals.index')->with(compact('html'));
         }
