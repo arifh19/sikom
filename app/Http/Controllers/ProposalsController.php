@@ -55,7 +55,7 @@ class ProposalsController extends Controller
 
                 $html = $htmlBuilder
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa/Pemohon','orderable' => false])
+                ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa/Pemohon','orderable' => false])
                 ->addColumn(['data' => 'proposal.judul', 'name' => 'proposal.judul', 'title' => 'Judul','orderable' => false])
                 ->addColumn(['data' => 'statusx', 'name' => 'statusx', 'title' => 'Status','orderable' => false])
                 ->addColumn(['data' => 'keteranganx', 'name' => 'keteranganx', 'title' => 'Keterangan','orderable' => false]);
@@ -67,7 +67,7 @@ class ProposalsController extends Controller
         if (Laratrust::hasRole('admin')) {
             if ($request->ajax()) {
 
-                $proposals = Proposal::with('kategori')->with('user');
+                $proposals = Proposal::with('kategori')->with('user')->orderBy('updated_at', 'desc');
     
                 return Datatables::of($proposals)
                     ->addColumn('action', function($proposal) {
@@ -85,7 +85,7 @@ class ProposalsController extends Controller
                 ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
                 ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
                 ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori_id', 'title' => 'Kategori'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+                ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Nama Tim'])
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input']);
                 
             return view('proposals.index')->with(compact('html'));
@@ -93,7 +93,7 @@ class ProposalsController extends Controller
         if (Laratrust::hasRole('staff')) {
             if ($request->ajax()) {
 
-                $proposals = Proposal::with('kategori')->with('user');
+                $proposals = Proposal::with('kategori')->with('user')->orderBy('updated_at', 'desc');
     
                 return Datatables::of($proposals)
                     ->addColumn('action', function($proposal) {
@@ -117,7 +117,7 @@ class ProposalsController extends Controller
                 ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
                 ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
                 ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori_id', 'title' => 'Kategori'])
-                ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+                ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Nama Tim'])
                 ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
                 ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status']);
                 
@@ -129,7 +129,7 @@ class ProposalsController extends Controller
     {
         if ($request->ajax()) {
 
-            $proposals = Proposal::with('kategori')->with('user');
+            $proposals = Proposal::with('kategori')->with('user')->orderBy('updated_at', 'desc');
 
             return Datatables::of($proposals)
                 ->addColumn('action', function($proposal) {
@@ -158,7 +158,7 @@ class ProposalsController extends Controller
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
             ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori_id', 'title' => 'Kategori'])
             ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
-            ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+            ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Nama Tim'])
             ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
             ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false])
             ->addColumn(['data' => 'frekuensi', 'name' => 'frekuensi', 'title' => 'Reviewed by me', 'orderable' => false, 'searchable' => false]);

@@ -56,7 +56,7 @@ class HomeController extends Controller
                 if($cekkategori->kategori_id==1){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable' => false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable' => false])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa','orderable' => false])
                     ->addColumn(['data' => 'Ide_konsep_keaslian', 'name' => 'Ide_konsep_keaslian', 'title' => 'Ide Konsep Keaslian','orderable' => false])
                     ->addColumn(['data' => 'Konsistensi_tema', 'name' => 'Konsistensi_tema', 'title' => 'Konsistensi Tema','orderable' => false])
                     ->addColumn(['data' => 'Kreativitas_dalam_implementasi', 'name' => 'Kreativitas_dalam_implementasi', 'title' => 'Kreativitas dalam implementasi','orderable' => false])
@@ -67,7 +67,7 @@ class HomeController extends Controller
                 elseif($cekkategori->kategori_id==2){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable'=>false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false]) 
+                    ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa','orderable'=>false]) 
                     ->addColumn(['data' => 'Identifikasi_permasalahan', 'name' => 'Identifikasi_permasalahan', 'title' => 'Identifikasi Permasalahan','orderable'=>false])
                     ->addColumn(['data' => 'Inovasi_desain', 'name' => 'Inovasi_desain', 'title' => 'Inovasi Desain','orderable'=>false])
                     ->addColumn(['data' => 'Metode_Desain', 'name' => 'Metode_Desain', 'title' => 'Metode Desain','orderable'=>false])
@@ -78,7 +78,7 @@ class HomeController extends Controller
                 elseif($cekkategori->kategori_id==5){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable'=>false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa','orderable'=>false])
                     ->addColumn(['data' => 'originalitas', 'name' => 'originalitas', 'title' => 'Originalitas','orderable'=>false])
                     ->addColumn(['data' => 'kebaruan', 'name' => 'kebaruan', 'title' => 'Kebaruan','orderable'=>false])
                     ->addColumn(['data' => 'manfaat', 'name' => 'manfaat', 'title' => 'Manfaat','orderable'=>false])
@@ -89,7 +89,7 @@ class HomeController extends Controller
                 elseif($cekkategori->kategori_id==6){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable'=>false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa','orderable'=>false])
                     ->addColumn(['data' => 'Story', 'name' => 'Story', 'title' => 'Unsur pendidikan dan keterampilan','orderable'=>false])
                     ->addColumn(['data' => 'Mechanics', 'name' => 'Mechanics', 'title' => 'Kreativitas dalam pengembangan permainan','orderable'=>false])
                     ->addColumn(['data' => 'Aesthetics', 'name' => 'Aesthetics', 'title' => 'Unsur Aesthetics','orderable'=>false])
@@ -100,7 +100,7 @@ class HomeController extends Controller
                 elseif($cekkategori->kategori_id==7){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable'=>false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa','orderable'=>false])
                     ->addColumn(['data' => 'Aspek_Inovasi', 'name' => 'Aspek_Inovasi', 'title' => 'Aspek Inovasi','orderable'=>false])
                     ->addColumn(['data' => 'Dampak_pengguna_masyarakat', 'name' => 'Dampak_pengguna_masyarakat', 'title' => 'Dampak penggunaan ke masyarakat','orderable'=>false])
                     ->addColumn(['data' => 'Desain_dan_usability', 'name' => 'Desain_dan_usability', 'title' => 'Desain antarmuka dan usability','orderable'=>false])
@@ -112,7 +112,7 @@ class HomeController extends Controller
                 elseif($cekkategori->kategori_id==8){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable'=>false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa','orderable'=>false])
                     ->addColumn(['data' => 'Penjelasan_Problem_Bisnis', 'name' => 'Penjelasan_Problem_Bisnis', 'title' => 'Penjelasan Problem Bisnis','orderable'=>false])
                     ->addColumn(['data' => 'Produk_Layanan', 'name' => 'Produk_Layanan', 'title' => 'Produk atau Layanan','orderable'=>false])
                     ->addColumn(['data' => 'Pasar_Market', 'name' => 'Pasar_Market', 'title' => 'Pasar/Market','orderable'=>false])
@@ -125,7 +125,7 @@ class HomeController extends Controller
                 elseif($cekkategori->kategori_id==9){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable'=>false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa','orderable'=>false])
                     ->addColumn(['data' => 'Aspek_kreativitas', 'name' => 'Aspek_kreativitas', 'title' => 'Aspek kreativitas','orderable'=>false])
                     ->addColumn(['data' => 'Penulisan_proposal', 'name' => 'Penulisan_proposal', 'title' => 'Penulisan proposal','orderable'=>false])
                     ->addColumn(['data' => 'Potensi_Kegunaan_Hasil_Bagi_Masyarakat', 'name' => 'Potensi_Kegunaan_Hasil_Bagi_Masyarakat', 'title' => 'Potensi Kegunaan Hasil Bagi Masyarakat','orderable'=>false])
@@ -135,7 +135,7 @@ class HomeController extends Controller
                 elseif($cekkategori->kategori_id==10){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable'=>false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa','orderable'=>false])
                     ->addColumn(['data' => 'Permasalahan_yang_diangkat', 'name' => 'Permasalahan_yang_diangkat', 'title' => 'Permasalahan yang diangkat','orderable'=>false])
                     ->addColumn(['data' => 'Pemaparan_permasalahan', 'name' => 'Pemaparan_permasalahan', 'title' => 'Pemaparan permasalahan','orderable'=>false])
                     ->addColumn(['data' => 'Dampak_implementasi', 'name' => 'Dampak_implementasi', 'title' => 'Dampak implementasi','orderable'=>false])
@@ -145,7 +145,7 @@ class HomeController extends Controller
                 elseif($cekkategori->kategori_id==11){
                     $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa','orderable'=>false])
-                    ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Pemeriksa','orderable'=>false])
+                    ->addColumn(['data' => 'user.name', 'name' => 'user_id', 'title' => 'Pemeriksa','orderable'=>false])
                     ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul','orderable'=>false])
                     ->addColumn(['data' => 'abstrak', 'name' => 'abstrak', 'title' => 'Abstrak','orderable'=>false])
                     ->addColumn(['data' => 'pendahuluan', 'name' => 'pendahuluan', 'title' => 'Pendahuluan','orderable'=>false])
