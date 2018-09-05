@@ -129,7 +129,7 @@ class ProposalsController extends Controller
     {
         if ($request->ajax()) {
 
-            $proposals = Proposal::with('kategori')->with('user');
+            $proposals = Proposal::with('kategori')->with('user')->latest('updated_at');
 
             return Datatables::of($proposals)
                 ->addColumn('action', function($proposal) {
@@ -156,9 +156,9 @@ class ProposalsController extends Controller
 
         $html = $htmlBuilder
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
-            ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
+            ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori','orderable' => false])
             ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
-            ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
+            ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim','orderable' => false])
             ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
             ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false,'searchable' => false])
             ->addColumn(['data' => 'frekuensi', 'name' => 'frekuensi', 'title' => 'Reviewed by me', 'orderable' => false, 'searchable' => false]);
