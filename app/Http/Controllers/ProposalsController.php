@@ -129,7 +129,7 @@ class ProposalsController extends Controller
     {
         if ($request->ajax()) {
 
-            $proposals = Proposal::with('kategori')->with('user')->latest('updated_at');
+            $proposals = Proposal::with('kategori')->with('user');
 
             return Datatables::of($proposals)
                 ->addColumn('action', function($proposal) {
@@ -156,7 +156,7 @@ class ProposalsController extends Controller
 
         $html = $htmlBuilder
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
-            ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori_id', 'title' => 'Kategori'])
+            ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori'])
             ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
             ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim'])
             ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input'])
