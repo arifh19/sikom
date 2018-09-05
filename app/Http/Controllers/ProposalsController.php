@@ -347,17 +347,18 @@ class ProposalsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProposalRequest $request, $id)
     {
         $this->validate($request, [
             'judul' => 'required:proposals,judul',
             'kategori_id' => 'required|exists:kategoris,id',
-            'upload' => 'required|mimes:pdf'
+            'upload' => 'required|mimes:pdf|max:10240'
         ], [
             'judul.required' => 'Judul proposal masih kosong',
             'kategori_id.required' => 'Kategori Lomba masih kosong',
             'kategori_id.exists' => 'Kategori Lomba tidak ada',
             'upload.mimes' => 'proposal harus format pdf',
+            'upload.max' => 'Size proposal terlalu besar'
         ]);
         
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {

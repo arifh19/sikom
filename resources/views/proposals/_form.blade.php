@@ -33,7 +33,7 @@
         {!! Form::label('upload', 'Proposal') !!}
 
         {!! Form::file('upload',['class' => 'form-control','required']) !!}
-        <p class="help-block">Size file (PDF) maks 10MB</p>
+        <p class="help-block">Size file (PDF) maks 2MB</p>
         {!! $errors->first('upload', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
