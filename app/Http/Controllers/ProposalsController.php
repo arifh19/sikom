@@ -352,13 +352,12 @@ class ProposalsController extends Controller
         $this->validate($request, [
             'judul' => 'required:proposals,judul',
             'kategori_id' => 'required|exists:kategoris,id',
-            'upload' => 'required|mimes:pdf|max:10240'
+            'upload' => 'required|mimes:pdf'
         ], [
             'judul.required' => 'Judul proposal masih kosong',
             'kategori_id.required' => 'Kategori Lomba masih kosong',
             'kategori_id.exists' => 'Kategori Lomba tidak ada',
             'upload.mimes' => 'proposal harus format pdf',
-            'upload.max' => 'Size proposal terlalu besar'
         ]);
         
         if (Laratrust::hasRole('admin')||Laratrust::hasRole('staff')) {
