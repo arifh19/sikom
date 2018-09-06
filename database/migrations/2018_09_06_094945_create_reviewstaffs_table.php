@@ -13,11 +13,13 @@ class CreateReviewstaffsTable extends Migration
      */
     public function up()
     {
-        Schema::create('review_staffs', function (Blueprint $table) {
+        Schema::create('reviewstaffs', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('riwayat_proposal_id');
             $table->unsignedInteger('pengurus_id');
             $table->unsignedInteger('divisi_id');
             $table->timestamps();
+            $table->foreign('riwayat_proposal_id')->references('id')->on('riwayat_proposals')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('divisi_id')->references('id')->on('divisis')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('pengurus_id')->references('id')->on('penguruses')->onUpdate('cascade')->onDelete('cascade');
         });

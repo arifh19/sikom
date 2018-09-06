@@ -13,6 +13,13 @@
     </div> 
     {!! $errors->first('keterangan', '<p class="help-block">:message</p>') !!}
     </div>
+    <div class="form-group has-feedback{{ $errors->has('status') ? ' has-error' : '' }}">
+        {!! Form::label('pengurus_id', 'Pemeriksa',['class' => 'col-sm-4 control-label']) !!}
+    <div class="col-sm-12">
+        {!! Form::select('pengurus_id', App\Pengurus::pluck('nama_pengurus','id')->all(), null, ['class' => 'form-control js-select2','placeholder'=>'','required']) !!}
+    </div> 
+       {!! $errors->first('pengurus_id', '<p class="help-block">:message</p>') !!}
+    </div>
 </div>
 <!-- /.box-body -->
 
