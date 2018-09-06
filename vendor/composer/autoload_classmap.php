@@ -18,6 +18,7 @@ return array(
     'CreatePengurusesTable' => $baseDir . '/database/migrations/2018_09_06_094826_create_penguruses_table.php',
     'CreateProposalsTable' => $baseDir . '/database/migrations/2018_07_25_154112_create_proposals_table.php',
     'CreateReviewsTable' => $baseDir . '/database/migrations/2018_07_29_152102_create_reviews_table.php',
+    'CreateReviewstaffsTable' => $baseDir . '/database/migrations/2018_09_06_094945_create_reviewstaffs_table.php',
     'CreateRiwayatProposalsTable' => $baseDir . '/database/migrations/2018_08_19_185207_create_riwayat_proposals_table.php',
     'CreateTeamsTable' => $baseDir . '/database/migrations/2018_07_29_160806_create_teams_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',

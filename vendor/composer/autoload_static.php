@@ -403,6 +403,7 @@ class ComposerStaticInit783f43f65fa89a66a1c06462d6bb2028
         'CreatePengurusesTable' => __DIR__ . '/../..' . '/database/migrations/2018_09_06_094826_create_penguruses_table.php',
         'CreateProposalsTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_25_154112_create_proposals_table.php',
         'CreateReviewsTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_29_152102_create_reviews_table.php',
+        'CreateReviewstaffsTable' => __DIR__ . '/../..' . '/database/migrations/2018_09_06_094945_create_reviewstaffs_table.php',
         'CreateRiwayatProposalsTable' => __DIR__ . '/../..' . '/database/migrations/2018_08_19_185207_create_riwayat_proposals_table.php',
         'CreateTeamsTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_29_160806_create_teams_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
