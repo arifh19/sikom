@@ -78,8 +78,8 @@
                 </div>
 
                 <div class="form-group has-feedback{{ $errors->has('avatar') ? ' has-error' : '' }}">
-                    {!! Form::file('avatar', ['class' => 'form-control']) !!}
-                    <p class="help-block">(Opsional) Pilih Foto Profil</p>
+                    {!! Form::file('avatar', ['class' => 'form-control','required']) !!}
+                    <p class="help-block">Pilih Foto Profil</p>
 
                     {!! $errors->first('avatar', '<p class="help-block">:message</p>') !!}
                 </div>
