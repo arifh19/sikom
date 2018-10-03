@@ -2,24 +2,24 @@
 
 @section('dashboard')
 Proposal
-    <small>Tambah Proposal</small>
+    <small>Tambah Laporan</small>
 @endsection
 
 @section('breadcrumb')
     <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
     @role('admin')
-    <li><a href="{{ url('/admin/proposalz') }}">Proposal</a></li>
+    <li><a href="{{ url('/admin/laporanz') }}">Proposal</a></li>
     @endrole
     @role('staff')
-    <li><a href="{{ url('/staff/proposals') }}">Proposal</a></li>
+    <li><a href="{{ url('/staff/laporans') }}">Proposal</a></li>
     @endrole
     @role('member')
-    <li><a href="{{ url('/mahasiswa/proposal') }}">Proposal</a></li>
+    <li><a href="{{ url('/mahasiswa/laporan') }}">Proposal</a></li>
     @endrole
     @role('dosen')
-    <li><a href="{{ url('/dosen/proposals') }}">Proposal</a></li>
+    <li><a href="{{ url('/dosen/laporans') }}">Proposal</a></li>
     @endrole
-    <li class="active">Tambah Proposal</li>
+    <li class="active">Tambah Laporan</li>
 @endsection
 
 @section('content')
@@ -39,9 +39,9 @@ Proposal
                 {!! Form::open(['url' => route('proposals.store'), 'method' => 'post', 'files' => 'true']) !!}
                 @endrole
                 @role('member')
-                {!! Form::open(['url' => route('proposal.store'), 'method' => 'post', 'files' => 'true']) !!}
+                {!! Form::open(['url' => route('laporan.store'), 'method' => 'post', 'files' => 'true']) !!}
                 @endrole
-                    @include('proposals._form')
+                    @include('laporanGemastik._form')
                 {!! Form::close() !!}
             </div>
             <!-- /.box -->
@@ -51,7 +51,7 @@ Proposal
         <div class="col-md-7">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Buku Panduan v.2.11</h3>
+                <h3 class="box-title">Buku Panduan v.2.11</h3>
                 </div>
                 <center><iframe src ="{{ asset('/info/panduan.pdf') }}" width="600px" height="400px"></iframe></center>
             </div>

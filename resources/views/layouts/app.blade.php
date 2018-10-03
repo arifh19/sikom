@@ -294,6 +294,11 @@
                                             <i class="fa fa-user-o"></i> Input Proposal
                                         </a>
                                     </li>
+                                    <li class="{!! Request::is('mahasiswa/laporan/create*') ? 'active' : '' !!}">
+                                        <a href="{{ url('/mahasiswa/laporan/create/') }}">
+                                            <i class="fa fa-sticky-note"></i> Laporan
+                                        </a>
+                                    </li>
                                     <li class="{!! Request::is('mahasiswa/proposal') ? 'active' : '' !!}">
                                         <a href="{{ url('/mahasiswa/proposal') }}">
                                             <i class="fa fa-tasks"></i> Manage Proposal

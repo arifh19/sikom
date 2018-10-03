@@ -47,6 +47,9 @@ Route::group(['midlleware' => 'web'], function() {
             'as' => 'mahasiswa.proposals.edits',
             'uses' => 'ProposalsController@editgagal'
         ]);
+        Route::resource('laporan', 'LaporanGemastiksController', [
+            'except' => ['destroy']
+        ]);
     });
 
     //review proposal dosen index
