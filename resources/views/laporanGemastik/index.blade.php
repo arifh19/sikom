@@ -20,6 +20,9 @@ Laporan
     <div class="row">
         <div class="box box-primary">
             <div class="box-header with-border">
+                    @role('member')
+                    <p><a class="btn btn-info" href="{{ route('laporan.edit',$revisi->id) }}">Perbaharui</a></p>
+                    @endrole
             <h3 class="box-title">Laporan {{$revisi->judul}}</h3>
         </div>
             <div class="box-body">
@@ -72,9 +75,7 @@ Laporan
                     @role('staff')
                     <p><a class="btn btn-success" href="{{ route('laporans.create') }}">Tambah</a></p>
                     @endrole
-                    @role('member')
-                    <p><a class="btn btn-info" href="{{ route('laporan.edit',$revisi->id) }}">Revisi</a></p>
-                    @endrole
+                    
                     {!! $html->table(['class' => 'table w3-responsive w3-table-all']) !!}
                 </div>
                 <!-- /.box-body -->
