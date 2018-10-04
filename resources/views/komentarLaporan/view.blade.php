@@ -41,11 +41,22 @@ Laporan
                                 <td class="text-muted">Link Aplikasi</td>
                                 <td>{{$revisi->aplikasi}}</td>
                         </tr>
+                        @else
+                        <tr>
+                                <td class="text-muted">Link Aplikasi</td>
+                                <td>-</td>
+                        </tr>
                         @endif
                         @if($revisi->video!="")
                         <tr>
                                 <td class="text-muted">Link Video</td>
                                 <td><iframe width="560" height="315" src="https://www.youtube.com/embed/{{$revisi->video}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></td>
+                            </tr>
+                        <tr>
+                        @else
+                        <tr>
+                                <td class="text-muted">Link Video</td>
+                                <td>-</td>
                             </tr>
                         <tr>
                         @endif
