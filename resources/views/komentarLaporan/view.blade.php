@@ -39,7 +39,7 @@ Laporan
                         @if($revisi->aplikasi!="")
                         <tr>
                                 <td class="text-muted">Link Aplikasi</td>
-                                <td><a href="{{$revisi->aplikasi}}" target="_blank" rel="nofollow" class="btn btn-info btn-md">Download</a></td>
+                                <td>{{$revisi->aplikasi}}</td>
                         </tr>
                         @endif
                         @if($revisi->video!="")

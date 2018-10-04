@@ -33,6 +33,7 @@ class LaporanGemastiksController extends Controller
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
+        
         if (Laratrust::hasRole('member')) {
             $revisi = LaporanGemastik::where('user_id', Auth::user()->id)->first();
             if ($revisi) {
