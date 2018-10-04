@@ -25,6 +25,10 @@ Laporan
             <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
+                            <td class="text-muted">Nama Tim</td>
+                            <td><strong></strong>{{ $revisi->user->name }}</td>
+                        </tr>
+                        <tr>
                             <td class="text-muted">Judul Laporan</td>
                             <td><strong></strong>{{ $revisi->judul }}</td>
                         </tr>
@@ -38,11 +42,13 @@ Laporan
                                 <td><a href="{{$revisi->aplikasi}}" target="_blank" rel="nofollow" class="btn btn-info btn-md">Download</a></td>
                         </tr>
                         @endif
+                        @if($revisi->video!="")
                         <tr>
                                 <td class="text-muted">Link Video</td>
                                 <td><iframe width="560" height="315" src="https://www.youtube.com/embed/{{$revisi->video}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></td>
                             </tr>
                         <tr>
+                        @endif
                                 <td class="text-muted">File Laporan</td>
                                 <td><iframe src ="{{ asset('/laporan/'.$revisi->laporan) }}" width="900px" height="400px"></iframe></td>
                         </tr>
