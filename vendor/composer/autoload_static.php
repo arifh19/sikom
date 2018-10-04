@@ -398,6 +398,7 @@ class ComposerStaticInit783f43f65fa89a66a1c06462d6bb2028
         'CreateDokumensTable' => __DIR__ . '/../..' . '/database/migrations/2018_09_03_160237_create_dokumens_table.php',
         'CreateJabatansTable' => __DIR__ . '/../..' . '/database/migrations/2018_09_06_082414_create_jabatans_table.php',
         'CreateKategorisTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_25_151151_create_kategoris_table.php',
+        'CreateKomentarLaporansTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_04_182949_create_komentar_laporans_table.php',
         'CreateKomentarsTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_25_154215_create_komentars_table.php',
         'CreateLaporanGemastiksTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_03_071714_create_laporan_gemastiks_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',

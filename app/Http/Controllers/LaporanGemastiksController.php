@@ -125,6 +125,49 @@ class LaporanGemastiksController extends Controller
             return view('proposals.index')->with(compact('html'));
         }
     }
+    public function indexDosen(Request $request, Builder $htmlBuilder)
+    {
+        if ($request->ajax()) {
+
+            $proposals = LaporanGemastik::with('kategori')->with('user')->orderBy('updated_at','desc');
+
+            return Datatables::of($proposals)
+                ->addColumn('action', function($proposal) {
+                    return view('datatable._actionDosen', [
+                        'model'             => $proposal,
+                        'edit_url'          => route('dosen.laporans.show', $proposal->id),
+                        // 'view_url'          => route('proposals.show', $proposal->id),
+                        'confirm_message'    => 'Yakin mau menghapus ' . $proposal->judul . '?'
+                    ]);
+            })
+            //     ->addColumn('status', function($proposal) {
+            //         return view('datatable._actionReview',[
+            //             'model'             => $proposal,
+            //             'proposal_id'          => $proposal->id,
+            //         ]);
+            // })
+            //     ->addColumn('frekuensi', function($proposal) {
+            //         return view('datatable._actionFrekuensi',[
+            //             'model'             => $proposal,
+            //             'proposal_id'          => $proposal->id,
+            //         ]);
+            // })
+           // ->rawColumns(['action','status','frekuensi'])
+            ->make(true);
+        } 
+
+        $html = $htmlBuilder
+            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => 'Action', 'orderable' => false, 'searchable' => false])  
+            ->addColumn(['data' => 'kategori.nama_kategori', 'name' => 'kategori.nama_kategori', 'title' => 'Kategori','orderable' => false])
+            ->addColumn(['data' => 'judul', 'name' => 'judul', 'title' => 'Judul'])
+            ->addColumn(['data' => 'user.name', 'name' => 'user.name', 'title' => 'Nama Tim','orderable' => false])
+            ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal Input']);
+            ///->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status', 'orderable' => false,'searchable' => false])
+            //->addColumn(['data' => 'frekuensi', 'name' => 'frekuensi', 'title' => 'Reviewed by me', 'orderable' => false, 'searchable' => false]);
+            
+
+        return view('laporanGemastik.laporan')->with(compact('html'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -229,7 +272,29 @@ class LaporanGemastiksController extends Controller
      */
     public function show($id)
     {
-        //
+        $count = LaporanGemastik::where('id',$id)->get()->count();
+        
+        if($count==0){
+            return redirect()->route('dosen.laporans.index');
+        }
+        else{
+            $revisi = LaporanGemastik::find($id);
+            $proposal = LaporanGemastik::find($id);
+            $kategori = Kategori::find($revisi->kategori_id);
+            $team = User::where('id',$revisi->user_id)->first();
+            if (Laratrust::hasRole('admin')) {
+                return view('komentarLaporan.view')->with(compact('revisi','proposal', 'kategori','team'));
+            }
+            elseif (Laratrust::hasRole('staff')) {
+                return view('komentarLaporan.view')->with(compact('revisi','proposal', 'kategori','team'));
+            }
+            elseif (Laratrust::hasRole('dosen')) {       
+                return view('komentarLaporan.view')->with(compact('revisi','proposal', 'kategori','team'));   
+            }
+            else{
+                return redirect()->route('proposal.index');
+            }
+        } 
     }
 
     /**

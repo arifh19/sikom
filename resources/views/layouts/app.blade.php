@@ -197,6 +197,12 @@
                                     <span>Review Proposal</span>
                                 </a>
                             </li>
+                            <li class="treeview {!! Request::is('dosen/laporans*') ? 'active' : '' !!}">
+                                <a href="{{ route('dosen.laporans.index') }}">
+                                    <i class="fa fa-sticky-note"></i>
+                                    <span>Review Laporan</span>
+                                </a>
+                            </li>
                             <li class="treeview {!! Request::is('dosen/teams') ? 'active' : '' !!}">
                                 <a href="{{ url('dosen/teams') }}">
                                     <i class="fa fa-users"></i>

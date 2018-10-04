@@ -13,6 +13,7 @@ return array(
     'CreateDokumensTable' => $baseDir . '/database/migrations/2018_09_03_160237_create_dokumens_table.php',
     'CreateJabatansTable' => $baseDir . '/database/migrations/2018_09_06_082414_create_jabatans_table.php',
     'CreateKategorisTable' => $baseDir . '/database/migrations/2018_07_25_151151_create_kategoris_table.php',
+    'CreateKomentarLaporansTable' => $baseDir . '/database/migrations/2018_10_04_182949_create_komentar_laporans_table.php',
     'CreateKomentarsTable' => $baseDir . '/database/migrations/2018_07_25_154215_create_komentars_table.php',
     'CreateLaporanGemastiksTable' => $baseDir . '/database/migrations/2018_10_03_071714_create_laporan_gemastiks_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',

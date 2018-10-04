@@ -52,7 +52,7 @@
                     @elseif($proposal->kategori_id==11)
                         <td><img src="{{ asset('/info/kti.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
                     @else
-                        {{route('proposals.index')}}
+                        {{route('laporans.index')}}
                     @endif
         
                     {!! Form::close() !!}

@@ -58,10 +58,20 @@ Route::group(['midlleware' => 'web'], function() {
         'as' => 'dosen.proposals.index',
         'uses' => 'ProposalsController@indexDosen'
     ]);
+    Route::get('dosen/laporans', [
+        'middleware' => ['auth', 'role:dosen'],
+        'as' => 'dosen.laporans.index',
+        'uses' => 'LaporanGemastiksController@indexDosen'
+    ]);
     Route::get('dosen/proposals/{proposal}', [
         'middleware' => ['auth', 'role:dosen'],
         'as' => 'dosen.proposals.show',
         'uses' => 'ProposalsController@show'
+    ]);
+    Route::get('dosen/laporans/{laporan}', [
+        'middleware' => ['auth', 'role:dosen'],
+        'as' => 'dosen.laporans.show',
+        'uses' => 'LaporanGemastiksController@show'
     ]);
     Route::get('dosen/teams', [
         'middleware' => ['auth', 'role:dosen'],
@@ -76,6 +86,11 @@ Route::group(['midlleware' => 'web'], function() {
 
     Route::group(['prefix' => 'dosen', 'middleware' => ['auth', 'role:dosen']], function() {
         Route::resource('komentars', 'KomentarsController', [
+            'only' => ['show','store']
+        ]);
+    });
+    Route::group(['prefix' => 'dosen', 'middleware' => ['auth', 'role:dosen']], function() {
+        Route::resource('komentarlaporans', 'KomentarLaporansController', [
             'only' => ['show','store']
         ]);
     });
