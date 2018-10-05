@@ -33,7 +33,6 @@ class LaporanGemastiksController extends Controller
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
-        
         if (Laratrust::hasRole('member')) {
             $revisi = LaporanGemastik::where('user_id', Auth::user()->id)->first();
             if ($revisi) {
@@ -281,6 +280,7 @@ class LaporanGemastiksController extends Controller
         else{
             $revisi = LaporanGemastik::find($id);
             $proposal = LaporanGemastik::find($id);
+            $proposallama = Proposal::where('user_id',$revisi->user_id)->first();
             $kategori = Kategori::find($revisi->kategori_id);
             $team = User::where('id',$revisi->user_id)->first();
             if (Laratrust::hasRole('admin')) {
@@ -290,7 +290,7 @@ class LaporanGemastiksController extends Controller
                 return view('komentarLaporan.view')->with(compact('revisi','proposal', 'kategori','team'));
             }
             elseif (Laratrust::hasRole('dosen')) {       
-                return view('komentarLaporan.view')->with(compact('revisi','proposal', 'kategori','team'));   
+                return view('komentarLaporan.view')->with(compact('revisi','proposal','proposallama', 'kategori','team'));   
             }
             else{
                 return redirect()->route('proposal.index');

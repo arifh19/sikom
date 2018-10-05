@@ -43,6 +43,12 @@ Route::group(['midlleware' => 'web'], function() {
             'as' => 'mahasiswa.proposals.edit',
             'uses' => 'ProposalsController@editproposal'
         ]);
+
+        Route::get('history', [
+            'as' => 'mahasiswa.history',
+            'uses' => 'HomeController@history'
+        ]);
+
         Route::get('proposal/{proposal}/edit/failed', [
             'as' => 'mahasiswa.proposals.edits',
             'uses' => 'ProposalsController@editgagal'

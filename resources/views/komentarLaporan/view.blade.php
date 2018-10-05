@@ -20,6 +20,7 @@ Laporan
     <div class="row">
         <div class="box box-primary">
             <div class="box-header with-border">
+                
             <h3 class="box-title">Laporan {{$revisi->judul}}</h3>
         </div>
             <div class="box-body">
@@ -100,6 +101,7 @@ Laporan
     <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
+                        <p><a class="btn btn-info" target="_blank" rel="nofollow" href="{{ route('dosen.proposals.show',$proposallama->id) }}">Lihat Proposal Sebelumnya</a></p>
                     <h3 class="box-title">View Proposal</h3>
                 </div>
                 <!-- /.box-header -->
