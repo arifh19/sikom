@@ -117,9 +117,9 @@ Laporan
                     @elseif($revisi->kategori_id==7)
                         <td><img src="{{ asset('/info/ppl.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
                     @elseif($revisi->kategori_id==8)
-                        <td><img src="{{ asset('/info/bisnis.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
+                        <td><img src="{{ asset('/info/bisnis2.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
                     @elseif($revisi->kategori_id==9)
-                        <td><img src="{{ asset('/info/piranti.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
+                        <td><img src="{{ asset('/info/piranti2.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
                     @elseif($revisi->kategori_id==10)
                         <td><img src="{{ asset('/info/smart.jpg') }}" class="img-rounded img-responsive" alt="User Image"></td>
                     @elseif($revisi->kategori_id==11)
