@@ -162,9 +162,9 @@ class HomeController extends Controller
             else{
                 $html = $htmlBuilder
                     ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Tanggal diperiksa']);
-                return view('dashboard.laporan', compact('proposals','html'));
+                return view('dashboard.laporan', compact('html'));
             }
-            return view('dashboard.laporan', compact('proposals','html'));
+            return view('dashboard.laporan', compact('html'));
         }
 
         if (Laratrust::hasRole('admin')) {

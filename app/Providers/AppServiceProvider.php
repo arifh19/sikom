@@ -17,8 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-	\URL::forceScheme('https');
-	if($this->app->environment() === 'production'){ $this->app['request']->server->set('HTTPS', true); }
+//	\URL::forceScheme('https');
+//	if($this->app->environment() === 'production'){ $this->app['request']->server->set('HTTPS', true); }
     //     // Database
         Schema::defaultStringLength(191);
 

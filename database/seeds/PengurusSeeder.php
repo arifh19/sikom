@@ -19,7 +19,7 @@ class PengurusSeeder extends Seeder
         $pengurus->prodi = "Teknologi Reyakasa Internet";
         $pengurus->kontak = '-';
         $pengurus->divisi_id = 4;
-        $pengurus->user_id = 62;
+        $pengurus->user_id = 1;
         $pengurus->jabatan_id = 5;
         $pengurus->save();
 
@@ -30,7 +30,7 @@ class PengurusSeeder extends Seeder
         $pengurus1->prodi = "Elektronika dan Instrumentasi";
         $pengurus1->kontak = '-';
         $pengurus1->divisi_id = 4;
-        $pengurus1->user_id = 62;
+        $pengurus1->user_id = 2;
         $pengurus1->jabatan_id = 6;
         $pengurus1->save();
 
@@ -41,7 +41,7 @@ class PengurusSeeder extends Seeder
         $pengurus2->prodi = "Teknik Elektro";
         $pengurus2->kontak = '-';
         $pengurus2->divisi_id = 4;
-        $pengurus2->user_id = 62;
+        $pengurus2->user_id = 3;
         $pengurus2->jabatan_id = 6;
         $pengurus2->save();
 
@@ -52,7 +52,7 @@ class PengurusSeeder extends Seeder
         $pengurus3->prodi = "Teknik Elektro";
         $pengurus3->kontak = '-';
         $pengurus3->divisi_id = 4;
-        $pengurus3->user_id = 62;
+        $pengurus3->user_id = 1;
         $pengurus3->jabatan_id = 6;
         $pengurus3->save();
 
@@ -63,7 +63,7 @@ class PengurusSeeder extends Seeder
         $pengurus4->prodi = "Elektronika dan Instrumentasi";
         $pengurus4->kontak = '-';
         $pengurus4->divisi_id = 4;
-        $pengurus4->user_id = 62;
+        $pengurus4->user_id = 2;
         $pengurus4->jabatan_id = 6;
         $pengurus4->save();
 
