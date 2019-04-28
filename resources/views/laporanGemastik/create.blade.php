@@ -53,7 +53,7 @@ Proposal
                 <div class="box-header with-border">
                 <h3 class="box-title">Buku Panduan v.2.11</h3>
                 </div>
-                <center><iframe src ="{{ asset('/info/panduan.pdf') }}" width="600px" height="400px"></iframe></center>
+                <center><iframe src ="{{ asset('/info/panduan2.pdf') }}" width="600px" height="400px"></iframe></center>
             </div>
         </div> 
         <!-- /.col (right)-->
